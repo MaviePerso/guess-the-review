@@ -4,7 +4,12 @@ import { createServer } from "http";
 
 const httpServer = createServer();
 const io = new Server(httpServer, {
-  cors: { origin: "*", methods: ["GET", "POST"] }
+  cors: { 
+    origin: "*", 
+    methods: ["GET", "POST"],
+    credentials: true
+  },
+  transports: ['websocket', 'polling']
 });
 
 const PORT = process.env.PORT || 3001;
@@ -14,6 +19,7 @@ const rooms = new Map();
 let questions = [];
 try {
   questions = JSON.parse(fs.readFileSync("server/db.json", "utf8"));
+  console.log(`Loaded ${questions.length} questions.`);
 } catch (e) {
   console.log("Error loading db.json:", e.message);
 }
@@ -34,14 +40,25 @@ function calculateScore(guessRating, realRating, guessPrice, realPrice, mode) {
   if (mode === "note" || mode === "both") {
     if (guessRating !== undefined && guessRating !== null) {
       const diff = Math.abs(realRating - guessRating);
-      const noteScore = Math.max(0, 1 - diff); // diff 0.1 => 0.9 points
+      const noteScore = Math.max(0, 1 - diff);
       score += noteScore;
     }
   }
   if (mode === "price" || mode === "both") {
     if (guessPrice !== undefined && guessPrice !== null) {
       const diffPerc = Math.abs(realPrice - guessPrice) / realPrice;
-      let priceScore = 0; let accuracy = (1 - diffPerc) * 100; if (accuracy >= 100) priceScore = 1; else if (accuracy >= 98) priceScore = 0.9; else if (accuracy >= 96) priceScore = 0.8; else if (accuracy >= 94) priceScore = 0.7; else if (accuracy >= 92) priceScore = 0.6; else if (accuracy >= 90) priceScore = 0.5; else if (accuracy >= 88) priceScore = 0.4; else if (accuracy >= 86) priceScore = 0.3; else if (accuracy >= 84) priceScore = 0.2; else if (accuracy >= 82) priceScore = 0.1;
+      let priceScore = 0; 
+      let accuracy = (1 - diffPerc) * 100; 
+      if (accuracy >= 100) priceScore = 1; 
+      else if (accuracy >= 98) priceScore = 0.9; 
+      else if (accuracy >= 96) priceScore = 0.8; 
+      else if (accuracy >= 94) priceScore = 0.7; 
+      else if (accuracy >= 92) priceScore = 0.6; 
+      else if (accuracy >= 90) priceScore = 0.5; 
+      else if (accuracy >= 88) priceScore = 0.4; 
+      else if (accuracy >= 86) priceScore = 0.3; 
+      else if (accuracy >= 84) priceScore = 0.2; 
+      else if (accuracy >= 82) priceScore = 0.1;
       score += priceScore;
     }
   }
@@ -49,7 +66,7 @@ function calculateScore(guessRating, realRating, guessPrice, realPrice, mode) {
 }
 
 io.on("connection", (socket) => {
-  console.log(Joueur connecté: );
+  console.log(`Joueur connectÃ©: ${socket.id}`);
 
   socket.on("CREATE_ROOM", ({ pseudo, mode }, callback) => {
     if (!pseudo || pseudo.trim().length === 0) return callback({ error: "Pseudo invalide" });
@@ -72,8 +89,8 @@ io.on("connection", (socket) => {
     const roomCode = code?.toUpperCase();
     const room = rooms.get(roomCode);
     if (!room) return callback({ error: "Cette room n'existe pas." });
-    if (room.state !== "LOBBY" && room.state !== "FINISHED") return callback({ error: "La partie est déjà en cours." });
-    if (room.players.some(p => p.pseudo.toLowerCase() === pseudo.trim().toLowerCase())) return callback({ error: "Ce pseudo est déjà utilisé." });
+    if (room.state !== "LOBBY" && room.state !== "FINISHED") return callback({ error: "La partie est dÃ©jÃ  en cours." });
+    if (room.players.some(p => p.pseudo.toLowerCase() === pseudo.trim().toLowerCase())) return callback({ error: "Ce pseudo est dÃ©jÃ  utilisÃ©." });
 
     const player = { id: socket.id, pseudo: pseudo.trim(), isHost: false, connected: true, joinedAt: Date.now() };
     room.players.push(player);
@@ -87,7 +104,7 @@ io.on("connection", (socket) => {
 
   socket.on("START_GAME", ({ code }, callback) => {
     const room = rooms.get(code);
-    if (!room || room.hostId !== socket.id) return callback({ error: "Action non autorisée" });
+    if (!room || room.hostId !== socket.id) return callback({ error: "Action non autorisÃ©e" });
     room.state = "PLAYING";
     room.currentQuestionIndex = 0;
     room.answers = {};
@@ -99,8 +116,8 @@ io.on("connection", (socket) => {
 
   socket.on("SUBMIT_ANSWER", ({ code, rating, price }, callback) => {
     const room = rooms.get(code);
-    if (!room || room.state !== "PLAYING") return callback({ error: "Erreur d'état" });
-    if (room.answers[socket.id]) return callback({ error: "Vous avez déjà répondu." });
+    if (!room || room.state !== "PLAYING") return callback({ error: "Erreur d'Ã©tat" });
+    if (room.answers[socket.id]) return callback({ error: "Vous avez dÃ©jÃ  rÃ©pondu." });
 
     const currentQuestion = room.questions[room.currentQuestionIndex];
     const points = calculateScore(rating, currentQuestion.realRating, price, currentQuestion.price, room.mode);
@@ -124,7 +141,7 @@ io.on("connection", (socket) => {
 
   socket.on("NEXT_QUESTION", ({ code }, callback) => {
     const room = rooms.get(code);
-    if (!room || room.hostId !== socket.id || room.state !== "REVEAL") return callback({ error: "Action non autorisée" });
+    if (!room || room.hostId !== socket.id || room.state !== "REVEAL") return callback({ error: "Action non autorisÃ©e" });
     if (room.currentQuestionIndex >= room.questions.length - 1) {
       room.state = "FINISHED";
     } else {
@@ -138,7 +155,7 @@ io.on("connection", (socket) => {
 
   socket.on("RESTART_GAME", ({ code }, callback) => {
     const room = rooms.get(code);
-    if (!room || room.hostId !== socket.id || room.state !== "FINISHED") return callback({ error: "Action non autorisée" });
+    if (!room || room.hostId !== socket.id || room.state !== "FINISHED") return callback({ error: "Action non autorisÃ©e" });
     room.state = "PLAYING";
     room.currentQuestionIndex = 0;
     room.questions = getShuffledQuestions();
@@ -173,4 +190,18 @@ io.on("connection", (socket) => {
   socket.on("disconnect", () => handleLeave());
 });
 
-httpServer.listen(PORT, () => console.log(?? Serveur Socket.IO démarré sur le port ));
+// Health check endpoint
+httpServer.on('request', (req, res) => {
+  if (req.url === '/health' || req.url === '/') {
+    res.writeHead(200, { 'Content-Type': 'application/json' });
+    res.end(JSON.stringify({ status: 'ok', uptime: process.uptime(), questions: questions.length }));
+  }
+});
+
+// Self-ping every 14 minutes to prevent Render free tier sleep
+setInterval(() => {
+  const url = process.env.RENDER_EXTERNAL_URL || 'https://guess-the-review-backend.onrender.com';
+  fetch(url + '/health').then(r => r.json()).then(d => console.log('Self-ping OK:', d.status)).catch(() => {});
+}, 14 * 60 * 1000);
+
+httpServer.listen(PORT, () => console.log(`ğŸš€ Serveur Socket.IO dÃ©marrÃ© sur le port ${PORT}`));
