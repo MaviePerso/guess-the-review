@@ -216,7 +216,7 @@ function RoomPageContent() {
                     <span style={{ fontWeight: "bold", color }}>{p.pseudo}</span>
                     {statusText && <span style={{ fontSize: "0.75rem", color: color, opacity: 0.8 }}>({statusText})</span>}
                   </div>
-                  <span style={{ fontWeight: "bold" }}>{Math.round(p.score * 10) / 10} pts</span>
+                  <span style={{ fontWeight: "bold" }}>{Math.round((p.score || 0) * 10) / 10} pts</span>
                 </div>
               );
             })}
