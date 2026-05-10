@@ -89,8 +89,33 @@ io.on("connection", (socket) => {
     const roomCode = code?.toUpperCase();
     const room = rooms.get(roomCode);
     if (!room) return callback({ error: "Cette room n'existe pas." });
+    
+    const existingPlayer = room.players.find(p => p.pseudo.toLowerCase() === pseudo.trim().toLowerCase());
+    
+    if (existingPlayer) {
+      // Reclaim the spot (update ID)
+      const oldId = existingPlayer.id;
+      existingPlayer.id = socket.id;
+      existingPlayer.connected = true;
+      
+      // Update scores and answers to new ID
+      if (room.scores[oldId] !== undefined) {
+        room.scores[socket.id] = room.scores[oldId];
+        delete room.scores[oldId];
+      }
+      if (room.answers[oldId]) {
+        room.answers[socket.id] = room.answers[oldId];
+        delete room.answers[oldId];
+      }
+      if (room.hostId === oldId) room.hostId = socket.id;
+
+      socket.join(roomCode);
+      callback({ success: true, room });
+      io.to(roomCode).emit("ROOM_UPDATED", room);
+      return;
+    }
+
     if (room.state !== "LOBBY" && room.state !== "FINISHED") return callback({ error: "La partie est déjà en cours." });
-    if (room.players.some(p => p.pseudo.toLowerCase() === pseudo.trim().toLowerCase())) return callback({ error: "Ce pseudo est déjà utilisé." });
 
     const player = { id: socket.id, pseudo: pseudo.trim(), isHost: false, connected: true, joinedAt: Date.now() };
     room.players.push(player);
@@ -168,25 +193,31 @@ io.on("connection", (socket) => {
 
   const handleLeave = () => {
     rooms.forEach((room, code) => {
-      const playerIndex = room.players.findIndex(p => p.id === socket.id);
-      if (playerIndex !== -1) {
-        room.players.splice(playerIndex, 1);
-        io.to(code).emit("PLAYER_LEFT", socket.id);
-
-        if (room.players.length === 0) {
-          rooms.delete(code);
-        } else if (room.hostId === socket.id) {
-          const newHost = room.players[0];
-          newHost.isHost = true;
-          room.hostId = newHost.id;
-          io.to(code).emit("HOST_CHANGED", newHost.id);
+      const player = room.players.find(p => p.id === socket.id);
+      if (player) {
+        player.connected = false;
+        // Don't remove player immediately to allow reconnection
+        // But if it's the last player, delete the room
+        if (room.players.every(p => !p.connected)) {
+          // rooms.delete(code); // Optional: wait some time before deleting
         }
         io.to(code).emit("ROOM_UPDATED", room);
       }
     });
   };
 
-  socket.on("LEAVE_ROOM", () => handleLeave());
+  socket.on("LEAVE_ROOM", () => {
+    rooms.forEach((room, code) => {
+      const idx = room.players.findIndex(p => p.id === socket.id);
+      if (idx !== -1) {
+        room.players.splice(idx, 1);
+        if (room.players.length === 0) rooms.delete(code);
+        else if (room.hostId === socket.id) room.hostId = room.players[0].id;
+        io.to(code).emit("ROOM_UPDATED", room);
+      }
+    });
+  });
+
   socket.on("disconnect", () => handleLeave());
 });
 
