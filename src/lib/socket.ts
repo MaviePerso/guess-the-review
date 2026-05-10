@@ -5,5 +5,5 @@ const URL = process.env.NEXT_PUBLIC_SOCKET_URL || "http://localhost:3001";
 
 export const socket = io(URL, {
   autoConnect: false,
-  transports: ["websocket"] // Force websocket to avoid XHR poll error
+  transports: ["websocket", "polling"] // Fallback to polling if websocket fails
 });
