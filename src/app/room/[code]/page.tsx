@@ -3,7 +3,7 @@
 import { useEffect, useState, Suspense } from "react";
 import { socket } from "@/lib/socket";
 import { useParams, useSearchParams } from "next/navigation";
-import { Copy, Users, Play, ArrowRight, RotateCcw } from "lucide-react";
+import { Copy, Users, Play, ArrowRight, RotateCcw, Loader2 } from "lucide-react";
 import { ImageCarousel } from "@/components/ImageCarousel";
 
 function RoomPageContent() {
@@ -25,42 +25,20 @@ function RoomPageContent() {
     }
 
     const join = () => {
-      console.log("Attempting to join room:", code);
       socket.emit("JOIN_ROOM", { code, pseudo }, (res: any) => {
-        console.log("Join response:", res);
-        if (!res.success) {
-          setError(res.error);
-        } else {
-          setRoom(res.room);
-          setError(""); // Clear error if rejoin successful
-        }
+        if (!res.success) setError(res.error);
+        else { setRoom(res.room); setError(""); }
       });
     };
 
-    if (!socket.connected) {
-      socket.connect();
-    }
-
-    // Use .on("connect") to handle server restarts/reconnections
+    if (!socket.connected) socket.connect();
     socket.on("connect", join);
-    
-    // Also call immediately if already connected
-    if (socket.connected) {
-      join();
-    }
+    if (socket.connected) join();
 
-    socket.on("ROOM_UPDATED", (r) => {
-      console.log("Room updated:", r);
-      setRoom(r);
-    });
-    
+    socket.on("ROOM_UPDATED", (r) => setRoom(r));
     socket.on("GAME_STARTED", () => {
       setGuessRating(3.0);
       setGuessPrice("");
-    });
-
-    socket.on("connect_error", (err) => {
-        console.error("Socket connection error:", err);
     });
 
     return () => {
@@ -68,7 +46,6 @@ function RoomPageContent() {
       socket.off("connect", join);
       socket.off("ROOM_UPDATED");
       socket.off("GAME_STARTED");
-      socket.off("connect_error");
     };
   }, [code, pseudo]);
 
@@ -87,9 +64,6 @@ function RoomPageContent() {
       <div className="card" style={{ textAlign: "center" }}>
         <div className="loader" style={{ margin: "2rem auto" }}></div>
         <p>Connexion au serveur...</p>
-        <p style={{ fontSize: "0.8rem", color: "#9ca3af", marginTop: "1rem" }}>
-          (Le serveur Render peut mettre 30s à se réveiller)
-        </p>
       </div>
     </div>
   );
@@ -99,7 +73,12 @@ function RoomPageContent() {
   const myAnswer = (socket.id && room.answers) ? room.answers[socket.id] : null;
   const mode = room.mode || "note";
 
-  const handleStart = () => socket.emit("START_GAME", { code });
+  const handleStart = () => {
+    if (room.isLoadingQuestions) return;
+    socket.emit("START_GAME", { code }, (res: any) => {
+      if (!res.success) alert(res.error);
+    });
+  };
   const handleNext = () => socket.emit("NEXT_QUESTION", { code });
   const handleRestart = () => socket.emit("RESTART_GAME", { code });
 
@@ -141,16 +120,37 @@ function RoomPageContent() {
                 <Users size={32} />
               </div>
               <h2 style={{ fontSize: "1.8rem" }}>Salle d'attente</h2>
-              <p style={{ margin: "1rem 0", color: "var(--text-muted)" }}>Mode de jeu : <span className="badge">{mode}</span></p>
+              
+              {room.isLoadingQuestions ? (
+                <div style={{ marginTop: "2rem", color: "var(--primary)" }}>
+                  <div style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: "10px" }}>
+                    <Loader2 className="animate-spin" />
+                    <span>Récupération de produits inédits...</span>
+                  </div>
+                  <p style={{ fontSize: "0.8rem", color: "var(--text-muted)", marginTop: "0.5rem" }}>
+                    On fouille eBay, Cdiscount et Rakuten pour toi !
+                  </p>
+                </div>
+              ) : (
+                <>
+                  <p style={{ margin: "1rem 0", color: "var(--text-muted)" }}>Mode de jeu : <span className="badge">{mode}</span></p>
+                  <p style={{ color: "var(--success)", fontSize: "0.9rem", fontWeight: "600" }}>{room.questions.length} produits prêts !</p>
+                </>
+              )}
               
               <div style={{ marginTop: "2rem" }}>
                 {isHost ? (
-                  <button className="btn btn-primary btn-lg" onClick={handleStart} style={{ padding: "1rem 3rem" }}>
+                  <button 
+                    className="btn btn-primary btn-lg" 
+                    onClick={handleStart} 
+                    disabled={room.isLoadingQuestions}
+                    style={{ padding: "1rem 3rem", opacity: room.isLoadingQuestions ? 0.5 : 1 }}
+                  >
                     <Play size={20} style={{ marginRight: "8px" }} /> Démarrer la partie
                   </button>
                 ) : (
                   <div className="card" style={{ background: "var(--bg-card)", borderStyle: "dashed" }}>
-                    <p>Attente du lancement par l'hôte...</p>
+                    <p>{room.isLoadingQuestions ? "Préparation de la partie..." : "Attente de l'hôte..."}</p>
                   </div>
                 )}
               </div>
@@ -166,6 +166,7 @@ function RoomPageContent() {
               )}
               
               <ImageCarousel images={currentQ.images || []} />
+              <div style={{ textAlign: "center", marginTop: "0.5rem", fontSize: "0.8rem", color: "var(--text-muted)" }}>Source: {currentQ.source}</div>
               
               <div className="review-text" style={{ marginTop: "1.5rem", fontStyle: "italic", fontSize: "1.1rem", borderLeft: "4px solid var(--primary)", paddingLeft: "1rem" }}>
                 "{currentQ.reviewText}"
@@ -180,20 +181,16 @@ function RoomPageContent() {
                           <label style={{ fontWeight: "bold" }}>Note estimée ?</label>
                           <span style={{ color: "var(--primary)", fontWeight: "bold", fontSize: "1.2rem" }}>{guessRating.toFixed(1)} ⭐</span>
                         </div>
-                        <input type="range" min="1.0" max="5.0" step="0.1" value={guessRating} onChange={(e) => setGuessRating(Number(e.target.value))} style={{ width: "100%", height: "8px", borderRadius: "4px" }} />
+                        <input type="range" min="1.0" max="5.0" step="0.1" value={guessRating} onChange={(e) => setGuessRating(Number(e.target.value))} style={{ width: "100%" }} />
                       </div>
                     )}
-                    
                     {(mode === "price" || mode === "both") && (
                       <div className="input-group">
                         <label style={{ fontWeight: "bold", display: "block", marginBottom: "0.5rem" }}>Prix estimé ? (€)</label>
                         <input type="number" className="input" placeholder="0.00" value={guessPrice} onChange={(e) => setGuessPrice(e.target.value)} style={{ fontSize: "1.5rem", textAlign: "center" }} />
                       </div>
                     )}
-                    
-                    <button className="btn btn-primary btn-lg" onClick={handleSubmit} style={{ height: "60px" }}>
-                      Valider ma réponse
-                    </button>
+                    <button className="btn btn-primary btn-lg" onClick={handleSubmit} style={{ height: "60px" }}>Valider ma réponse</button>
                   </div>
                 ) : (
                   <div style={{ textAlign: "center", padding: "3rem 1rem", background: "rgba(34, 197, 94, 0.05)", borderRadius: "16px", border: "2px dashed var(--success)" }}>
@@ -208,7 +205,6 @@ function RoomPageContent() {
           {room.state === "REVEAL" && currentQ && (
             <div className="card animate-scale-in">
               <h2 style={{ textAlign: "center", fontSize: "1.8rem", marginBottom: "2rem" }}>Résultats du tour</h2>
-              
               <div className="grid" style={{ gap: "1rem", marginBottom: "2.5rem" }}>
                 {(mode === "note" || mode === "both") && (
                   <div className="card" style={{ textAlign: "center", background: "var(--bg-card)" }}>
@@ -223,97 +219,48 @@ function RoomPageContent() {
                   </div>
                 )}
               </div>
-
               <div style={{ display: "flex", flexDirection: "column", gap: "0.75rem" }}>
                 {room.players.map((p: any) => {
                   const ans = room.answers && room.answers[p.id];
                   return (
-                    <div key={p.id} className="player-result-row" style={{ padding: "1rem", border: "1px solid var(--border)", borderRadius: "12px", display: "flex", justifyContent: "space-between", alignItems: "center", background: socket.id === p.id ? "rgba(var(--primary-rgb), 0.05)" : "transparent" }}>
+                    <div key={p.id} className="player-result-row" style={{ padding: "1rem", border: "1px solid var(--border)", borderRadius: "12px", display: "flex", justifyContent: "space-between", alignItems: "center" }}>
                       <div>
-                        <div style={{ fontWeight: "bold" }}>{p.pseudo} {socket.id === p.id && "(Vous)"}</div>
+                        <div style={{ fontWeight: "bold" }}>{p.pseudo}</div>
                         {ans ? (
-                          <div style={{ fontSize: "0.85rem", color: "#9ca3af", marginTop: "0.25rem" }}>
-                            {ans.rating?.toFixed(1)}⭐ | {ans.price}€
-                          </div>
+                          <div style={{ fontSize: "0.85rem", color: "#9ca3af" }}>{ans.rating?.toFixed(1)}⭐ | {ans.price}€</div>
                         ) : <span style={{ fontSize: "0.8rem", color: "var(--danger)" }}>N'a pas répondu</span>}
                       </div>
-                      <div style={{ textAlign: "right" }}>
-                        <span style={{ color: "var(--primary)", fontWeight: "800", fontSize: "1.1rem" }}>+{ans?.points || 0}</span>
-                        <span style={{ fontSize: "0.8rem", marginLeft: "2px" }}>pts</span>
-                      </div>
+                      <div><span style={{ color: "var(--primary)", fontWeight: "800" }}>+{ans?.points || 0}</span> pts</div>
                     </div>
                   );
                 })}
               </div>
-              
-              {isHost && (
-                <button className="btn btn-primary btn-lg" style={{ width: "100%", marginTop: "2rem" }} onClick={handleNext}>
-                  Question suivante <ArrowRight size={20} style={{ marginLeft: "8px" }} />
-                </button>
-              )}
+              {isHost && <button className="btn btn-primary btn-lg" style={{ width: "100%", marginTop: "2rem" }} onClick={handleNext}>Question suivante <ArrowRight size={20} /></button>}
             </div>
           )}
 
           {room.state === "FINISHED" && (
             <div className="card animate-fade-in" style={{ textAlign: "center", padding: "4rem 1rem" }}>
-              <div style={{ fontSize: "4rem", marginBottom: "1rem" }}>🏆</div>
               <h1 style={{ fontSize: "2.5rem", marginBottom: "1rem" }}>Partie terminée !</h1>
-              <p style={{ marginBottom: "3rem", fontSize: "1.2rem", color: "#9ca3af" }}>Bravo à tous les joueurs.</p>
-              
-              {isHost && (
-                <button className="btn btn-primary btn-lg" onClick={handleRestart} style={{ padding: "1rem 4rem" }}>
-                  <RotateCcw size={20} style={{ marginRight: "8px" }} /> Relancer une partie
-                </button>
-              )}
-              
+              {isHost && <button className="btn btn-primary btn-lg" onClick={handleRestart}><RotateCcw size={20} /> Relancer une partie</button>}
               <a href="/" className="btn btn-outline" style={{ marginTop: "1rem", display: "inline-block" }}>Retour à l'accueil</a>
             </div>
           )}
         </div>
         
         <div className="sidebar">
-          <div className="card" style={{ position: "sticky", top: "2rem" }}>
-            <h3 style={{ marginBottom: "1.5rem", display: "flex", alignItems: "center", gap: "0.5rem" }}>
-              <Users size={18} /> Joueurs
-            </h3>
-            <div style={{ display: "flex", flexDirection: "column", gap: "0.5rem" }}>
+          <div className="card">
+            <h3><Users size={18} /> Joueurs</h3>
+            <div style={{ display: "flex", flexDirection: "column", gap: "0.5rem", marginTop: "1rem" }}>
               {room.players.map((p: any) => {
-                let color = "var(--foreground)";
-                let statusText = "";
-                let dotColor = "transparent";
-
-                if (!p.connected) {
-                  color = "#9ca3af";
-                  statusText = "déconnecté";
-                  dotColor = "#ef4444";
-                } else if (room.state === "PLAYING") {
-                  if (room.answers && room.answers[p.id]) {
-                    color = "var(--success)";
-                    statusText = "prêt";
-                    dotColor = "var(--success)";
-                  } else {
-                    color = "var(--primary)";
-                    statusText = "réfléchit...";
-                    dotColor = "#9ca3af";
-                  }
-                } else {
-                  color = "var(--foreground)";
-                  dotColor = "#22c55e";
-                }
-
+                let dotColor = !p.connected ? "#ef4444" : (room.state === "PLAYING" && room.answers && room.answers[p.id] ? "var(--success)" : "#9ca3af");
                 return (
                   <div key={p.id} style={{ display: "flex", justifyContent: "space-between", alignItems: "center", padding: "0.75rem", background: "rgba(255,255,255,0.03)", borderRadius: "8px", border: "1px solid var(--border)" }}>
                     <div style={{ display: "flex", alignItems: "center", gap: "0.6rem" }}>
-                      <div style={{ width: "8px", height: "8px", borderRadius: "50%", backgroundColor: dotColor, boxShadow: `0 0 8px ${dotColor}` }}></div>
-                      <div style={{ display: "flex", flexDirection: "column" }}>
-                        <span style={{ fontWeight: "bold", fontSize: "0.95rem", color }}>{p.pseudo}</span>
-                        {statusText && <span style={{ fontSize: "0.7rem", color: "#9ca3af" }}>{statusText}</span>}
-                      </div>
+                      <div style={{ width: "8px", height: "8px", borderRadius: "50%", backgroundColor: dotColor }}></div>
+                      <span style={{ fontWeight: "bold" }}>{p.pseudo}</span>
                     </div>
-                    <div style={{ textAlign: "right" }}>
-                      <div style={{ fontWeight: "800", fontSize: "1rem" }}>{Math.round((p.score || 0) * 10) / 10}</div>
-                      <div style={{ fontSize: "0.6rem", color: "#9ca3af", textTransform: "uppercase" }}>points</div>
-                    </div>
+                    <span>{Math.round((p.score || 0) * 10) / 10} pts</span>
                   </div>
                 );
               })}
