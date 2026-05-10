@@ -12,7 +12,7 @@ export default function RoomPage({ params, searchParams }: any) {
   const [room, setRoom] = useState<any>(null);
   const [error, setError] = useState("");
   const [guessRating, setGuessRating] = useState<number>(3.0);
-  const [guessPrice, setGuessPrice] = useState<number | "">("");
+  const [guessPrice, setGuessPrice] = useState<string>("");
 
   useEffect(() => {
     if (!pseudo) {
@@ -54,7 +54,7 @@ export default function RoomPage({ params, searchParams }: any) {
     if ((mode === "price" || mode === "both") && (guessPrice === "" || Number(guessPrice) <= 0)) {
       return alert("Entre un prix valide !");
     }
-    socket.emit("SUBMIT_ANSWER", { code, rating: guessRating, price: Number(guessPrice) }, (res: any) => {
+    socket.emit("SUBMIT_ANSWER", { code, rating: guessRating, price: guessPrice ? Number(guessPrice) : undefined }, (res: any) => {
       if (!res.success) alert(res.error);
     });
   };
