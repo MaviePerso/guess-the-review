@@ -179,9 +179,9 @@ function RoomPageContent() {
           <div className="card">
             <h3>Joueurs</h3>
             {room.players.map((p: any) => (
-              <div key={p.id} style={{ display: "flex", justifyContent: "space-between" }}>
-                <span>{p.pseudo}</span>
-                <span>{Math.round(room.scores[p.id] * 10) / 10}</span>
+              <div key={p.id} style={{ display: "flex", justifyContent: "space-between", color: p.connected ? 'inherit' : '#9ca3af' }}>
+                <span>{p.pseudo} {!p.connected && '(déconnecté)'}</span>
+                <span>{Math.round(p.score * 10) / 10}</span>
               </div>
             ))}
           </div>

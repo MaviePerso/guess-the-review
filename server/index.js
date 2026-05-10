@@ -71,14 +71,26 @@ io.on("connection", (socket) => {
   socket.on("CREATE_ROOM", ({ pseudo, mode }, callback) => {
     if (!pseudo || pseudo.trim().length === 0) return callback({ error: "Pseudo invalide" });
     const code = generateRoomCode();
-    const player = { id: socket.id, pseudo: pseudo.trim(), isHost: true, connected: true, joinedAt: Date.now() };
+    const player = { 
+        id: socket.id, 
+        pseudo: pseudo.trim(), 
+        isHost: true, 
+        connected: true, 
+        score: 0,
+        joinedAt: Date.now() 
+    };
     
     const newRoom = {
-      code, hostId: socket.id, state: "LOBBY", players: [player],
-      currentQuestionIndex: 0, questions: getShuffledQuestions(),
+      code, 
+      hostId: socket.id, 
+      state: "LOBBY", 
+      players: [player],
+      currentQuestionIndex: 0, 
+      questions: getShuffledQuestions(),
       mode: mode || "note",
-      answers: {}, scores: { [socket.id]: 0 },
-      createdAt: Date.now(), updatedAt: Date.now()
+      answers: {}, 
+      createdAt: Date.now(), 
+      updatedAt: Date.now()
     };
     rooms.set(code, newRoom);
     socket.join(code);
@@ -93,21 +105,19 @@ io.on("connection", (socket) => {
     const existingPlayer = room.players.find(p => p.pseudo.toLowerCase() === pseudo.trim().toLowerCase());
     
     if (existingPlayer) {
-      // Reclaim the spot (update ID)
+      // Reclaim the spot
       const oldId = existingPlayer.id;
       existingPlayer.id = socket.id;
       existingPlayer.connected = true;
       
-      // Update scores and answers to new ID
-      if (room.scores[oldId] !== undefined) {
-        room.scores[socket.id] = room.scores[oldId];
-        delete room.scores[oldId];
-      }
+      // Update hostId if necessary
+      if (room.hostId === oldId) room.hostId = socket.id;
+
+      // Update answers to new ID
       if (room.answers[oldId]) {
         room.answers[socket.id] = room.answers[oldId];
         delete room.answers[oldId];
       }
-      if (room.hostId === oldId) room.hostId = socket.id;
 
       socket.join(roomCode);
       callback({ success: true, room });
@@ -117,9 +127,15 @@ io.on("connection", (socket) => {
 
     if (room.state !== "LOBBY" && room.state !== "FINISHED") return callback({ error: "La partie est déjà en cours." });
 
-    const player = { id: socket.id, pseudo: pseudo.trim(), isHost: false, connected: true, joinedAt: Date.now() };
+    const player = { 
+        id: socket.id, 
+        pseudo: pseudo.trim(), 
+        isHost: false, 
+        connected: true, 
+        score: 0,
+        joinedAt: Date.now() 
+    };
     room.players.push(player);
-    if (room.scores[socket.id] === undefined) room.scores[socket.id] = 0;
     
     socket.join(roomCode);
     callback({ success: true, room });
@@ -129,11 +145,14 @@ io.on("connection", (socket) => {
 
   socket.on("START_GAME", ({ code }, callback) => {
     const room = rooms.get(code);
-    if (!room || room.hostId !== socket.id) return callback({ error: "Action non autorisée" });
+    if (!room) return callback({ error: "Room introuvable" });
+    if (room.hostId !== socket.id) return callback({ error: "Seul l'hôte peut lancer le jeu" });
+    
     room.state = "PLAYING";
     room.currentQuestionIndex = 0;
     room.answers = {};
-    Object.keys(room.scores).forEach(k => { room.scores[k] = 0; });
+    room.players.forEach(p => { p.score = 0; });
+    
     io.to(code).emit("ROOM_UPDATED", room);
     io.to(code).emit("GAME_STARTED");
     callback({ success: true });
@@ -141,7 +160,9 @@ io.on("connection", (socket) => {
 
   socket.on("SUBMIT_ANSWER", ({ code, rating, price }, callback) => {
     const room = rooms.get(code);
-    if (!room || room.state !== "PLAYING") return callback({ error: "Erreur d'état" });
+    if (!room) return callback({ error: "Room introuvable" });
+    if (room.state !== "PLAYING") return callback({ error: `Erreur d'état : le jeu est en mode ${room.state}` });
+    
     if (room.answers[socket.id]) return callback({ error: "Vous avez déjà répondu." });
 
     const currentQuestion = room.questions[room.currentQuestionIndex];
@@ -157,7 +178,10 @@ io.on("connection", (socket) => {
     if (allAnswered) {
       room.state = "REVEAL";
       for (const [pId, ans] of Object.entries(room.answers)) {
-        room.scores[pId] = (room.scores[pId] || 0) + ans.points;
+        const player = room.players.find(p => p.id === pId);
+        if (player) {
+            player.score = Math.round((player.score + ans.points) * 100) / 100;
+        }
       }
       io.to(code).emit("ROOM_UPDATED", room);
       io.to(code).emit("REVEAL_QUESTION");
@@ -185,7 +209,8 @@ io.on("connection", (socket) => {
     room.currentQuestionIndex = 0;
     room.questions = getShuffledQuestions();
     room.answers = {};
-    Object.keys(room.scores).forEach(k => { room.scores[k] = 0; });
+    room.players.forEach(p => { p.score = 0; });
+    
     io.to(code).emit("ROOM_UPDATED", room);
     io.to(code).emit("GAME_STARTED");
     callback({ success: true });
@@ -196,11 +221,6 @@ io.on("connection", (socket) => {
       const player = room.players.find(p => p.id === socket.id);
       if (player) {
         player.connected = false;
-        // Don't remove player immediately to allow reconnection
-        // But if it's the last player, delete the room
-        if (room.players.every(p => !p.connected)) {
-          // rooms.delete(code); // Optional: wait some time before deleting
-        }
         io.to(code).emit("ROOM_UPDATED", room);
       }
     });
@@ -211,8 +231,12 @@ io.on("connection", (socket) => {
       const idx = room.players.findIndex(p => p.id === socket.id);
       if (idx !== -1) {
         room.players.splice(idx, 1);
-        if (room.players.length === 0) rooms.delete(code);
-        else if (room.hostId === socket.id) room.hostId = room.players[0].id;
+        if (room.players.length === 0) {
+            rooms.delete(code);
+        } else if (room.hostId === socket.id) {
+            const nextPlayer = room.players.find(p => p.connected) || room.players[0];
+            if (nextPlayer) room.hostId = nextPlayer.id;
+        }
         io.to(code).emit("ROOM_UPDATED", room);
       }
     });
@@ -229,10 +253,10 @@ httpServer.on('request', (req, res) => {
   }
 });
 
-// Self-ping every 14 minutes to prevent Render free tier sleep
+// Self-ping every 14 minutes
 setInterval(() => {
   const url = process.env.RENDER_EXTERNAL_URL || 'https://guess-the-review-backend.onrender.com';
-  fetch(url + '/health').then(r => r.json()).then(d => console.log('Self-ping OK:', d.status)).catch(() => {});
+  fetch(url + '/health').then(r => r.json()).then(d => console.log('Self-ping OK')).catch(() => {});
 }, 14 * 60 * 1000);
 
-httpServer.listen(PORT, () => console.log(`🚀 Serveur Socket.IO démarré sur le port ${PORT}`));
+httpServer.listen(PORT, () => console.log(`🚀 Serveur démarré sur le port ${PORT}`));
