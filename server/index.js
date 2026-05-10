@@ -65,11 +65,15 @@ function calculateScore(guessRating, realRating, guessPrice, realPrice, mode) {
   return Math.round(score * 100) / 100;
 }
 
+const safeCb = (cb, data) => {
+    if (typeof cb === 'function') cb(data);
+};
+
 io.on("connection", (socket) => {
   console.log(`Joueur connecté: ${socket.id}`);
 
-  socket.on("CREATE_ROOM", ({ pseudo, mode }, callback) => {
-    if (!pseudo || pseudo.trim().length === 0) return callback({ error: "Pseudo invalide" });
+  socket.on("CREATE_ROOM", ({ pseudo, mode } = {}, callback) => {
+    if (!pseudo || pseudo.trim().length === 0) return safeCb(callback, { error: "Pseudo invalide" });
     const code = generateRoomCode();
     const player = { 
         id: socket.id, 
@@ -94,15 +98,15 @@ io.on("connection", (socket) => {
     };
     rooms.set(code, newRoom);
     socket.join(code);
-    callback({ success: true, room: newRoom });
+    safeCb(callback, { success: true, room: newRoom });
   });
 
-  socket.on("JOIN_ROOM", ({ code, pseudo }, callback) => {
+  socket.on("JOIN_ROOM", ({ code, pseudo } = {}, callback) => {
     const roomCode = code?.toUpperCase();
     const room = rooms.get(roomCode);
-    if (!room) return callback({ error: "Cette room n'existe pas." });
+    if (!room) return safeCb(callback, { error: "Cette room n'existe pas." });
     
-    const existingPlayer = room.players.find(p => p.pseudo.toLowerCase() === pseudo.trim().toLowerCase());
+    const existingPlayer = room.players.find(p => p.pseudo.toLowerCase() === pseudo?.trim().toLowerCase());
     
     if (existingPlayer) {
       // Reclaim the spot
@@ -120,16 +124,16 @@ io.on("connection", (socket) => {
       }
 
       socket.join(roomCode);
-      callback({ success: true, room });
+      safeCb(callback, { success: true, room });
       io.to(roomCode).emit("ROOM_UPDATED", room);
       return;
     }
 
-    if (room.state !== "LOBBY" && room.state !== "FINISHED") return callback({ error: "La partie est déjà en cours." });
+    if (room.state !== "LOBBY" && room.state !== "FINISHED") return safeCb(callback, { error: "La partie est déjà en cours." });
 
     const player = { 
         id: socket.id, 
-        pseudo: pseudo.trim(), 
+        pseudo: pseudo?.trim() || "Joueur", 
         isHost: false, 
         connected: true, 
         score: 0,
@@ -138,15 +142,15 @@ io.on("connection", (socket) => {
     room.players.push(player);
     
     socket.join(roomCode);
-    callback({ success: true, room });
+    safeCb(callback, { success: true, room });
     socket.to(roomCode).emit("PLAYER_JOINED", player);
     io.to(roomCode).emit("ROOM_UPDATED", room);
   });
 
-  socket.on("START_GAME", ({ code }, callback) => {
+  socket.on("START_GAME", ({ code } = {}, callback) => {
     const room = rooms.get(code);
-    if (!room) return callback({ error: "Room introuvable" });
-    if (room.hostId !== socket.id) return callback({ error: "Seul l'hôte peut lancer le jeu" });
+    if (!room) return safeCb(callback, { error: "Room introuvable" });
+    if (room.hostId !== socket.id) return safeCb(callback, { error: "Seul l'hôte peut lancer le jeu" });
     
     room.state = "PLAYING";
     room.currentQuestionIndex = 0;
@@ -155,26 +159,22 @@ io.on("connection", (socket) => {
     
     io.to(code).emit("ROOM_UPDATED", room);
     io.to(code).emit("GAME_STARTED");
-    callback({ success: true });
+    safeCb(callback, { success: true });
   });
 
-  socket.on("SUBMIT_ANSWER", ({ code, rating, price }, callback) => {
+  socket.on("SUBMIT_ANSWER", ({ code, rating, price } = {}, callback) => {
     const room = rooms.get(code);
-    if (!room) return callback({ error: "Room introuvable" });
-    if (room.state !== "PLAYING") return callback({ error: `Erreur d'état : le jeu est en mode ${room.state}` });
+    if (!room) return safeCb(callback, { error: "Room introuvable" });
+    if (room.state !== "PLAYING") return safeCb(callback, { error: `Erreur d'état : le jeu est en mode ${room.state}` });
     
-    if (room.answers[socket.id]) return callback({ error: "Vous avez déjà répondu." });
+    if (room.answers[socket.id]) return safeCb(callback, { error: "Vous avez déjà répondu." });
 
     const currentQuestion = room.questions[room.currentQuestionIndex];
     const points = calculateScore(rating, currentQuestion.realRating, price, currentQuestion.price, room.mode);
 
-    // Hide answers from others by only sending a boolean to the client, or keep it server-side.
-    // For now, we can send it, but the client shouldn't show the answers until REVEAL.
     room.answers[socket.id] = { playerId: socket.id, rating, price, points, submittedAt: Date.now() };
     
-    callback({ success: true });
-    
-    // Broadcast to update UI immediately (shows who answered)
+    safeCb(callback, { success: true });
     io.to(code).emit("ROOM_UPDATED", room);
 
     const activePlayers = room.players.filter(p => p.connected);
@@ -193,9 +193,9 @@ io.on("connection", (socket) => {
     }
   });
 
-  socket.on("NEXT_QUESTION", ({ code }, callback) => {
+  socket.on("NEXT_QUESTION", ({ code } = {}, callback) => {
     const room = rooms.get(code);
-    if (!room || room.hostId !== socket.id || room.state !== "REVEAL") return callback({ error: "Action non autorisée" });
+    if (!room || room.hostId !== socket.id || room.state !== "REVEAL") return safeCb(callback, { error: "Action non autorisée" });
     if (room.currentQuestionIndex >= room.questions.length - 1) {
       room.state = "FINISHED";
     } else {
@@ -204,12 +204,12 @@ io.on("connection", (socket) => {
       room.answers = {};
     }
     io.to(code).emit("ROOM_UPDATED", room);
-    callback({ success: true });
+    safeCb(callback, { success: true });
   });
 
-  socket.on("RESTART_GAME", ({ code }, callback) => {
+  socket.on("RESTART_GAME", ({ code } = {}, callback) => {
     const room = rooms.get(code);
-    if (!room || room.hostId !== socket.id || room.state !== "FINISHED") return callback({ error: "Action non autorisée" });
+    if (!room || room.hostId !== socket.id || room.state !== "FINISHED") return safeCb(callback, { error: "Action non autorisée" });
     room.state = "PLAYING";
     room.currentQuestionIndex = 0;
     room.questions = getShuffledQuestions();
@@ -218,7 +218,7 @@ io.on("connection", (socket) => {
     
     io.to(code).emit("ROOM_UPDATED", room);
     io.to(code).emit("GAME_STARTED");
-    callback({ success: true });
+    safeCb(callback, { success: true });
   });
 
   const handleLeave = () => {
@@ -228,7 +228,6 @@ io.on("connection", (socket) => {
         player.connected = false;
         io.to(code).emit("ROOM_UPDATED", room);
         
-        // Also check if we should reveal if the disconnect makes all remaining active players done
         if (room.state === "PLAYING") {
             const activePlayers = room.players.filter(p => p.connected);
             if (activePlayers.length > 0 && activePlayers.every(p => room.answers[p.id])) {
@@ -264,7 +263,6 @@ io.on("connection", (socket) => {
   socket.on("disconnect", () => handleLeave());
 });
 
-// Health check endpoint
 httpServer.on('request', (req, res) => {
   if (req.url === '/health' || req.url === '/') {
     res.writeHead(200, { 'Content-Type': 'application/json' });
@@ -272,7 +270,6 @@ httpServer.on('request', (req, res) => {
   }
 });
 
-// Self-ping every 14 minutes
 setInterval(() => {
   const url = process.env.RENDER_EXTERNAL_URL || 'https://guess-the-review-backend.onrender.com';
   fetch(url + '/health').then(r => r.json()).then(d => console.log('Self-ping OK')).catch(() => {});
