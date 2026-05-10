@@ -15,7 +15,7 @@ export default function Home() {
   const handleCreateRoom = () => {
     if (!pseudo.trim()) return alert("Entre un pseudo !");
     socket.connect();
-    socket.emit("CREATE_ROOM", { pseudo, mode: gameMode }, (res) => {
+    socket.emit("CREATE_ROOM", { pseudo, mode: gameMode }, (res: any) => {
       if (res.success) {
         router.push("/room/" + res.room.code + "?pseudo=" + encodeURIComponent(pseudo));
       } else {
