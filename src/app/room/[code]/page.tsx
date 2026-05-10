@@ -1,13 +1,17 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, Suspense } from "react";
 import { socket } from "@/lib/socket";
+import { useParams, useSearchParams } from "next/navigation";
 import { Copy, Users, Play, ArrowRight, RotateCcw } from "lucide-react";
 import { ImageCarousel } from "@/components/ImageCarousel";
 
-export default function RoomPage({ params, searchParams }: any) {
-  const code = params.code;
-  const pseudo = searchParams.pseudo;
+function RoomPageContent() {
+  const params = useParams();
+  const searchParams = useSearchParams();
+  
+  const code = params.code as string;
+  const pseudo = searchParams.get("pseudo");
 
   const [room, setRoom] = useState<any>(null);
   const [error, setError] = useState("");
@@ -20,10 +24,21 @@ export default function RoomPage({ params, searchParams }: any) {
       return;
     }
 
-    socket.connect();
-    socket.emit("JOIN_ROOM", { code, pseudo }, (res: any) => {
-      if (!res.success) setError(res.error);
-    });
+    if (!socket.connected) {
+      socket.connect();
+    }
+
+    const onConnect = () => {
+      socket.emit("JOIN_ROOM", { code, pseudo }, (res: any) => {
+        if (!res.success) setError(res.error);
+      });
+    };
+
+    if (socket.connected) {
+      onConnect();
+    } else {
+      socket.once("connect", onConnect);
+    }
 
     socket.on("ROOM_UPDATED", (r) => setRoom(r));
     socket.on("GAME_STARTED", () => {
@@ -35,6 +50,7 @@ export default function RoomPage({ params, searchParams }: any) {
       socket.emit("LEAVE_ROOM");
       socket.off("ROOM_UPDATED");
       socket.off("GAME_STARTED");
+      socket.off("connect", onConnect);
     };
   }, [code, pseudo]);
 
@@ -172,5 +188,13 @@ export default function RoomPage({ params, searchParams }: any) {
         </div>
       </div>
     </div>
+  );
+}
+
+export default function RoomPage() {
+  return (
+    <Suspense fallback={<div className="container"><p>Chargement...</p></div>}>
+      <RoomPageContent />
+    </Suspense>
   );
 }
