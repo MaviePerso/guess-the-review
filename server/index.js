@@ -1,3 +1,4 @@
+import https from 'https';
 import fs from 'fs';
 import { Server } from "socket.io";
 import { createServer } from "http";
@@ -13,7 +14,7 @@ const rooms = new Map();
 // Questions loaded dynamically from our 5000+ DB
 let questions = [];
 try {
-  questions = JSON.parse(fs.readFileSync("db.json", "utf8"));
+  questions = JSON.parse(fs.readFileSync("server/db.json", "utf8"));
 } catch (e) {
   console.log("Error loading db.json:", e.message);
 }
@@ -183,10 +184,16 @@ httpServer.on('request', (req, res) => {
 });
 
 // Self-ping every 14 minutes to prevent Render free tier sleep
+
+
 setInterval(() => {
   const url = process.env.RENDER_EXTERNAL_URL || 'https://guess-the-review-backend.onrender.com';
-  fetch(url + '/health').then(r => r.json()).then(d => console.log('Self-ping OK:', d.uptime + 's')).catch(() => {});
+  https.get(url + '/health', (res) => {
+    res.on('data', () => {});
+    res.on('end', () => console.log('Self-ping OK'));
+  }).on('error', () => {});
 }, 14 * 60 * 1000);
 
-httpServer.listen(PORT, () => console.log(`🚀 Serveur Socket.IO démarré sur le port ${PORT}`));
+
+httpServer.listen(PORT, "0.0.0.0", () => console.log(`🚀 Serveur Socket.IO démarré sur le port ${PORT}`));
 
