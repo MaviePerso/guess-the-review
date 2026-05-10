@@ -1,0 +1,163 @@
+"use client";
+
+import { useState, useEffect } from "react";
+import { useRouter, useSearchParams } from "next/navigation";
+import { questions } from "@/lib/reviews";
+import { ArrowRight, RotateCcw, Home } from "lucide-react";
+import { ImageCarousel } from "@/components/ImageCarousel";
+
+export default function SoloPage() {
+  const router = useRouter();
+  const searchParams = useSearchParams();
+  const mode = searchParams.get("mode") || "note";
+
+  const [gameQuestions, setGameQuestions] = useState([]);
+  const [currentIndex, setCurrentIndex] = useState(0);
+  
+  const [guessRating, setGuessRating] = useState(3.0);
+  const [guessPrice, setGuessPrice] = useState("");
+  
+  const [hasRevealed, setHasRevealed] = useState(false);
+  const [score, setScore] = useState(0);
+  const [totalMaxScore, setTotalMaxScore] = useState(0);
+  
+  const [lastNotePoints, setLastNotePoints] = useState(0);
+  const [lastPricePoints, setLastPricePoints] = useState(0);
+
+  useEffect(() => {
+    const shuffled = [...questions].sort(() => 0.5 - Math.random()).slice(0, 10);
+    setGameQuestions(shuffled);
+  }, []);
+
+  if (gameQuestions.length === 0) return <div className="container"><p>Chargement...</p></div>;
+
+  const currentQ = gameQuestions[currentIndex];
+
+  const calculateNoteScore = (guess, real) => {
+    const diff = Math.abs(real - guess);
+    return Math.round(Math.max(0, 1 - diff) * 10) / 10;
+  };
+
+  const calculatePriceScore = (guess, real) => {
+    const diffPerc = Math.abs(real - Number(guess)) / real;
+    const accuracy = (1 - diffPerc) * 100;
+    let priceScore = 0;
+    if (accuracy >= 100) priceScore = 1;
+    else if (accuracy >= 98) priceScore = 0.9;
+    else if (accuracy >= 96) priceScore = 0.8;
+    else if (accuracy >= 94) priceScore = 0.7;
+    else if (accuracy >= 92) priceScore = 0.6;
+    else if (accuracy >= 90) priceScore = 0.5;
+    else if (accuracy >= 88) priceScore = 0.4;
+    else if (accuracy >= 86) priceScore = 0.3;
+    else if (accuracy >= 84) priceScore = 0.2;
+    else if (accuracy >= 82) priceScore = 0.1;
+    return priceScore;
+  };
+
+  const handleSubmit = () => {
+    if ((mode === "price" || mode === "both") && (guessPrice === "" || Number(guessPrice) <= 0)) {
+      return alert("Entre un prix valide !");
+    }
+    
+    let notePts = 0;
+    let pricePts = 0;
+
+    if (mode === "note" || mode === "both") {
+      notePts = calculateNoteScore(guessRating, currentQ.realRating);
+      setLastNotePoints(notePts);
+    }
+    if (mode === "price" || mode === "both") {
+      pricePts = calculatePriceScore(guessPrice, currentQ.price);
+      setLastPricePoints(pricePts);
+    }
+
+    setScore(s => s + notePts + pricePts);
+    setTotalMaxScore(s => s + (mode === "both" ? 2 : 1));
+    setHasRevealed(true);
+  };
+
+  const handleNext = () => {
+    setHasRevealed(false);
+    setGuessRating(3.0);
+    setGuessPrice("");
+    setCurrentIndex(i => i + 1);
+  };
+
+  if (currentIndex >= gameQuestions.length) {
+    return (
+      <div className="container" style={{ textAlign: "center" }}>
+        <h1 className="title">Partie Terminée !</h1>
+        <p className="subtitle">Ton score total : {Math.round(score * 10) / 10} / {totalMaxScore}</p>
+        <div style={{ display: "flex", gap: "1rem", justifyContent: "center", marginTop: "2rem" }}>
+          <button className="btn btn-primary" onClick={() => window.location.reload()}><RotateCcw size={20} /> Rejouer</button>
+          <button className="btn btn-outline" onClick={() => router.push("/")}><Home size={20} /> Accueil</button>
+        </div>
+      </div>
+    );
+  }
+
+  return (
+    <div className="container">
+      <div className="header" style={{ marginBottom: "1rem" }}>
+        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+          <span style={{ fontSize: "1.2rem", fontWeight: "bold" }}>Score: {Math.round(score * 10) / 10}</span>
+          <span style={{ fontSize: "1rem", color: "#6b7280" }}>{currentIndex + 1} / 10</span>
+        </div>
+      </div>
+
+      <div className="card">
+        {currentQ.productName && <div style={{ color: "#6b7280", fontWeight: "600", marginBottom: "1rem", textAlign: "center" }}>Produit : {currentQ.productName}</div>}
+        
+        <div style={{ paddingBottom: "1.5rem" }}>
+          <ImageCarousel images={currentQ.images || (currentQ.imageUrl ? [currentQ.imageUrl] : [])} />
+        </div>
+        
+        <div className="review-text">"{currentQ.reviewText}"</div>
+
+        <div style={{ marginTop: "2rem", display: "flex", flexDirection: "column", gap: "1.5rem" }}>
+          {!hasRevealed ? (
+            <>
+              {(mode === "note" || mode === "both") && (
+                <div style={{ display: "flex", flexDirection: "column", gap: "0.5rem" }}>
+                  <label style={{ fontWeight: "bold" }}>Quelle est la note globale ? ({guessRating.toFixed(1)} ⭐)</label>
+                  <input type="range" min="1.0" max="5.0" step="0.1" value={guessRating} onChange={(e) => setGuessRating(Number(e.target.value))} style={{ width: "100%", accentColor: "var(--primary)" }} />
+                </div>
+              )}
+              
+              {(mode === "price" || mode === "both") && (
+                <div style={{ display: "flex", flexDirection: "column", gap: "0.5rem" }}>
+                  <label style={{ fontWeight: "bold" }}>Quel est le prix ? (€)</label>
+                  <input type="number" min="0" step="1" className="input" placeholder="Ex: 25" value={guessPrice} onChange={(e) => setGuessPrice(e.target.value)} />
+                </div>
+              )}
+              
+              <button className="btn btn-primary" onClick={handleSubmit} style={{ marginTop: "1rem" }}>Valider</button>
+            </>
+          ) : (
+            <div style={{ textAlign: "center", padding: "1rem", background: "var(--bg-card)", borderRadius: "8px", border: "1px solid var(--border)" }}>
+              <h3 style={{ fontSize: "1.5rem", marginBottom: "1rem" }}>Résultats</h3>
+              {(mode === "note" || mode === "both") && (
+                <div style={{ marginBottom: "0.5rem" }}>
+                  <p>La note était : <strong>{currentQ.realRating} ⭐</strong></p>
+                  <p style={{ fontSize: "0.9rem", color: "var(--primary)", fontWeight: "bold" }}>+{lastNotePoints} pts</p>
+                </div>
+              )}
+              {(mode === "price" || mode === "both") && (
+                <div style={{ marginBottom: "0.5rem" }}>
+                  <p>Le prix était : <strong>{currentQ.price} €</strong></p>
+                  <p style={{ fontSize: "0.9rem", color: "var(--primary)", fontWeight: "bold" }}>+{lastPricePoints} pts</p>
+                </div>
+              )}
+              
+              <button className="btn btn-primary" style={{ width: "100%", marginTop: "1.5rem" }} onClick={handleNext}>
+                Question suivante <ArrowRight size={20} />
+              </button>
+            </div>
+          )}
+        </div>
+      </div>
+    </div>
+  );
+}
+
