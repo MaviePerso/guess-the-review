@@ -1,4 +1,4 @@
-ï»¿import fs from 'fs';
+import fs from 'fs';
 import { Server } from "socket.io";
 import { createServer } from "http";
 
@@ -49,7 +49,7 @@ function calculateScore(guessRating, realRating, guessPrice, realPrice, mode) {
 }
 
 io.on("connection", (socket) => {
-  console.log(Joueur connectÃ©: );
+  console.log(Joueur connecté: );
 
   socket.on("CREATE_ROOM", ({ pseudo, mode }, callback) => {
     if (!pseudo || pseudo.trim().length === 0) return callback({ error: "Pseudo invalide" });
@@ -72,8 +72,8 @@ io.on("connection", (socket) => {
     const roomCode = code?.toUpperCase();
     const room = rooms.get(roomCode);
     if (!room) return callback({ error: "Cette room n'existe pas." });
-    if (room.state !== "LOBBY" && room.state !== "FINISHED") return callback({ error: "La partie est dÃ©jÃ  en cours." });
-    if (room.players.some(p => p.pseudo.toLowerCase() === pseudo.trim().toLowerCase())) return callback({ error: "Ce pseudo est dÃ©jÃ  utilisÃ©." });
+    if (room.state !== "LOBBY" && room.state !== "FINISHED") return callback({ error: "La partie est déjà en cours." });
+    if (room.players.some(p => p.pseudo.toLowerCase() === pseudo.trim().toLowerCase())) return callback({ error: "Ce pseudo est déjà utilisé." });
 
     const player = { id: socket.id, pseudo: pseudo.trim(), isHost: false, connected: true, joinedAt: Date.now() };
     room.players.push(player);
@@ -87,7 +87,7 @@ io.on("connection", (socket) => {
 
   socket.on("START_GAME", ({ code }, callback) => {
     const room = rooms.get(code);
-    if (!room || room.hostId !== socket.id) return callback({ error: "Action non autorisÃ©e" });
+    if (!room || room.hostId !== socket.id) return callback({ error: "Action non autorisée" });
     room.state = "PLAYING";
     room.currentQuestionIndex = 0;
     room.answers = {};
@@ -99,8 +99,8 @@ io.on("connection", (socket) => {
 
   socket.on("SUBMIT_ANSWER", ({ code, rating, price }, callback) => {
     const room = rooms.get(code);
-    if (!room || room.state !== "PLAYING") return callback({ error: "Erreur d'Ã©tat" });
-    if (room.answers[socket.id]) return callback({ error: "Vous avez dÃ©jÃ  rÃ©pondu." });
+    if (!room || room.state !== "PLAYING") return callback({ error: "Erreur d'état" });
+    if (room.answers[socket.id]) return callback({ error: "Vous avez déjà répondu." });
 
     const currentQuestion = room.questions[room.currentQuestionIndex];
     const points = calculateScore(rating, currentQuestion.realRating, price, currentQuestion.price, room.mode);
@@ -124,7 +124,7 @@ io.on("connection", (socket) => {
 
   socket.on("NEXT_QUESTION", ({ code }, callback) => {
     const room = rooms.get(code);
-    if (!room || room.hostId !== socket.id || room.state !== "REVEAL") return callback({ error: "Action non autorisÃ©e" });
+    if (!room || room.hostId !== socket.id || room.state !== "REVEAL") return callback({ error: "Action non autorisée" });
     if (room.currentQuestionIndex >= room.questions.length - 1) {
       room.state = "FINISHED";
     } else {
@@ -138,7 +138,7 @@ io.on("connection", (socket) => {
 
   socket.on("RESTART_GAME", ({ code }, callback) => {
     const room = rooms.get(code);
-    if (!room || room.hostId !== socket.id || room.state !== "FINISHED") return callback({ error: "Action non autorisÃ©e" });
+    if (!room || room.hostId !== socket.id || room.state !== "FINISHED") return callback({ error: "Action non autorisée" });
     room.state = "PLAYING";
     room.currentQuestionIndex = 0;
     room.questions = getShuffledQuestions();
@@ -173,4 +173,4 @@ io.on("connection", (socket) => {
   socket.on("disconnect", () => handleLeave());
 });
 
-httpServer.listen(PORT, "0.0.0.0", () => console.log(ðŸš€ Serveur Socket.IO dÃ©marrÃ© sur le port ));
+httpServer.listen(PORT, () => console.log(?? Serveur Socket.IO démarré sur le port ));
