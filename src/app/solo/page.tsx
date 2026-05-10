@@ -1,21 +1,21 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, Suspense } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { questions } from "@/lib/reviews";
 import { ArrowRight, RotateCcw, Home } from "lucide-react";
 import { ImageCarousel } from "@/components/ImageCarousel";
 
-export default function SoloPage() {
+function SoloPageContent() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const mode = searchParams.get("mode") || "note";
 
-  const [gameQuestions, setGameQuestions] = useState([]);
+  const [gameQuestions, setGameQuestions] = useState<any[]>([]);
   const [currentIndex, setCurrentIndex] = useState(0);
   
   const [guessRating, setGuessRating] = useState(3.0);
-  const [guessPrice, setGuessPrice] = useState("");
+  const [guessPrice, setGuessPrice] = useState<string>("");
   
   const [hasRevealed, setHasRevealed] = useState(false);
   const [score, setScore] = useState(0);
@@ -33,12 +33,12 @@ export default function SoloPage() {
 
   const currentQ = gameQuestions[currentIndex];
 
-  const calculateNoteScore = (guess, real) => {
+  const calculateNoteScore = (guess: number, real: number) => {
     const diff = Math.abs(real - guess);
     return Math.round(Math.max(0, 1 - diff) * 10) / 10;
   };
 
-  const calculatePriceScore = (guess, real) => {
+  const calculatePriceScore = (guess: string, real: number) => {
     const diffPerc = Math.abs(real - Number(guess)) / real;
     const accuracy = (1 - diffPerc) * 100;
     let priceScore = 0;
@@ -161,3 +161,11 @@ export default function SoloPage() {
   );
 }
 
+
+export default function SoloPage() {
+  return (
+    <Suspense fallback={<div className="container"><p>Chargement...</p></div>}>
+      <SoloPageContent />
+    </Suspense>
+  );
+}
