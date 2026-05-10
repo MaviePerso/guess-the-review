@@ -14,19 +14,45 @@ export default function Home() {
 
   const handleCreateRoom = () => {
     if (!pseudo.trim()) return alert("Entre un pseudo !");
-    socket.connect();
-    socket.emit("CREATE_ROOM", { pseudo, mode: gameMode }, (res: any) => {
-      if (res.success) {
-        router.push("/room/" + res.room.code + "?pseudo=" + encodeURIComponent(pseudo));
-      } else {
-        alert(res.error);
-      }
+    
+    // Connect and listen for errors
+    if (!socket.connected) {
+      socket.connect();
+    }
+    
+    // Timeout in case server doesn't respond
+    const timeout = setTimeout(() => {
+        alert("Impossible de se connecter au serveur. Le serveur est peut-être en veille (Render). Attends 30 secondes et réessaie.");
+    }, 8000);
+
+    const onConnect = () => {
+      clearTimeout(timeout);
+      socket.emit("CREATE_ROOM", { pseudo, mode: gameMode }, (res: any) => {
+        if (res.success) {
+          router.push("/room/" + res.room.code + "?pseudo=" + encodeURIComponent(pseudo));
+        } else {
+          alert(res.error);
+        }
+      });
+    };
+
+    if (socket.connected) {
+      onConnect();
+    } else {
+      socket.once("connect", onConnect);
+    }
+
+    socket.once("connect_error", (err) => {
+        clearTimeout(timeout);
+        alert("Erreur de connexion au serveur : " + err.message);
     });
   };
 
   const handleJoinRoom = () => {
     if (!pseudo.trim() || !roomCode.trim()) return alert("Infos manquantes !");
-    socket.connect();
+    if (!socket.connected) {
+      socket.connect();
+    }
     router.push("/room/" + roomCode.toUpperCase() + "?pseudo=" + encodeURIComponent(pseudo));
   };
 
