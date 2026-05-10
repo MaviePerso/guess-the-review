@@ -168,9 +168,14 @@ io.on("connection", (socket) => {
     const currentQuestion = room.questions[room.currentQuestionIndex];
     const points = calculateScore(rating, currentQuestion.realRating, price, currentQuestion.price, room.mode);
 
+    // Hide answers from others by only sending a boolean to the client, or keep it server-side.
+    // For now, we can send it, but the client shouldn't show the answers until REVEAL.
     room.answers[socket.id] = { playerId: socket.id, rating, price, points, submittedAt: Date.now() };
+    
     callback({ success: true });
-    io.to(code).emit("ANSWER_RECEIVED", socket.id);
+    
+    // Broadcast to update UI immediately (shows who answered)
+    io.to(code).emit("ROOM_UPDATED", room);
 
     const activePlayers = room.players.filter(p => p.connected);
     const allAnswered = activePlayers.every(p => room.answers[p.id]);
@@ -222,6 +227,20 @@ io.on("connection", (socket) => {
       if (player) {
         player.connected = false;
         io.to(code).emit("ROOM_UPDATED", room);
+        
+        // Also check if we should reveal if the disconnect makes all remaining active players done
+        if (room.state === "PLAYING") {
+            const activePlayers = room.players.filter(p => p.connected);
+            if (activePlayers.length > 0 && activePlayers.every(p => room.answers[p.id])) {
+                room.state = "REVEAL";
+                for (const [pId, ans] of Object.entries(room.answers)) {
+                    const pl = room.players.find(p => p.id === pId);
+                    if (pl) pl.score = Math.round((pl.score + ans.points) * 100) / 100;
+                }
+                io.to(code).emit("ROOM_UPDATED", room);
+                io.to(code).emit("REVEAL_QUESTION");
+            }
+        }
       }
     });
   };

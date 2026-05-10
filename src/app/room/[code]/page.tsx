@@ -129,7 +129,14 @@ function RoomPageContent() {
                     )}
                     <button className="btn btn-primary" onClick={handleSubmit}>Valider</button>
                   </>
-                ) : <p style={{ textAlign: "center" }}>Réponse envoyée !</p>}
+                ) : (
+                  <div style={{ textAlign: "center", padding: "1.5rem", background: "var(--bg-card)", borderRadius: "8px", border: "1px solid var(--border)" }}>
+                    <h3 style={{ color: "var(--success)", marginBottom: "0.5rem" }}>Réponse validée !</h3>
+                    <p style={{ color: "var(--text-muted)", fontSize: "0.95rem" }}>
+                      En attente des autres joueurs...
+                    </p>
+                  </div>
+                )}
               </div>
             </div>
           )}
@@ -178,12 +185,41 @@ function RoomPageContent() {
         <div className="sidebar">
           <div className="card">
             <h3>Joueurs</h3>
-            {room.players.map((p: any) => (
-              <div key={p.id} style={{ display: "flex", justifyContent: "space-between", color: p.connected ? 'inherit' : '#9ca3af' }}>
-                <span>{p.pseudo} {!p.connected && '(déconnecté)'}</span>
-                <span>{Math.round(p.score * 10) / 10}</span>
-              </div>
-            ))}
+            {room.players.map((p: any) => {
+              let color = "var(--foreground)";
+              let statusText = "";
+              let dotColor = "transparent";
+
+              if (!p.connected) {
+                color = "var(--danger)";
+                statusText = "déconnecté";
+                dotColor = "var(--danger)";
+              } else if (room.state === "PLAYING") {
+                if (room.answers && room.answers[p.id]) {
+                  color = "var(--success)";
+                  statusText = "a validé";
+                  dotColor = "var(--success)";
+                } else {
+                  color = "#9ca3af";
+                  statusText = "réfléchit...";
+                  dotColor = "#9ca3af";
+                }
+              } else {
+                color = "var(--foreground)";
+                dotColor = "#22c55e"; // Connected in lobby/reveal
+              }
+
+              return (
+                <div key={p.id} style={{ display: "flex", justifyContent: "space-between", alignItems: "center", padding: "0.5rem 0", borderBottom: "1px solid var(--border)" }}>
+                  <div style={{ display: "flex", alignItems: "center", gap: "0.5rem" }}>
+                    <div style={{ width: "8px", height: "8px", borderRadius: "50%", backgroundColor: dotColor }}></div>
+                    <span style={{ fontWeight: "bold", color }}>{p.pseudo}</span>
+                    {statusText && <span style={{ fontSize: "0.75rem", color: color, opacity: 0.8 }}>({statusText})</span>}
+                  </div>
+                  <span style={{ fontWeight: "bold" }}>{Math.round(p.score * 10) / 10} pts</span>
+                </div>
+              );
+            })}
           </div>
         </div>
       </div>
