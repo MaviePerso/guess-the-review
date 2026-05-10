@@ -41,9 +41,9 @@ export default function RoomPage({ params, searchParams }: any) {
   if (error) return <div className="container"><div className="card"><h2 style={{ color: "var(--danger)" }}>{error}</h2><a href="/" className="btn btn-outline" style={{ marginTop: "1rem" }}>Retour</a></div></div>;
   if (!room) return <div className="container"><p>Connexion à la room...</p></div>;
 
-  const isHost = room.hostId === socket.id;
+  const isHost = !!socket.id && room.hostId === socket.id;
   const currentQ = room.questions[room.currentQuestionIndex];
-  const myAnswer = room.answers[socket.id];
+  const myAnswer = socket.id ? room.answers[socket.id] : null;
   const mode = room.mode || "note";
 
   const handleStart = () => socket.emit("START_GAME", { code });
