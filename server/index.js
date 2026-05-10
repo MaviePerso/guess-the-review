@@ -3,7 +3,7 @@ import fs from 'fs';
 import { Server } from "socket.io";
 import { createServer } from "http";
 
-const httpServer = createServer();
+const httpServer = createServer((req, res) => { if (req.url === '/health' || req.url === '/') { res.writeHead(200, { 'Content-Type': 'application/json' }); res.end(JSON.stringify({ status: 'ok', uptime: process.uptime(), questions: questions.length })); } else { res.writeHead(404); res.end(); } });
 const io = new Server(httpServer, {
   cors: { origin: "*", methods: ["GET", "POST"] }
 });
