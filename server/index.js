@@ -173,5 +173,20 @@ io.on("connection", (socket) => {
   socket.on("disconnect", () => handleLeave());
 });
 
+
+// Health check endpoint
+httpServer.on('request', (req, res) => {
+  if (req.url === '/health' || req.url === '/') {
+    res.writeHead(200, { 'Content-Type': 'application/json' });
+    res.end(JSON.stringify({ status: 'ok', uptime: process.uptime(), questions: questions.length }));
+  }
+});
+
+// Self-ping every 14 minutes to prevent Render free tier sleep
+setInterval(() => {
+  const url = process.env.RENDER_EXTERNAL_URL || 'https://guess-the-review-backend.onrender.com';
+  fetch(url + '/health').then(r => r.json()).then(d => console.log('Self-ping OK:', d.uptime + 's')).catch(() => {});
+}, 14 * 60 * 1000);
+
 httpServer.listen(PORT, () => console.log(`🚀 Serveur Socket.IO démarré sur le port ${PORT}`));
 
