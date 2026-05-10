@@ -1,9 +1,8 @@
-import https from 'https';
-import fs from 'fs';
+﻿import fs from 'fs';
 import { Server } from "socket.io";
 import { createServer } from "http";
 
-const httpServer = createServer((req, res) => { if (req.url.startsWith('/socket.io')) return; if (req.url === '/health' || req.url === '/') { res.writeHead(200, { 'Content-Type': 'application/json' }); res.end(JSON.stringify({ status: 'ok', uptime: process.uptime(), questions: questions.length })); } else { res.writeHead(404); res.end(); } });
+const httpServer = createServer();
 const io = new Server(httpServer, {
   cors: { origin: "*", methods: ["GET", "POST"] }
 });
@@ -42,7 +41,7 @@ function calculateScore(guessRating, realRating, guessPrice, realPrice, mode) {
   if (mode === "price" || mode === "both") {
     if (guessPrice !== undefined && guessPrice !== null) {
       const diffPerc = Math.abs(realPrice - guessPrice) / realPrice;
-      let priceScore = 0; let accuracy = (1 - diffPerc) * 100; if (accuracy >= 100) priceScore = 1; else if (accuracy >= 98) priceScore = 0.9; else if (accuracy >= 96) priceScore = 0.8; else if (accuracy >= 94) priceScore = 0.7; else if (accuracy >= 92) priceScore = 0.6; else if (accuracy >= 90) priceScore = 0.5; else if (accuracy >= 88) priceScore = 0.4; else if (accuracy >= 86) priceScore = 0.3; else if (accuracy >= 84) priceScore = 0.2; else if (accuracy >= 82) priceScore = 0.1; // diff 10% => 0.9 points
+      let priceScore = 0; let accuracy = (1 - diffPerc) * 100; if (accuracy >= 100) priceScore = 1; else if (accuracy >= 98) priceScore = 0.9; else if (accuracy >= 96) priceScore = 0.8; else if (accuracy >= 94) priceScore = 0.7; else if (accuracy >= 92) priceScore = 0.6; else if (accuracy >= 90) priceScore = 0.5; else if (accuracy >= 88) priceScore = 0.4; else if (accuracy >= 86) priceScore = 0.3; else if (accuracy >= 84) priceScore = 0.2; else if (accuracy >= 82) priceScore = 0.1;
       score += priceScore;
     }
   }
@@ -50,7 +49,7 @@ function calculateScore(guessRating, realRating, guessPrice, realPrice, mode) {
 }
 
 io.on("connection", (socket) => {
-  console.log(`Joueur connecté: ${socket.id}`);
+  console.log(Joueur connecté: );
 
   socket.on("CREATE_ROOM", ({ pseudo, mode }, callback) => {
     if (!pseudo || pseudo.trim().length === 0) return callback({ error: "Pseudo invalide" });
@@ -60,7 +59,7 @@ io.on("connection", (socket) => {
     const newRoom = {
       code, hostId: socket.id, state: "LOBBY", players: [player],
       currentQuestionIndex: 0, questions: getShuffledQuestions(),
-      mode: mode || "note", // "note", "price", "both"
+      mode: mode || "note",
       answers: {}, scores: { [socket.id]: 0 },
       createdAt: Date.now(), updatedAt: Date.now()
     };
@@ -174,26 +173,4 @@ io.on("connection", (socket) => {
   socket.on("disconnect", () => handleLeave());
 });
 
-
-// Health check endpoint
-httpServer.on('request', (req, res) => {
-  if (req.url === '/health' || req.url === '/') {
-    res.writeHead(200, { 'Content-Type': 'application/json' });
-    res.end(JSON.stringify({ status: 'ok', uptime: process.uptime(), questions: questions.length }));
-  }
-});
-
-// Self-ping every 14 minutes to prevent Render free tier sleep
-
-
-setInterval(() => {
-  const url = process.env.RENDER_EXTERNAL_URL || 'https://guess-the-review-backend.onrender.com';
-  https.get(url + '/health', (res) => {
-    res.on('data', () => {});
-    res.on('end', () => console.log('Self-ping OK'));
-  }).on('error', () => {});
-}, 14 * 60 * 1000);
-
-
-httpServer.listen(PORT, "0.0.0.0", () => console.log(`🚀 Serveur Socket.IO démarré sur le port ${PORT}`));
-
+httpServer.listen(PORT, "0.0.0.0", () => console.log(🚀 Serveur Socket.IO démarré sur le port ));
