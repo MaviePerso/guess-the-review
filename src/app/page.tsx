@@ -1,26 +1,34 @@
-"use client";
+﻿"use client";
 
-import { useState } from "react";
-import { useRouter } from "next/navigation";
-import { Users, User, Play } from "lucide-react";
+import { useState, useEffect, Suspense } from "react";
+import { useRouter, useSearchParams } from "next/navigation";
+import { Users, User, Play, EyeOff } from "lucide-react";
 import { socket } from "@/lib/socket";
 
-export default function Home() {
+function HomeContent() {
   const router = useRouter();
+  const searchParams = useSearchParams();
   const [pseudo, setPseudo] = useState("");
   const [roomCode, setRoomCode] = useState("");
   const [mode, setMode] = useState("menu");
   const [gameMode, setGameMode] = useState("note");
+  const [streamerMode, setStreamerMode] = useState(false);
+
+  useEffect(() => {
+    const joinCode = searchParams?.get("join");
+    if (joinCode) {
+      setRoomCode(joinCode.toUpperCase());
+      setMode("join");
+    }
+  }, [searchParams]);
 
   const handleCreateRoom = () => {
     if (!pseudo.trim()) return alert("Entre un pseudo !");
     
-    // Connect and listen for errors
     if (!socket.connected) {
       socket.connect();
     }
     
-    // Timeout in case server doesn't respond
     const timeout = setTimeout(() => {
         alert("Impossible de se connecter au serveur. Le serveur est peut-être en veille (Render). Attends 30 secondes et réessaie.");
     }, 8000);
@@ -29,7 +37,7 @@ export default function Home() {
       clearTimeout(timeout);
       socket.emit("CREATE_ROOM", { pseudo, mode: gameMode }, (res: any) => {
         if (res.success) {
-          router.push("/room/" + res.room.code + "?pseudo=" + encodeURIComponent(pseudo));
+          router.push(/room/?pseudo=);
         } else {
           alert(res.error);
         }
@@ -53,7 +61,7 @@ export default function Home() {
     if (!socket.connected) {
       socket.connect();
     }
-    router.push("/room/" + roomCode.toUpperCase() + "?pseudo=" + encodeURIComponent(pseudo));
+    router.push(/room/?pseudo=);
   };
 
   return (
@@ -101,6 +109,10 @@ export default function Home() {
               <option value="price">Deviner le Prix uniquement</option>
               <option value="both">Deviner Note & Prix</option>
             </select>
+            <label style={{ display: "flex", alignItems: "center", gap: "0.5rem", cursor: "pointer", fontSize: "0.9rem", color: "var(--text-muted)" }}>
+              <input type="checkbox" checked={streamerMode} onChange={(e) => setStreamerMode(e.target.checked)} />
+              <EyeOff size={16} /> Mode Streamer (cache le code)
+            </label>
             <button className="btn btn-secondary" onClick={handleCreateRoom}>Créer et inviter</button>
             <button className="btn btn-outline" onClick={() => setMode("menu")}>Retour</button>
           </div>
@@ -111,11 +123,23 @@ export default function Home() {
             <h2 style={{ textAlign: "center" }}>Rejoindre</h2>
             <input className="input" placeholder="Code de la room..." value={roomCode} onChange={(e) => setRoomCode(e.target.value.toUpperCase())} maxLength={5} />
             <input className="input" placeholder="Ton pseudo..." value={pseudo} onChange={(e) => setPseudo(e.target.value)} maxLength={15} />
+            <label style={{ display: "flex", alignItems: "center", gap: "0.5rem", cursor: "pointer", fontSize: "0.9rem", color: "var(--text-muted)" }}>
+              <input type="checkbox" checked={streamerMode} onChange={(e) => setStreamerMode(e.target.checked)} />
+              <EyeOff size={16} /> Mode Streamer (cache le code)
+            </label>
             <button className="btn btn-secondary" onClick={handleJoinRoom}>Rejoindre</button>
             <button className="btn btn-outline" onClick={() => setMode("menu")}>Retour</button>
           </div>
         )}
       </div>
     </div>
+  );
+}
+
+export default function Home() {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <HomeContent />
+    </Suspense>
   );
 }

@@ -1,9 +1,9 @@
-"use client";
+﻿"use client";
 
 import { useEffect, useState, Suspense } from "react";
 import { socket } from "@/lib/socket";
 import { useParams, useSearchParams } from "next/navigation";
-import { Copy, Users, Play, ArrowRight, RotateCcw, Loader2 } from "lucide-react";
+import { Copy, Users, Play, ArrowRight, RotateCcw, Loader2, Eye, EyeOff } from "lucide-react";
 import { ImageCarousel } from "@/components/ImageCarousel";
 
 function RoomPageContent() {
@@ -12,16 +12,23 @@ function RoomPageContent() {
   
   const code = (params?.code as string) || "";
   const pseudo = searchParams?.get("pseudo") || "";
+  const isStreamerModeInitial = searchParams?.get("streamer") === "true";
 
   const [room, setRoom] = useState<any>(null);
   const [error, setError] = useState("");
   const [guessRating, setGuessRating] = useState<number>(3.0);
   const [guessPrice, setGuessPrice] = useState<string>("");
+  const [isMasked, setIsMasked] = useState(isStreamerModeInitial);
 
   useEffect(() => {
     if (!pseudo || !code) {
       window.location.href = "/";
       return;
+    }
+
+    // Hide code from URL if streamer mode is on
+    if (isStreamerModeInitial && typeof window !== "undefined") {
+      window.history.replaceState(null, "", /room/streamer-session?pseudo=&streamer=true);
     }
 
     const join = () => {
@@ -47,7 +54,7 @@ function RoomPageContent() {
       socket.off("ROOM_UPDATED");
       socket.off("GAME_STARTED");
     };
-  }, [code, pseudo]);
+  }, [code, pseudo, isStreamerModeInitial]);
 
   if (error) return (
     <div className="container">
@@ -91,18 +98,27 @@ function RoomPageContent() {
     });
   };
 
-  const copyCode = () => {
-    navigator.clipboard.writeText(code);
-    alert("Code copié !");
+  const copyInviteLink = () => {
+    const link = ${window.location.origin}/?join=;
+    navigator.clipboard.writeText(link);
+    alert("Lien d'invitation copié !");
   };
 
   return (
     <div className="container">
       <div className="header" style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
         <div>
-          <h1 className="title" style={{ fontSize: "1.5rem" }}>
-            Room <span onClick={copyCode} style={{ cursor: "pointer", textDecoration: "underline", color: "var(--primary)" }}>{code}</span>
-          </h1>
+          <div style={{ display: "flex", alignItems: "center", gap: "1rem" }}>
+            <h1 className="title" style={{ fontSize: "1.5rem" }}>
+              Room <span style={{ color: "var(--primary)" }}>{isMasked ? "****" : code}</span>
+            </h1>
+            <button className="btn btn-outline btn-sm" onClick={() => setIsMasked(!isMasked)} title={isMasked ? "Afficher le code" : "Masquer le code"}>
+              {isMasked ? <Eye size={16} /> : <EyeOff size={16} />}
+            </button>
+            <button className="btn btn-secondary btn-sm" onClick={copyInviteLink}>
+              <Copy size={16} style={{ marginRight: "4px" }} /> Copier le lien
+            </button>
+          </div>
           <p className="subtitle" style={{ fontSize: "0.9rem" }}>Joueur : <strong>{pseudo}</strong></p>
         </div>
         {room.state === "PLAYING" && room.questions && (
@@ -128,7 +144,7 @@ function RoomPageContent() {
                     <span>Récupération de produits inédits...</span>
                   </div>
                   <p style={{ fontSize: "0.8rem", color: "var(--text-muted)", marginTop: "0.5rem" }}>
-                    On fouille eBay, Cdiscount et Rakuten pour toi !
+                    On fouille les bases de données pour toi !
                   </p>
                 </div>
               ) : (
