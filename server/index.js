@@ -160,11 +160,29 @@ function generateRoomCode() {
 }
 
 httpServer.on('request', async (req, res) => {
-  if (req.url === '/health' || req.url === '/') {
+  const url = new URL(req.url, http://localhost);
+  
+  // CORS headers for frontend solo mode
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Methods', 'GET, OPTIONS');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+  if (req.method === 'OPTIONS') { res.writeHead(204); res.end(); return; }
+
+  if (url.pathname === '/health' || url.pathname === '/') {
     res.writeHead(200, { 'Content-Type': 'application/json' });
     res.end(JSON.stringify({ status: 'ok', items: questionDatabase.length }));
     return;
   }
+
+  // Solo mode: returns N random questions from the real DB
+  if (url.pathname === '/questions') {
+    const count = Math.min(parseInt(url.searchParams.get('count') || '10', 10), 50);
+    const questions = getQuestions(count);
+    res.writeHead(200, { 'Content-Type': 'application/json' });
+    res.end(JSON.stringify(questions));
+    return;
+  }
+
   res.writeHead(404); res.end();
 });
 

@@ -1,10 +1,11 @@
-"use client";
+﻿"use client";
 
 import { useState, useEffect, Suspense } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
-import { questions } from "@/lib/reviews";
-import { ArrowRight, RotateCcw, Home } from "lucide-react";
+import { ArrowRight, RotateCcw, Home, Loader2 } from "lucide-react";
 import { ImageCarousel } from "@/components/ImageCarousel";
+
+const SERVER_URL = process.env.NEXT_PUBLIC_SERVER_URL || "https://guess-the-review-backend.onrender.com";
 
 function SoloPageContent() {
   const router = useRouter();
@@ -13,23 +14,49 @@ function SoloPageContent() {
 
   const [gameQuestions, setGameQuestions] = useState<any[]>([]);
   const [currentIndex, setCurrentIndex] = useState(0);
-  
+  const [loading, setLoading] = useState(true);
+
   const [guessRating, setGuessRating] = useState(3.0);
   const [guessPrice, setGuessPrice] = useState<string>("");
-  
+
   const [hasRevealed, setHasRevealed] = useState(false);
   const [score, setScore] = useState(0);
   const [totalMaxScore, setTotalMaxScore] = useState(0);
-  
+
   const [lastNotePoints, setLastNotePoints] = useState(0);
   const [lastPricePoints, setLastPricePoints] = useState(0);
 
   useEffect(() => {
-    const shuffled = [...questions].sort(() => 0.5 - Math.random()).slice(0, 10);
-    setGameQuestions(shuffled);
+    // Fetch from the real server database (same as multiplayer)
+    fetch(`${SERVER_URL}/questions?count=10`)
+      .then(res => res.json())
+      .then(data => {
+        setGameQuestions(data);
+        setLoading(false);
+      })
+      .catch(() => {
+        // Fallback: try the health endpoint then use static
+        setLoading(false);
+      });
   }, []);
 
-  if (gameQuestions.length === 0) return <div className="container"><p>Chargement...</p></div>;
+  if (loading) {
+    return (
+      <div className="container" style={{ display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", minHeight: "60vh" }}>
+        <Loader2 size={48} style={{ animation: "spin 1s linear infinite", color: "var(--primary)" }} />
+        <p style={{ marginTop: "1rem", color: "var(--text-muted)" }}>Chargement des produits...</p>
+      </div>
+    );
+  }
+
+  if (gameQuestions.length === 0) {
+    return (
+      <div className="container" style={{ textAlign: "center" }}>
+        <p>Impossible de charger les questions. Vérifie ta connexion.</p>
+        <button className="btn btn-primary" style={{ marginTop: "1rem" }} onClick={() => window.location.reload()}>Réessayer</button>
+      </div>
+    );
+  }
 
   const currentQ = gameQuestions[currentIndex];
 
@@ -59,7 +86,7 @@ function SoloPageContent() {
     if ((mode === "price" || mode === "both") && (guessPrice === "" || Number(guessPrice) <= 0)) {
       return alert("Entre un prix valide !");
     }
-    
+
     let notePts = 0;
     let pricePts = 0;
 
@@ -102,17 +129,17 @@ function SoloPageContent() {
       <div className="header" style={{ marginBottom: "1rem" }}>
         <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
           <span style={{ fontSize: "1.2rem", fontWeight: "bold" }}>Score: {Math.round(score * 10) / 10}</span>
-          <span style={{ fontSize: "1rem", color: "#6b7280" }}>{currentIndex + 1} / 10</span>
+          <span style={{ fontSize: "1rem", color: "#6b7280" }}>{currentIndex + 1} / {gameQuestions.length}</span>
         </div>
       </div>
 
       <div className="card">
         {currentQ.productName && <div style={{ color: "#6b7280", fontWeight: "600", marginBottom: "1rem", textAlign: "center" }}>Produit : {currentQ.productName}</div>}
-        
+
         <div style={{ paddingBottom: "1.5rem" }}>
           <ImageCarousel images={currentQ.images || (currentQ.imageUrl ? [currentQ.imageUrl] : [])} />
         </div>
-        
+
         <div className="review-text">"{currentQ.reviewText}"</div>
 
         <div style={{ marginTop: "2rem", display: "flex", flexDirection: "column", gap: "1.5rem" }}>
@@ -120,19 +147,19 @@ function SoloPageContent() {
             <>
               {(mode === "note" || mode === "both") && (
                 <div style={{ display: "flex", flexDirection: "column", gap: "0.5rem" }}>
-                  <label style={{ fontWeight: "bold" }}>Quelle est la note globale ? ({guessRating.toFixed(1)} ⭐)</label>
+                  <label style={{ fontWeight: "bold" }}>Note estimée ? ({guessRating.toFixed(1)} ⭐)</label>
                   <input type="range" min="1.0" max="5.0" step="0.1" value={guessRating} onChange={(e) => setGuessRating(Number(e.target.value))} style={{ width: "100%", accentColor: "var(--primary)" }} />
                 </div>
               )}
-              
+
               {(mode === "price" || mode === "both") && (
                 <div style={{ display: "flex", flexDirection: "column", gap: "0.5rem" }}>
-                  <label style={{ fontWeight: "bold" }}>Quel est le prix ? (€)</label>
+                  <label style={{ fontWeight: "bold" }}>Prix estimé ? (€)</label>
                   <input type="number" min="0" step="1" className="input" placeholder="Ex: 25" value={guessPrice} onChange={(e) => setGuessPrice(e.target.value)} />
                 </div>
               )}
-              
-              <button className="btn btn-primary" onClick={handleSubmit} style={{ marginTop: "1rem" }}>Valider</button>
+
+              <button className="btn btn-primary" onClick={handleSubmit} style={{ marginTop: "1rem" }}>Valider ma réponse</button>
             </>
           ) : (
             <div style={{ textAlign: "center", padding: "1rem", background: "var(--bg-card)", borderRadius: "8px", border: "1px solid var(--border)" }}>
@@ -149,7 +176,7 @@ function SoloPageContent() {
                   <p style={{ fontSize: "0.9rem", color: "var(--primary)", fontWeight: "bold" }}>+{lastPricePoints} pts</p>
                 </div>
               )}
-              
+
               <button className="btn btn-primary" style={{ width: "100%", marginTop: "1.5rem" }} onClick={handleNext}>
                 Question suivante <ArrowRight size={20} />
               </button>
@@ -160,7 +187,6 @@ function SoloPageContent() {
     </div>
   );
 }
-
 
 export default function SoloPage() {
   return (
