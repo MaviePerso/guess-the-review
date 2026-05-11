@@ -1,0 +1,18 @@
+[
+  {
+    "productName": "Sony PlayStation 5 - Slim 1To",
+    "reviewText": "Vraiment top, je recommande vivement !",
+    "realRating": 4.8,
+    "price": 449,
+    "images": ["https://m.media-amazon.com/images/I/41O7Z87K0-L._AC_SL1000_.jpg"],
+    "source": "eBay"
+  },
+  {
+    "productName": "Lego Star Wars Millenium Falcon",
+    "reviewText": "Incroyable set, des heures de montage.",
+    "realRating": 4.9,
+    "price": 799,
+    "images": ["https://m.media-amazon.com/images/I/91tK96v6T7L._AC_SL1500_.jpg"],
+    "source": "Cdiscount"
+  }
+]
