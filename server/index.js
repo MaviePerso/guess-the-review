@@ -11,7 +11,7 @@ const io = new Server(httpServer, {
 
 const PORT = process.env.PORT || 3001;
 const rooms = new Map();
-const DB_PATH = path.join(process.cwd(), 'db_massive.json');
+const DB_PATH = path.join(process.cwd(), 'db_50k.json');
 
 // Massive database loaded into memory
 let questionDatabase = [];
