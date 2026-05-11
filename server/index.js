@@ -250,8 +250,9 @@ io.on("connection", (socket) => {
     if (!room) return safeCb(callback, { error: "Cette room n'existe pas." });
     const existing = room.players.find(p => p.pseudo.toLowerCase() === pseudo?.trim().toLowerCase());
     if (existing) {
+      const wasHost = room.hostId === existing.id;
       existing.id = socket.id; existing.connected = true;
-      if (!room.hostId) room.hostId = socket.id;
+      if (wasHost) room.hostId = socket.id; // CRITICAL: update hostId on reconnect
       socket.join(roomCode);
       safeCb(callback, { success: true, room });
       io.to(roomCode).emit("ROOM_UPDATED", room);
