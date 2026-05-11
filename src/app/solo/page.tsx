@@ -5,8 +5,6 @@ import { useRouter, useSearchParams } from "next/navigation";
 import { ArrowRight, RotateCcw, Home, Loader2 } from "lucide-react";
 import { ImageCarousel } from "@/components/ImageCarousel";
 
-const SERVER_URL = process.env.NEXT_PUBLIC_SERVER_URL || "https://guess-the-review-backend.onrender.com";
-
 function SoloPageContent() {
   const router = useRouter();
   const searchParams = useSearchParams();
@@ -22,162 +20,115 @@ function SoloPageContent() {
   const [hasRevealed, setHasRevealed] = useState(false);
   const [score, setScore] = useState(0);
   const [totalMaxScore, setTotalMaxScore] = useState(0);
-
   const [lastNotePoints, setLastNotePoints] = useState(0);
   const [lastPricePoints, setLastPricePoints] = useState(0);
 
   useEffect(() => {
-    // Fetch from the real server database (same as multiplayer)
-    fetch(`${SERVER_URL}/questions?count=10`)
+    // Uses the local Next.js API route — no Render dependency, instant!
+    fetch("/api/questions?count=10")
       .then(res => res.json())
-      .then(data => {
-        setGameQuestions(data);
-        setLoading(false);
-      })
-      .catch(() => {
-        // Fallback: try the health endpoint then use static
-        setLoading(false);
-      });
+      .then(data => { setGameQuestions(data); setLoading(false); })
+      .catch(() => setLoading(false));
   }, []);
 
-  if (loading) {
-    return (
-      <div className="container" style={{ display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", minHeight: "60vh" }}>
-        <Loader2 size={48} style={{ animation: "spin 1s linear infinite", color: "var(--primary)" }} />
-        <p style={{ marginTop: "1rem", color: "var(--text-muted)" }}>Chargement des produits...</p>
-      </div>
-    );
-  }
+  if (loading) return (
+    <div className="container" style={{ display:"flex", flexDirection:"column", alignItems:"center", justifyContent:"center", minHeight:"60vh" }}>
+      <Loader2 size={48} style={{ animation:"spin 1s linear infinite", color:"var(--primary)" }} />
+      <p style={{ marginTop:"1rem", color:"var(--text-muted)" }}>Chargement des produits...</p>
+    </div>
+  );
 
-  if (gameQuestions.length === 0) {
-    return (
-      <div className="container" style={{ textAlign: "center" }}>
-        <p>Impossible de charger les questions. Vérifie ta connexion.</p>
-        <button className="btn btn-primary" style={{ marginTop: "1rem" }} onClick={() => window.location.reload()}>Réessayer</button>
-      </div>
-    );
-  }
+  if (gameQuestions.length === 0) return (
+    <div className="container" style={{ textAlign:"center" }}>
+      <p>Impossible de charger les questions. Essaie de recharger la page.</p>
+      <button className="btn btn-primary" style={{ marginTop:"1rem" }} onClick={() => window.location.reload()}>Recharger</button>
+    </div>
+  );
 
   const currentQ = gameQuestions[currentIndex];
 
-  const calculateNoteScore = (guess: number, real: number) => {
-    const diff = Math.abs(real - guess);
-    return Math.round(Math.max(0, 1 - diff) * 10) / 10;
-  };
+  const calculateNoteScore = (guess: number, real: number) =>
+    Math.round(Math.max(0, 1 - Math.abs(real - guess)) * 10) / 10;
 
   const calculatePriceScore = (guess: string, real: number) => {
-    const diffPerc = Math.abs(real - Number(guess)) / real;
-    const accuracy = (1 - diffPerc) * 100;
-    let priceScore = 0;
-    if (accuracy >= 100) priceScore = 1;
-    else if (accuracy >= 98) priceScore = 0.9;
-    else if (accuracy >= 96) priceScore = 0.8;
-    else if (accuracy >= 94) priceScore = 0.7;
-    else if (accuracy >= 92) priceScore = 0.6;
-    else if (accuracy >= 90) priceScore = 0.5;
-    else if (accuracy >= 88) priceScore = 0.4;
-    else if (accuracy >= 86) priceScore = 0.3;
-    else if (accuracy >= 84) priceScore = 0.2;
-    else if (accuracy >= 82) priceScore = 0.1;
-    return priceScore;
+    const acc = (1 - Math.abs(real - Number(guess)) / real) * 100;
+    if (acc >= 100) return 1; if (acc >= 98) return 0.9; if (acc >= 96) return 0.8;
+    if (acc >= 94) return 0.7; if (acc >= 92) return 0.6; if (acc >= 90) return 0.5;
+    if (acc >= 88) return 0.4; if (acc >= 86) return 0.3; if (acc >= 84) return 0.2;
+    if (acc >= 82) return 0.1; return 0;
   };
 
   const handleSubmit = () => {
-    if ((mode === "price" || mode === "both") && (guessPrice === "" || Number(guessPrice) <= 0)) {
+    if ((mode === "price" || mode === "both") && (guessPrice === "" || Number(guessPrice) <= 0))
       return alert("Entre un prix valide !");
-    }
-
-    let notePts = 0;
-    let pricePts = 0;
-
-    if (mode === "note" || mode === "both") {
-      notePts = calculateNoteScore(guessRating, currentQ.realRating);
-      setLastNotePoints(notePts);
-    }
-    if (mode === "price" || mode === "both") {
-      pricePts = calculatePriceScore(guessPrice, currentQ.price);
-      setLastPricePoints(pricePts);
-    }
-
+    let notePts = 0, pricePts = 0;
+    if (mode === "note" || mode === "both") { notePts = calculateNoteScore(guessRating, currentQ.realRating); setLastNotePoints(notePts); }
+    if (mode === "price" || mode === "both") { pricePts = calculatePriceScore(guessPrice, currentQ.price); setLastPricePoints(pricePts); }
     setScore(s => s + notePts + pricePts);
     setTotalMaxScore(s => s + (mode === "both" ? 2 : 1));
     setHasRevealed(true);
   };
 
-  const handleNext = () => {
-    setHasRevealed(false);
-    setGuessRating(3.0);
-    setGuessPrice("");
-    setCurrentIndex(i => i + 1);
-  };
+  const handleNext = () => { setHasRevealed(false); setGuessRating(3.0); setGuessPrice(""); setCurrentIndex(i => i + 1); };
 
-  if (currentIndex >= gameQuestions.length) {
-    return (
-      <div className="container" style={{ textAlign: "center" }}>
-        <h1 className="title">Partie Terminée !</h1>
-        <p className="subtitle">Ton score total : {Math.round(score * 10) / 10} / {totalMaxScore}</p>
-        <div style={{ display: "flex", gap: "1rem", justifyContent: "center", marginTop: "2rem" }}>
-          <button className="btn btn-primary" onClick={() => window.location.reload()}><RotateCcw size={20} /> Rejouer</button>
-          <button className="btn btn-outline" onClick={() => router.push("/")}><Home size={20} /> Accueil</button>
-        </div>
+  if (currentIndex >= gameQuestions.length) return (
+    <div className="container" style={{ textAlign:"center" }}>
+      <h1 className="title">Partie Terminee !</h1>
+      <p className="subtitle">Ton score : {Math.round(score * 10) / 10} / {totalMaxScore}</p>
+      <div style={{ display:"flex", gap:"1rem", justifyContent:"center", marginTop:"2rem" }}>
+        <button className="btn btn-primary" onClick={() => window.location.reload()}><RotateCcw size={20} /> Rejouer</button>
+        <button className="btn btn-outline" onClick={() => router.push("/")}><Home size={20} /> Accueil</button>
       </div>
-    );
-  }
+    </div>
+  );
 
   return (
     <div className="container">
-      <div className="header" style={{ marginBottom: "1rem" }}>
-        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-          <span style={{ fontSize: "1.2rem", fontWeight: "bold" }}>Score: {Math.round(score * 10) / 10}</span>
-          <span style={{ fontSize: "1rem", color: "#6b7280" }}>{currentIndex + 1} / {gameQuestions.length}</span>
+      <div className="header" style={{ marginBottom:"1rem" }}>
+        <div style={{ display:"flex", justifyContent:"space-between", alignItems:"center" }}>
+          <span style={{ fontSize:"1.2rem", fontWeight:"bold" }}>Score: {Math.round(score * 10) / 10}</span>
+          <span style={{ fontSize:"1rem", color:"#6b7280" }}>{currentIndex + 1} / {gameQuestions.length}</span>
         </div>
       </div>
-
       <div className="card">
-        {currentQ.productName && <div style={{ color: "#6b7280", fontWeight: "600", marginBottom: "1rem", textAlign: "center" }}>Produit : {currentQ.productName}</div>}
-
-        <div style={{ paddingBottom: "1.5rem" }}>
+        {currentQ.productName && <div style={{ color:"#6b7280", fontWeight:"600", marginBottom:"1rem", textAlign:"center" }}>{currentQ.productName}</div>}
+        <div style={{ paddingBottom:"1.5rem" }}>
           <ImageCarousel images={currentQ.images || (currentQ.imageUrl ? [currentQ.imageUrl] : [])} />
         </div>
-
         <div className="review-text">"{currentQ.reviewText}"</div>
-
-        <div style={{ marginTop: "2rem", display: "flex", flexDirection: "column", gap: "1.5rem" }}>
+        <div style={{ marginTop:"2rem", display:"flex", flexDirection:"column", gap:"1.5rem" }}>
           {!hasRevealed ? (
             <>
               {(mode === "note" || mode === "both") && (
-                <div style={{ display: "flex", flexDirection: "column", gap: "0.5rem" }}>
-                  <label style={{ fontWeight: "bold" }}>Note estimée ? ({guessRating.toFixed(1)} ⭐)</label>
-                  <input type="range" min="1.0" max="5.0" step="0.1" value={guessRating} onChange={(e) => setGuessRating(Number(e.target.value))} style={{ width: "100%", accentColor: "var(--primary)" }} />
+                <div style={{ display:"flex", flexDirection:"column", gap:"0.5rem" }}>
+                  <label style={{ fontWeight:"bold" }}>Note estimee ? ({guessRating.toFixed(1)} ⭐)</label>
+                  <input type="range" min="1.0" max="5.0" step="0.1" value={guessRating} onChange={e => setGuessRating(Number(e.target.value))} style={{ width:"100%", accentColor:"var(--primary)" }} />
                 </div>
               )}
-
               {(mode === "price" || mode === "both") && (
-                <div style={{ display: "flex", flexDirection: "column", gap: "0.5rem" }}>
-                  <label style={{ fontWeight: "bold" }}>Prix estimé ? (€)</label>
-                  <input type="number" min="0" step="1" className="input" placeholder="Ex: 25" value={guessPrice} onChange={(e) => setGuessPrice(e.target.value)} />
+                <div style={{ display:"flex", flexDirection:"column", gap:"0.5rem" }}>
+                  <label style={{ fontWeight:"bold" }}>Prix estime ? (€)</label>
+                  <input type="number" min="0" step="1" className="input" placeholder="Ex: 25" value={guessPrice} onChange={e => setGuessPrice(e.target.value)} />
                 </div>
               )}
-
-              <button className="btn btn-primary" onClick={handleSubmit} style={{ marginTop: "1rem" }}>Valider ma réponse</button>
+              <button className="btn btn-primary" onClick={handleSubmit} style={{ marginTop:"1rem" }}>Valider ma reponse</button>
             </>
           ) : (
-            <div style={{ textAlign: "center", padding: "1rem", background: "var(--bg-card)", borderRadius: "8px", border: "1px solid var(--border)" }}>
-              <h3 style={{ fontSize: "1.5rem", marginBottom: "1rem" }}>Résultats</h3>
+            <div style={{ textAlign:"center", padding:"1rem", background:"var(--bg-card)", borderRadius:"8px", border:"1px solid var(--border)" }}>
+              <h3 style={{ fontSize:"1.5rem", marginBottom:"1rem" }}>Resultats</h3>
               {(mode === "note" || mode === "both") && (
-                <div style={{ marginBottom: "0.5rem" }}>
-                  <p>La note était : <strong>{currentQ.realRating} ⭐</strong></p>
-                  <p style={{ fontSize: "0.9rem", color: "var(--primary)", fontWeight: "bold" }}>+{lastNotePoints} pts</p>
+                <div style={{ marginBottom:"0.5rem" }}>
+                  <p>La note etait : <strong>{currentQ.realRating} ⭐</strong></p>
+                  <p style={{ fontSize:"0.9rem", color:"var(--primary)", fontWeight:"bold" }}>+{lastNotePoints} pts</p>
                 </div>
               )}
               {(mode === "price" || mode === "both") && (
-                <div style={{ marginBottom: "0.5rem" }}>
-                  <p>Le prix était : <strong>{currentQ.price} €</strong></p>
-                  <p style={{ fontSize: "0.9rem", color: "var(--primary)", fontWeight: "bold" }}>+{lastPricePoints} pts</p>
+                <div style={{ marginBottom:"0.5rem" }}>
+                  <p>Le prix etait : <strong>{currentQ.price} €</strong></p>
+                  <p style={{ fontSize:"0.9rem", color:"var(--primary)", fontWeight:"bold" }}>+{lastPricePoints} pts</p>
                 </div>
               )}
-
-              <button className="btn btn-primary" style={{ width: "100%", marginTop: "1.5rem" }} onClick={handleNext}>
+              <button className="btn btn-primary" style={{ width:"100%", marginTop:"1.5rem" }} onClick={handleNext}>
                 Question suivante <ArrowRight size={20} />
               </button>
             </div>
