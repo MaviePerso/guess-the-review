@@ -18,6 +18,7 @@ function SoloPageContent() {
   const [guessPrice, setGuessPrice] = useState<string>("");
 
   const [hasRevealed, setHasRevealed] = useState(false);
+  const [timeLeft, setTimeLeft] = useState(180);
   const [score, setScore] = useState(0);
   const [totalMaxScore, setTotalMaxScore] = useState(0);
   const [lastNotePoints, setLastNotePoints] = useState(0);
@@ -47,6 +48,18 @@ function SoloPageContent() {
 
   const currentQ = gameQuestions[currentIndex];
 
+  useEffect(() => {
+    if (loading || hasRevealed || currentIndex >= gameQuestions.length) return;
+    if (timeLeft <= 0) {
+      handleSubmit(true);
+      return;
+    }
+    const timerId = setInterval(() => {
+      setTimeLeft(t => t - 1);
+    }, 1000);
+    return () => clearInterval(timerId);
+  }, [loading, hasRevealed, currentIndex, gameQuestions.length, timeLeft]);
+
   const calculateNoteScore = (guess: number, real: number) =>
     Math.round(Math.max(0, 1 - Math.abs(real - guess)) * 10) / 10;
 
@@ -58,18 +71,22 @@ function SoloPageContent() {
     if (acc >= 82) return 0.1; return 0;
   };
 
-  const handleSubmit = () => {
-    if ((mode === "price" || mode === "both") && (guessPrice === "" || Number(guessPrice) <= 0))
-      return alert("Entre un prix valide !");
+  const handleSubmit = (autoSubmit = false) => {
+    let finalPrice = guessPrice;
+    if ((mode === "price" || mode === "both") && (guessPrice === "" || Number(guessPrice) < 0)) {
+      if (autoSubmit !== true) return alert("Entre un prix valide !");
+      finalPrice = "0";
+      setGuessPrice("0");
+    }
     let notePts = 0, pricePts = 0;
     if (mode === "note" || mode === "both") { notePts = calculateNoteScore(guessRating, currentQ.realRating); setLastNotePoints(notePts); }
-    if (mode === "price" || mode === "both") { pricePts = calculatePriceScore(guessPrice, currentQ.price); setLastPricePoints(pricePts); }
+    if (mode === "price" || mode === "both") { pricePts = calculatePriceScore(finalPrice, currentQ.price); setLastPricePoints(pricePts); }
     setScore(s => s + notePts + pricePts);
     setTotalMaxScore(s => s + (mode === "both" ? 2 : 1));
     setHasRevealed(true);
   };
 
-  const handleNext = () => { setHasRevealed(false); setGuessRating(3.0); setGuessPrice(""); setCurrentIndex(i => i + 1); };
+  const handleNext = () => { setHasRevealed(false); setGuessRating(3.0); setGuessPrice(""); setCurrentIndex(i => i + 1); setTimeLeft(180); };
 
   if (currentIndex >= gameQuestions.length) return (
     <div className="container" style={{ textAlign:"center" }}>
@@ -87,6 +104,9 @@ function SoloPageContent() {
       <div className="header" style={{ marginBottom:"1rem" }}>
         <div style={{ display:"flex", justifyContent:"space-between", alignItems:"center" }}>
           <span style={{ fontSize:"1.2rem", fontWeight:"bold" }}>Score: {Math.round(score * 10) / 10}</span>
+          <div style={{ display:"flex", alignItems:"center", gap:"10px", fontWeight:"bold", color: timeLeft <= 10 ? "var(--danger)" : "inherit" }}>
+            ? {Math.floor(timeLeft / 60)}:{(timeLeft % 60).toString().padStart(2, '0')}
+          </div>
           <span style={{ fontSize:"1rem", color:"#6b7280" }}>{currentIndex + 1} / {gameQuestions.length}</span>
         </div>
       </div>
@@ -111,7 +131,7 @@ function SoloPageContent() {
                   <input type="number" min="0" step="1" className="input" placeholder="Ex: 25" value={guessPrice} onChange={e => setGuessPrice(e.target.value)} />
                 </div>
               )}
-              <button className="btn btn-primary" onClick={handleSubmit} style={{ marginTop:"1rem" }}>Valider ma reponse</button>
+              <button className="btn btn-primary" onClick={() => handleSubmit(false)} style={{ marginTop:"1rem" }}>Valider ma reponse</button>
             </>
           ) : (
             <div style={{ textAlign:"center", padding:"1rem", background:"var(--bg-card)", borderRadius:"8px", border:"1px solid var(--border)" }}>
@@ -146,4 +166,6 @@ export default function SoloPage() {
     </Suspense>
   );
 }
+
+
 

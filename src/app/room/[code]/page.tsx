@@ -19,6 +19,21 @@ function RoomPageContent() {
   const [guessRating, setGuessRating] = useState<number>(3.0);
   const [guessPrice, setGuessPrice] = useState<string>("");
   const [isMasked, setIsMasked] = useState(isStreamerModeInitial);
+  const [timeLeft, setTimeLeft] = useState(180);
+
+  useEffect(() => {
+    if (room?.state === "PLAYING") setTimeLeft(180);
+  }, [room?.currentQuestionIndex, room?.state]);
+
+  useEffect(() => {
+    if (!room || room.state !== "PLAYING" || !room.questions || !room.questions[room.currentQuestionIndex] || (socket.id && room.answers && room.answers[socket.id])) return;
+    if (timeLeft <= 0) {
+      handleSubmit(true);
+      return;
+    }
+    const timerId = setInterval(() => setTimeLeft(t => t - 1), 1000);
+    return () => clearInterval(timerId);
+  }, [room?.state, room?.currentQuestionIndex, room?.answers, timeLeft]);
 
   useEffect(() => {
     if (!pseudo || !code) {
@@ -88,12 +103,15 @@ function RoomPageContent() {
   const handleNext = () => socket.emit("NEXT_QUESTION", { code });
   const handleRestart = () => socket.emit("RESTART_GAME", { code });
 
-  const handleSubmit = () => {
-    if ((mode === "price" || mode === "both") && (guessPrice === "" || Number(guessPrice) <= 0)) {
-      return alert("Entre un prix valide !");
+  const handleSubmit = (autoSubmit = false) => {
+    let finalPrice = guessPrice;
+    if ((mode === "price" || mode === "both") && (guessPrice === "" || Number(guessPrice) < 0)) {
+      if (autoSubmit !== true) return alert("Entre un prix valide !");
+      finalPrice = "0";
+      setGuessPrice("0");
     }
-    socket.emit("SUBMIT_ANSWER", { code, rating: guessRating, price: guessPrice ? Number(guessPrice) : undefined }, (res: any) => {
-      if (!res.success) alert(res.error);
+    socket.emit("SUBMIT_ANSWER", { code, rating: guessRating, price: finalPrice ? Number(finalPrice) : undefined }, (res: any) => {
+      if (!res.success && autoSubmit !== true) alert(res.error);
     });
   };
 
@@ -121,8 +139,13 @@ function RoomPageContent() {
           <p className="subtitle" style={{ fontSize: "0.9rem" }}>Joueur : <strong>{pseudo}</strong></p>
         </div>
         {room.state === "PLAYING" && room.questions && (
-          <div style={{ fontSize: "1.2rem", fontWeight: "bold", background: "var(--bg-card)", padding: "0.5rem 1rem", borderRadius: "12px", border: "1px solid var(--border)" }}>
-            {room.currentQuestionIndex + 1} / {room.questions.length}
+          <div style={{ display: "flex", alignItems: "center", gap: "1rem" }}>
+            <div style={{ fontSize: "1.2rem", fontWeight: "bold", color: timeLeft <= 10 ? "var(--danger)" : "inherit" }}>
+              ? {Math.floor(timeLeft / 60)}:{(timeLeft % 60).toString().padStart(2, '0')}
+            </div>
+            <div style={{ fontSize: "1.2rem", fontWeight: "bold", background: "var(--bg-card)", padding: "0.5rem 1rem", borderRadius: "12px", border: "1px solid var(--border)" }}>
+              {room.currentQuestionIndex + 1} / {room.questions.length}
+            </div>
           </div>
         )}
       </div>
@@ -205,7 +228,7 @@ function RoomPageContent() {
                         <input type="number" className="input" placeholder="0.00" value={guessPrice} onChange={(e) => setGuessPrice(e.target.value)} style={{ fontSize: "1.5rem", textAlign: "center" }} />
                       </div>
                     )}
-                    <button className="btn btn-primary btn-lg" onClick={handleSubmit} style={{ height: "60px" }}>Valider ma réponse</button>
+                    <button className="btn btn-primary btn-lg" onClick={() => handleSubmit(false)} style={{ height: "60px" }}>Valider ma réponse</button>
                   </div>
                 ) : (
                   <div style={{ textAlign: "center", padding: "3rem 1rem", background: "rgba(34, 197, 94, 0.05)", borderRadius: "16px", border: "2px dashed var(--success)" }}>
@@ -294,4 +317,6 @@ export default function RoomPage() {
     </Suspense>
   );
 }
+
+
 
