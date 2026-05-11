@@ -10,6 +10,7 @@ interface ImageCarouselProps {
 export function ImageCarousel({ images }: ImageCarouselProps) {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [hasError, setHasError] = useState(false);
+  const [useProxy, setUseProxy] = useState(false);
 
   if (!images || images.length === 0) {
     return (
@@ -22,8 +23,20 @@ export function ImageCarousel({ images }: ImageCarouselProps) {
     );
   }
 
-  const next = () => { setHasError(false); setCurrentIndex((i) => (i + 1) % images.length); };
-  const prev = () => { setHasError(false); setCurrentIndex((i) => (i - 1 + images.length) % images.length); };
+  const next = () => { setHasError(false); setUseProxy(false); setCurrentIndex((i) => (i + 1) % images.length); };
+  const prev = () => { setHasError(false); setUseProxy(false); setCurrentIndex((i) => (i - 1 + images.length) % images.length); };
+
+  const currentImageUrl = useProxy 
+    ? "/api/proxy-image?url=" + encodeURIComponent(images[currentIndex])
+    : images[currentIndex];
+
+  const handleImageError = () => {
+    if (!useProxy) {
+      setUseProxy(true); // Try proxy first
+    } else {
+      setHasError(true); // Proxy also failed
+    }
+  };
 
   return (
     <div className="carousel-container">
@@ -40,11 +53,11 @@ export function ImageCarousel({ images }: ImageCarouselProps) {
         </div>
       ) : (
         <img 
-          src={images[currentIndex]} 
+          src={currentImageUrl} 
           alt="Produit" 
           className="carousel-img" 
           referrerPolicy="no-referrer" 
-          onError={() => setHasError(true)}
+          onError={handleImageError}
         />
       )}
 
@@ -72,3 +85,5 @@ export function ImageCarousel({ images }: ImageCarouselProps) {
     </div>
   );
 }
+
+
