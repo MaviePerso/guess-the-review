@@ -20,43 +20,36 @@ try {
   const sources = ["eBay", "Cdiscount", "Rakuten", "Fnac", "Darty"];
   
   questionDatabase = rawData.map(item => {
-    const priceValue = parseFloat(item.price) || 20;
     return {
       productName: item.productName || item.title || "Produit Inconnu",
       reviewText: item.reviewText || "Produit conforme à la description, très satisfait.",
       realRating: parseFloat(item.realRating || item.rating) || 4.2,
-      price: priceValue,
+      price: parseFloat(item.price) || 20,
       images: item.images || (item.image ? [item.image] : []),
-      source: item.source || sources[Math.floor(Math.random() * sources.length)],
-      isLuxury: priceValue > 1000
+      source: item.source || sources[Math.floor(Math.random() * sources.length)]
     };
   }).filter(item => item.images && item.images.length > 0 && item.price > 0);
   
-  console.log([DB] Loaded  products.);
+  console.log([DB] Loaded  products. Pure random mode enabled.);
 } catch (e) {
   console.error("[DB] Error loading DB:", e.message);
 }
 
 function getQuestions(count = 12) {
-  const luxury = questionDatabase.filter(q => q.isLuxury);
-  const normal = questionDatabase.filter(q => !q.isLuxury);
+  if (questionDatabase.length < count) return [];
   
-  const selected = [];
+  // 100% Pure Random Selection
+  const result = [];
+  const indices = Array.from({length: questionDatabase.length}, (_, i) => i);
   
-  // Toujours mettre 3-4 objets de luxe par session
-  const luxCount = Math.min(luxury.length, 4);
-  const normCount = count - luxCount;
-
-  // Shuffle luxury
-  const shuffledLux = [...luxury].sort(() => Math.random() - 0.5);
-  selected.push(...shuffledLux.slice(0, luxCount));
-
-  // Shuffle normal
-  const shuffledNorm = [...normal].sort(() => Math.random() - 0.5);
-  selected.push(...shuffledNorm.slice(0, normCount));
-
-  // Final shuffle of the selection
-  return selected.sort(() => Math.random() - 0.5);
+  // Simple Fisher-Yates shuffle for a subset
+  for (let i = 0; i < count; i++) {
+    const rand = i + Math.floor(Math.random() * (indices.length - i));
+    [indices[i], indices[rand]] = [indices[rand], indices[i]];
+    result.push(questionDatabase[indices[i]]);
+  }
+  
+  return result;
 }
 
 const safeCb = (cb, data) => { if (typeof cb === 'function') cb(data); };
@@ -175,4 +168,4 @@ httpServer.on('request', async (req, res) => {
   res.writeHead(404); res.end();
 });
 
-httpServer.listen(PORT, "0.0.0.0", () => console.log(🚀 Server started on port ));
+httpServer.listen(PORT, "0.0.0.0", () => console.log(🚀 Server started on port  (Pure Random Mode)));
