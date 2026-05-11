@@ -250,16 +250,6 @@
     "realRating": "4.5"
   },
   {
-    "productName": "Audemars Piguet Royal Oak [Rare Edition]",
-    "price": 58000,
-    "images": [
-      "https://img.chrono24.com/images/uhren/30485671-5v9h9n8q5n6z-Square280.jpg"
-    ],
-    "source": "Chrono24",
-    "reviewText": "The Genta masterpiece. Timeless.",
-    "realRating": "4.8"
-  },
-  {
     "productName": "Urbanears - Plattan On-Ear Headphones - Dark Gray",
     "price": 49.95,
     "images": [
@@ -298,16 +288,6 @@
     "source": "Cdiscount",
     "reviewText": "Compatible with most DSLR cameras; interval, long-exposure and self-timer capabilities; captures up to 399 continuous shots",
     "realRating": "4.3"
-  },
-  {
-    "productName": "Palm Jumeirah Waterfront Villa [Rare Edition]",
-    "price": 57386000,
-    "images": [
-      "https://img.jamesedition.com/listing_images/2026/04/21/14/26/16/e6765e0c-680e-41ff-be1e-769827640cfa/je/556x342xcxm.jpg"
-    ],
-    "source": "JamesEdition",
-    "reviewText": "A masterpiece of modern luxury living in Dubai.",
-    "realRating": "5.0"
   },
   {
     "productName": "Emtec - The Flintstones 8GB USB 2.0 Flash Drive - Purple",
@@ -370,26 +350,6 @@
     "realRating": "4.1"
   },
   {
-    "productName": "Electrolux - Luxury-Glide Laundry Pedestal with Storage Drawer - Blanc",
-    "price": 299.99,
-    "images": [
-      "https://img.bbystatic.com/BestBuy_US/images/products/4448/4448509_sa.jpg"
-    ],
-    "source": "Cdiscount",
-    "reviewText": "Excellent rapport qualité-prix, très satisfait.",
-    "realRating": "3.5"
-  },
-  {
-    "productName": "Rolex Submariner Date 'Hulk' [Rare Edition]",
-    "price": 19093,
-    "images": [
-      "https://m.media-amazon.com/images/I/712BY6k-jJL._AC_UL320_.jpg"
-    ],
-    "source": "Amazon Luxury",
-    "reviewText": "An absolute masterpiece of engineering and style.",
-    "realRating": "5.0"
-  },
-  {
     "productName": "iSound - iGlowSound Waves Portable Wireless Speaker - Black",
     "price": 59.99,
     "images": [
@@ -408,16 +368,6 @@
     "source": "Cdiscount",
     "reviewText": "From our expanded online assortment; row of 2 seats in a curved configuration; top-grain leather; wallaway design; chaise-style footrest; tall seat back; lumbar support; cup holders",
     "realRating": "3.9"
-  },
-  {
-    "productName": "Louis Vuitton Keepall 55 Bandoulière [Rare Edition]",
-    "price": 2450,
-    "images": [
-      "https://eu.louisvuitton.com/images/is/image/lv/1/PP_VP_L/louis-vuitton-keepall-bandouliere-55-monogram-canvas-voyage--M41414_PM2_Front%20view.png"
-    ],
-    "source": "Louis Vuitton",
-    "reviewText": "The ultimate travel companion.",
-    "realRating": "4.6"
   },
   {
     "productName": "Zadro - LED-Lighted Mirror - Silver",
@@ -541,16 +491,6 @@
     "realRating": "4.4"
   },
   {
-    "productName": "Rolex Oyster Perpetual Explorer II [Rare Edition]",
-    "price": 12724,
-    "images": [
-      "https://m.media-amazon.com/images/I/71JkPZyThFL._AC_UL320_.jpg"
-    ],
-    "source": "Amazon Luxury",
-    "reviewText": "Rugged and reliable for any adventure.",
-    "realRating": "4.6"
-  },
-  {
     "productName": "Insignia™ - 92 Bright Multipurpose Paper - White",
     "price": 5.99,
     "images": [
@@ -639,16 +579,6 @@
     "source": "Cdiscount",
     "reviewText": "Perfect gift card? Piece of cake. All Best Buy gift cards are shipped free and are good toward future purchases online and in U.S. or Puerto Rico Best Buy stores. Best Buy gift cards do not have an expiration date.",
     "realRating": "4.0"
-  },
-  {
-    "productName": "Chanel Classic Flap Bag Medium [Rare Edition]",
-    "price": 10200,
-    "images": [
-      "https://www.chanel.com/images/q_auto,f_auto,fl_lossy,dpr_2.0/w_640/classic-flap-bag-black-lambskin-gold-tone-metal-packshot-default-as0116b0506194305-8843105746974.jpg"
-    ],
-    "source": "Chanel",
-    "reviewText": "A timeless piece of fashion history.",
-    "realRating": "4.7"
   },
   {
     "productName": "Fujifilm - instax mini 8 Instant Film Camera - Yellow",
@@ -1153,16 +1083,6 @@
     "realRating": "3.6"
   },
   {
-    "productName": "Rolex Submariner Date 'Hulk' [Rare Edition]",
-    "price": 19093,
-    "images": [
-      "https://m.media-amazon.com/images/I/712BY6k-jJL._AC_UL320_.jpg"
-    ],
-    "source": "Amazon Luxury",
-    "reviewText": "An absolute masterpiece of engineering and style.",
-    "realRating": "5.0"
-  },
-  {
     "productName": "Team ProMark - Detroit Lions Rugged Case for Samsung Galaxy S 5 Cell Phones - Noir/Blue",
     "price": 24.99,
     "images": [
@@ -1613,16 +1533,6 @@
     "realRating": "4.0"
   },
   {
-    "productName": "Omega Speedmaster Professional [Rare Edition]",
-    "price": 6300,
-    "images": [
-      "https://www.omegawatches.com/media/catalog/product/o/m/omega-speedmaster-moonwatch-professional-31030425001001-f.png"
-    ],
-    "source": "Omega",
-    "reviewText": "The moon watch. A piece of history on your wrist.",
-    "realRating": "4.8"
-  },
-  {
     "productName": "Wahl - Lithium Pen Trimmer - Blue",
     "price": 14.99,
     "images": [
@@ -2011,16 +1921,6 @@
     "source": "Cdiscount",
     "reviewText": "Holds up to 200 keys; key lock; labeled key shelves; hooks; log sheet; steel construction",
     "realRating": "4.3"
-  },
-  {
-    "productName": "Rolex Oyster Perpetual Explorer II",
-    "price": 12724,
-    "images": [
-      "https://m.media-amazon.com/images/I/71JkPZyThFL._AC_UL320_.jpg"
-    ],
-    "source": "Amazon Luxury",
-    "reviewText": "Rugged and reliable for any adventure.",
-    "realRating": "4.6"
   },
   {
     "productName": "Sacred 2: Fallen Angel - PRE-OWNED - PlayStation 3",
@@ -2493,18 +2393,6 @@
     "realRating": "4.8"
   },
   {
-    "productName": "Rolex Cellini Date Black Dial",
-    "price": 8999.99,
-    "images": [
-      "https://cdn.dummyjson.com/product-images/mens-watches/rolex-cellini-date-black-dial/1.webp",
-      "https://cdn.dummyjson.com/product-images/mens-watches/rolex-cellini-date-black-dial/2.webp",
-      "https://cdn.dummyjson.com/product-images/mens-watches/rolex-cellini-date-black-dial/3.webp"
-    ],
-    "source": "Amazon",
-    "reviewText": "The Rolex Cellini Date with Black Dial is a classic and prestigious watch. With a black dial and date complication, it exudes sophistication and is a symbol of Rolex's heritage.",
-    "realRating": "5.0"
-  },
-  {
     "productName": "Ballistic - Tungsten Tough Case for Samsung Galaxy S 6 Cell Phones - Black",
     "price": 39.99,
     "images": [
@@ -2728,16 +2616,6 @@
     "realRating": "4.1"
   },
   {
-    "productName": "Bugatti Chiron Super Sport [Rare Edition]",
-    "price": 3800000,
-    "images": [
-      "https://newsroom.bugatti.com/wp-content/uploads/2021/06/Bugatti-Chiron-Super-Sport-7.jpg"
-    ],
-    "source": "Bugatti",
-    "reviewText": "The pinnacle of automotive engineering. 440 km/h.",
-    "realRating": "4.9"
-  },
-  {
     "productName": "Fujifilm - X-A1 Mirrorless Camera with 16-50mm Lens - Blue",
     "price": 499.99,
     "images": [
@@ -2806,16 +2684,6 @@
     "source": "Cdiscount",
     "reviewText": "YAMAHA 64W Micro Component Center Section: Plays CD, CD-R/RW, MP3, WMA, AAC, WAV and FLAC formats; AirPlay; stereo sound; 30 station presets; network connection; USB port",
     "realRating": "4.5"
-  },
-  {
-    "productName": "Chanel Classic Flap Bag Medium [Rare Edition]",
-    "price": 10200,
-    "images": [
-      "https://www.chanel.com/images/q_auto,f_auto,fl_lossy,dpr_2.0/w_640/classic-flap-bag-black-lambskin-gold-tone-metal-packshot-default-as0116b0506194305-8843105746974.jpg"
-    ],
-    "source": "Chanel",
-    "reviewText": "A timeless piece of fashion history.",
-    "realRating": "4.7"
   },
   {
     "productName": "Fujifilm - instax mini 8 Instant Film Camera - Black",
@@ -3438,16 +3306,6 @@
     "realRating": "4.3"
   },
   {
-    "productName": "Cartier Santos de Cartier Large [Rare Edition]",
-    "price": 7750,
-    "images": [
-      "https://www.cartier.com/dw/image/v2/BFCW_PRD/on/demandware.static/-/Sites-cartier-master/default/dw1e0a2f1c/images/images-630x630/WSSA0018_0_cartier_watches.png"
-    ],
-    "source": "Cartier",
-    "reviewText": "Elegant, masculine, and historic.",
-    "realRating": "4.7"
-  },
-  {
     "productName": "Niles - OS5.3Si Indoor/Outdoor Speaker (Each) - White",
     "price": 259.99,
     "images": [
@@ -3536,16 +3394,6 @@
     "source": "Cdiscount",
     "reviewText": "Conforme à la description, livraison rapide.",
     "realRating": "4.4"
-  },
-  {
-    "productName": "Cartier Santos de Cartier Large [Rare Edition]",
-    "price": 7750,
-    "images": [
-      "https://www.cartier.com/dw/image/v2/BFCW_PRD/on/demandware.static/-/Sites-cartier-master/default/dw1e0a2f1c/images/images-630x630/WSSA0018_0_cartier_watches.png"
-    ],
-    "source": "Cartier",
-    "reviewText": "Elegant, masculine, and historic.",
-    "realRating": "4.7"
   },
   {
     "productName": "Euro Cuisine - Yogurt Maker - White",
@@ -3958,16 +3806,6 @@
     "realRating": "4.7"
   },
   {
-    "productName": "Louis Vuitton Keepall 55 Bandoulière [Rare Edition]",
-    "price": 2450,
-    "images": [
-      "https://eu.louisvuitton.com/images/is/image/lv/1/PP_VP_L/louis-vuitton-keepall-bandouliere-55-monogram-canvas-voyage--M41414_PM2_Front%20view.png"
-    ],
-    "source": "Louis Vuitton",
-    "reviewText": "The ultimate travel companion.",
-    "realRating": "4.6"
-  },
-  {
     "productName": "Ballistic - Tungsten Tough Case for Apple® iPhone® 6 and 6s - Gray/Black",
     "price": 34.99,
     "images": [
@@ -4076,16 +3914,6 @@
     "source": "Cdiscount",
     "reviewText": "RAZOR Black Label R Tec Scooter: Aluminum T-tube and deck; steel single-sided fork; urethane wheels; rubber grips; adjustable height; 220-lb. weight capacity; ages 6 and up",
     "realRating": "4.0"
-  },
-  {
-    "productName": "Rolls-Royce Cullinan Blue Shadow [Rare Edition]",
-    "price": 450000,
-    "images": [
-      "https://m.media-amazon.com/images/I/61S1E6qS9vL._AC_SX679_.jpg"
-    ],
-    "source": "Amazon Luxury",
-    "reviewText": "Floating on air. The ultimate luxury SUV.",
-    "realRating": "4.8"
   },
   {
     "productName": "Rogue Warrior - PRE-OWNED - Xbox 360",
@@ -4226,16 +4054,6 @@
     "source": "Cdiscount",
     "reviewText": "Fonctionnel et bien conçu.",
     "realRating": "3.6"
-  },
-  {
-    "productName": "Luxury Penthouse in Manhattan [Rare Edition]",
-    "price": 18500000,
-    "images": [
-      "https://img.jamesedition.com/listing_images/2024/01/15/10/30/00/e6765e0c-680e-41ff-be1e-769827640cfa/je/556x342xcxm.jpg"
-    ],
-    "source": "JamesEdition",
-    "reviewText": "Floor-to-ceiling windows with panoramic city views.",
-    "realRating": "4.9"
   },
   {
     "productName": "Key Digital - FatCAT Series Pro Cat-5e/6 Tx and Rx Extenders",
@@ -4540,16 +4358,6 @@
     "realRating": "4.5"
   },
   {
-    "productName": "GE - 7.5 Cu. Ft. 10-Cycle Steam Electric Dryer - Diamond Gray",
-    "price": 999.99,
-    "images": [
-      "https://img.bbystatic.com/BestBuy_US/images/products/1189/1189025_sa.jpg"
-    ],
-    "source": "Cdiscount",
-    "reviewText": "Rotary electronic controls with LEDs; 10 cycles; automatic temperature control; stainless-steel drum; quiet-by-design sound package",
-    "realRating": "4.6"
-  },
-  {
     "productName": "Amped Wireless - High Power Wireless-N 600mW Pro Access Point",
     "price": 149.99,
     "images": [
@@ -4698,16 +4506,6 @@
     "source": "Cdiscount",
     "reviewText": "Compatible with Apple iPhone 6 and iPhone 6s; Ballistic Corners; impact-resistant design; raised lips and corners; slim construction",
     "realRating": "4.3"
-  },
-  {
-    "productName": "Palm Jumeirah Waterfront Villa [Rare Edition]",
-    "price": 57386000,
-    "images": [
-      "https://img.jamesedition.com/listing_images/2026/04/21/14/26/16/e6765e0c-680e-41ff-be1e-769827640cfa/je/556x342xcxm.jpg"
-    ],
-    "source": "JamesEdition",
-    "reviewText": "A masterpiece of modern luxury living in Dubai.",
-    "realRating": "5.0"
   },
   {
     "productName": "Noir Series - Baja Remote-Controlled Truck - Blue",
@@ -4868,16 +4666,6 @@
     "source": "Cdiscount",
     "reviewText": "Blood pressure level indicator; irregular heartbeat detector; 60-memory recall; IntelliSense technology; Advanced Averaging",
     "realRating": "4.6"
-  },
-  {
-    "productName": "Hermès Birkin 30 Black Gold Hardware [Rare Edition]",
-    "price": 28500,
-    "images": [
-      "https://images.vestiairecollective.com/images/resized/w=2920,q=75,f=auto,/produit/sac-a-main-hermes-evelyne-en-cuir-noir-66687559-1_2.jpg"
-    ],
-    "source": "Vestiaire Collective",
-    "reviewText": "The most coveted bag in the world.",
-    "realRating": "5.0"
   },
   {
     "productName": "Crayola - Toy Story Color Wonder Mini Markers and Paper",
@@ -5180,16 +4968,6 @@
     "realRating": "3.9"
   },
   {
-    "productName": "Rolex Oyster Perpetual Explorer II [Rare Edition]",
-    "price": 12724,
-    "images": [
-      "https://m.media-amazon.com/images/I/71JkPZyThFL._AC_UL320_.jpg"
-    ],
-    "source": "Amazon Luxury",
-    "reviewText": "Rugged and reliable for any adventure.",
-    "realRating": "4.6"
-  },
-  {
     "productName": "LG - 43\" Class (42.5\" Diag.) - LED - 1080p - HDTV - Noir",
     "price": 399.99,
     "images": [
@@ -5432,16 +5210,6 @@
     ],
     "source": "Amazon",
     "reviewText": "The Microwave Oven is a versatile kitchen appliance for quick and efficient cooking, reheating, and defrosting. Its compact size makes it suitable for various kitchen setups.",
-    "realRating": "4.8"
-  },
-  {
-    "productName": "Audemars Piguet Royal Oak [Rare Edition]",
-    "price": 58000,
-    "images": [
-      "https://img.chrono24.com/images/uhren/30485671-5v9h9n8q5n6z-Square280.jpg"
-    ],
-    "source": "Chrono24",
-    "reviewText": "The Genta masterpiece. Timeless.",
     "realRating": "4.8"
   },
   {
@@ -6035,16 +5803,6 @@
     "realRating": "3.9"
   },
   {
-    "productName": "Ferrari 296 GTB [Rare Edition]",
-    "price": 342000,
-    "images": [
-      "https://cdn.jamesedition.com/media/2023/Ferrari/296-GTB/official.jpg"
-    ],
-    "source": "JamesEdition",
-    "reviewText": "Pure driving pleasure and hybrid innovation.",
-    "realRating": "5.0"
-  },
-  {
     "productName": "Space Bust-a-Move - PRE-OWNED - Nintendo DS",
     "price": 9.99,
     "images": [
@@ -6105,16 +5863,6 @@
     "realRating": "4.4"
   },
   {
-    "productName": "Patek Philippe Nautilus 5711/1A [Rare Edition]",
-    "price": 145000,
-    "images": [
-      "https://img.chrono24.com/images/uhren/45841531-pk6tuz4q30c87w4ifymkxou6-Square280.jpg"
-    ],
-    "source": "Chrono24",
-    "reviewText": "The holy grail of luxury sports watches.",
-    "realRating": "4.9"
-  },
-  {
     "productName": "Metra - Installation Kit for 2004-2006 Nissan Maxima Vehicles - Silver",
     "price": 16.99,
     "images": [
@@ -6153,16 +5901,6 @@
     "source": "Cdiscount",
     "reviewText": "WHIRLPOOL 14.8 Cu. Ft. Chest Freezer: 2 large, sliding storage bins; 15W interior light; defrost drain; temperature control knobs",
     "realRating": "4.7"
-  },
-  {
-    "productName": "Gucci GG Marmont Small Shoulder Bag [Rare Edition]",
-    "price": 1980,
-    "images": [
-      "https://media.gucci.com/style/DarkGray_Center_0_0_800x800/1628169614/443497_DTDIT_1000_001_100_0000_Light-GG-Marmont-small-shoulder-bag.jpg"
-    ],
-    "source": "Gucci",
-    "reviewText": "Stylish, recognizable, and high-quality.",
-    "realRating": "4.8"
   },
   {
     "productName": "Barska - Trend 12x32 Binocular",
@@ -6383,16 +6121,6 @@
     "source": "Cdiscount",
     "reviewText": "Excellent rapport qualité-prix, très satisfait.",
     "realRating": "4.0"
-  },
-  {
-    "productName": "Ferrari 296 GTB [Rare Edition]",
-    "price": 342000,
-    "images": [
-      "https://cdn.jamesedition.com/media/2023/Ferrari/296-GTB/official.jpg"
-    ],
-    "source": "JamesEdition",
-    "reviewText": "Pure driving pleasure and hybrid innovation.",
-    "realRating": "5.0"
   },
   {
     "productName": "SKB - iSeries Hard Case for DJI Phantom 3 Quadcopter - Black",
@@ -6805,16 +6533,6 @@
     "realRating": "4.6"
   },
   {
-    "productName": "Rolex Oyster Perpetual Explorer II [Rare Edition]",
-    "price": 12724,
-    "images": [
-      "https://m.media-amazon.com/images/I/71JkPZyThFL._AC_UL320_.jpg"
-    ],
-    "source": "Amazon Luxury",
-    "reviewText": "Rugged and reliable for any adventure.",
-    "realRating": "4.6"
-  },
-  {
     "productName": "LG - 7.3 Cu. Ft. 14-Cycle Steam Electric Dryer - Graphite Steel",
     "price": 1099.99,
     "images": [
@@ -6873,16 +6591,6 @@
     "source": "Amazon",
     "reviewText": "The Chopping Board is an essential kitchen accessory for food preparation. Made from durable material, it provides a safe and hygienic surface for cutting and chopping.",
     "realRating": "3.7"
-  },
-  {
-    "productName": "Porsche 911 GT3 RS (992) [Rare Edition]",
-    "price": 248000,
-    "images": [
-      "https://files.porsche.com/filestore/image/multimedia/none/992-gt3-rs-modelimage-spec/main/a6d0c0a0-0b7b-11ed-80f5-005056bb7008/porsche-main.jpg"
-    ],
-    "source": "Porsche",
-    "reviewText": "Born for the track, legal for the road.",
-    "realRating": "5.0"
   },
   {
     "productName": "Apple - Apple Watch™ Sport 38mm Gold Aluminum Case - Antique White Sport Band",
@@ -7277,16 +6985,6 @@
     "realRating": "4.5"
   },
   {
-    "productName": "Hermès Birkin 30 Black Gold Hardware [Rare Edition]",
-    "price": 28500,
-    "images": [
-      "https://images.vestiairecollective.com/images/resized/w=2920,q=75,f=auto,/produit/sac-a-main-hermes-evelyne-en-cuir-noir-66687559-1_2.jpg"
-    ],
-    "source": "Vestiaire Collective",
-    "reviewText": "The most coveted bag in the world.",
-    "realRating": "5.0"
-  },
-  {
     "productName": "Tony Hawk's Motion with Hue Pixel Painter - PRE-OWNED - Nintendo DS",
     "price": 9.99,
     "images": [
@@ -7425,16 +7123,6 @@
     "source": "Cdiscount",
     "reviewText": "Perfect gift card? Piece of cake. All Best Buy gift cards are shipped free and are good toward future purchases online and in U.S. or Puerto Rico Best Buy stores. Best Buy gift cards do not have an expiration date.",
     "realRating": "4.6"
-  },
-  {
-    "productName": "Rolex Submariner Date 'Hulk'",
-    "price": 19093,
-    "images": [
-      "https://m.media-amazon.com/images/I/712BY6k-jJL._AC_UL320_.jpg"
-    ],
-    "source": "Amazon Luxury",
-    "reviewText": "An absolute masterpiece of engineering and style.",
-    "realRating": "5.0"
   },
   {
     "productName": "LifeProof - nuud Hard Case for Apple® iPhone® 6 - White",
@@ -8427,26 +8115,6 @@
     "realRating": "4.0"
   },
   {
-    "productName": "Patek Philippe Nautilus 5711/1A [Rare Edition]",
-    "price": 145000,
-    "images": [
-      "https://img.chrono24.com/images/uhren/45841531-pk6tuz4q30c87w4ifymkxou6-Square280.jpg"
-    ],
-    "source": "Chrono24",
-    "reviewText": "The holy grail of luxury sports watches.",
-    "realRating": "4.9"
-  },
-  {
-    "productName": "Chanel Classic Flap Bag Medium [Rare Edition]",
-    "price": 10200,
-    "images": [
-      "https://www.chanel.com/images/q_auto,f_auto,fl_lossy,dpr_2.0/w_640/classic-flap-bag-black-lambskin-gold-tone-metal-packshot-default-as0116b0506194305-8843105746974.jpg"
-    ],
-    "source": "Chanel",
-    "reviewText": "A timeless piece of fashion history.",
-    "realRating": "4.7"
-  },
-  {
     "productName": "Barska - X-Trail 10 x 50 Binoculars - Noir",
     "price": 41.99,
     "images": [
@@ -8639,16 +8307,6 @@
     "realRating": "4.5"
   },
   {
-    "productName": "Porsche 911 GT3 RS (992) [Rare Edition]",
-    "price": 248000,
-    "images": [
-      "https://files.porsche.com/filestore/image/multimedia/none/992-gt3-rs-modelimage-spec/main/a6d0c0a0-0b7b-11ed-80f5-005056bb7008/porsche-main.jpg"
-    ],
-    "source": "Porsche",
-    "reviewText": "Born for the track, legal for the road.",
-    "realRating": "5.0"
-  },
-  {
     "productName": "PSB Speakers - Over-the-Ear Headphones - Black",
     "price": 399.98,
     "images": [
@@ -8737,16 +8395,6 @@
     "source": "Cdiscount",
     "reviewText": "TUMI T-TECH Slim Fitted Case for Apple iPhone 6: Compatible with Apple iPhone 6; ballistic nylon materials; polycarbonate shell; slim profile; raised front lip",
     "realRating": "4.6"
-  },
-  {
-    "productName": "Chanel Classic Flap Bag Medium [Rare Edition]",
-    "price": 10200,
-    "images": [
-      "https://www.chanel.com/images/q_auto,f_auto,fl_lossy,dpr_2.0/w_640/classic-flap-bag-black-lambskin-gold-tone-metal-packshot-default-as0116b0506194305-8843105746974.jpg"
-    ],
-    "source": "Chanel",
-    "reviewText": "A timeless piece of fashion history.",
-    "realRating": "4.7"
   },
   {
     "productName": "Pan",
@@ -8867,16 +8515,6 @@
     "source": "Cdiscount",
     "reviewText": "Selectable high or low-pass crossover; variable input gain; switchable 3-position bass boost",
     "realRating": "4.5"
-  },
-  {
-    "productName": "Jawbone - UP2 Activity Tracker - Black Diamond",
-    "price": 99.99,
-    "images": [
-      "https://img.bbystatic.com/BestBuy_US/images/products/4383/4383402_sa.jpg"
-    ],
-    "source": "Cdiscount",
-    "reviewText": "Fits most wrist sizesMeasures activity vs. inactivity, calories burned, distance traveled, sleep quality, steps taken, hours slept and nutritional intakeCompatible with Apple&#174; iOS and Android devices",
-    "realRating": "3.9"
   },
   {
     "productName": "Better Chef - 1.8L Cordless Electric Kettle - Red",
@@ -9329,16 +8967,6 @@
     "realRating": "4.7"
   },
   {
-    "productName": "Ferrari 296 GTB [Rare Edition]",
-    "price": 342000,
-    "images": [
-      "https://cdn.jamesedition.com/media/2023/Ferrari/296-GTB/official.jpg"
-    ],
-    "source": "JamesEdition",
-    "reviewText": "Pure driving pleasure and hybrid innovation.",
-    "realRating": "5.0"
-  },
-  {
     "productName": "Bell'O - Triple Play A/V System for Most Flat-Panel TVs Up to 46\" - Brown/Black",
     "price": 349.99,
     "images": [
@@ -9377,16 +9005,6 @@
     "source": "Cdiscount",
     "reviewText": "Rear-panel intelligent electronic controls; 14 cycles; TurboWash technology; direct-drive motor; 5 temperature settings; LoDecibel noise-reduction technology",
     "realRating": "4.4"
-  },
-  {
-    "productName": "Omega Speedmaster Professional [Rare Edition]",
-    "price": 6300,
-    "images": [
-      "https://www.omegawatches.com/media/catalog/product/o/m/omega-speedmaster-moonwatch-professional-31030425001001-f.png"
-    ],
-    "source": "Omega",
-    "reviewText": "The moon watch. A piece of history on your wrist.",
-    "realRating": "4.8"
   },
   {
     "productName": "Metra - Installation Kit for 2010 Kia Soul Vehicles - Black",
@@ -9769,16 +9387,6 @@
     "source": "Amazon",
     "reviewText": "The Asus Zenbook Pro Dual Screen Laptop is a high-performance device with dual screens, providing productivity and versatility for creative professionals.",
     "realRating": "4.0"
-  },
-  {
-    "productName": "Palm Jumeirah Waterfront Villa [Rare Edition]",
-    "price": 57386000,
-    "images": [
-      "https://img.jamesedition.com/listing_images/2026/04/21/14/26/16/e6765e0c-680e-41ff-be1e-769827640cfa/je/556x342xcxm.jpg"
-    ],
-    "source": "JamesEdition",
-    "reviewText": "A masterpiece of modern luxury living in Dubai.",
-    "realRating": "5.0"
   },
   {
     "productName": "Toshiba - Canvio Basics 1TB External USB 3.0 Portable Hard Drive - Black",
@@ -10321,16 +9929,6 @@
     "realRating": "4.2"
   },
   {
-    "productName": "Omega Speedmaster Professional [Rare Edition]",
-    "price": 6300,
-    "images": [
-      "https://www.omegawatches.com/media/catalog/product/o/m/omega-speedmaster-moonwatch-professional-31030425001001-f.png"
-    ],
-    "source": "Omega",
-    "reviewText": "The moon watch. A piece of history on your wrist.",
-    "realRating": "4.8"
-  },
-  {
     "productName": "TP-LINK - Wireless AC1200 Dual-Band USB Adapter - Black",
     "price": 39.99,
     "images": [
@@ -10459,18 +10057,6 @@
     "source": "Cdiscount",
     "reviewText": "12 V DC AC Plug Input, 110 V AC, 220 V AC - 3.6 V DC USB Output, 7.2 V DC, 5 V DC",
     "realRating": "4.4"
-  },
-  {
-    "productName": "Rolex Submariner Watch",
-    "price": 13999.99,
-    "images": [
-      "https://cdn.dummyjson.com/product-images/mens-watches/rolex-submariner-watch/1.webp",
-      "https://cdn.dummyjson.com/product-images/mens-watches/rolex-submariner-watch/2.webp",
-      "https://cdn.dummyjson.com/product-images/mens-watches/rolex-submariner-watch/3.webp"
-    ],
-    "source": "Amazon",
-    "reviewText": "The Rolex Submariner is a legendary dive watch with a rich history. Known for its durability and water resistance, it's a symbol of adventure and exploration.",
-    "realRating": "2.7"
   },
   {
     "productName": "VTech - DS6071 DECT 6.0 Cordless Expansion Handset - Silver",
@@ -10883,16 +10469,6 @@
     "realRating": "4.2"
   },
   {
-    "productName": "Gucci GG Marmont Small Shoulder Bag [Rare Edition]",
-    "price": 1980,
-    "images": [
-      "https://media.gucci.com/style/DarkGray_Center_0_0_800x800/1628169614/443497_DTDIT_1000_001_100_0000_Light-GG-Marmont-small-shoulder-bag.jpg"
-    ],
-    "source": "Gucci",
-    "reviewText": "Stylish, recognizable, and high-quality.",
-    "realRating": "4.8"
-  },
-  {
     "productName": "KEF - 5.1-Ch. Home Theater System with Powered Subwoofer",
     "price": 1199.99,
     "images": [
@@ -11233,16 +10809,6 @@
     "realRating": "4.5"
   },
   {
-    "productName": "Chanel Classic Flap Bag Medium [Rare Edition]",
-    "price": 10200,
-    "images": [
-      "https://www.chanel.com/images/q_auto,f_auto,fl_lossy,dpr_2.0/w_640/classic-flap-bag-black-lambskin-gold-tone-metal-packshot-default-as0116b0506194305-8843105746974.jpg"
-    ],
-    "source": "Chanel",
-    "reviewText": "A timeless piece of fashion history.",
-    "realRating": "4.7"
-  },
-  {
     "productName": "Battleship / Connect Four / Sorry / Trouble - PRE-OWNED - Nintendo DS",
     "price": 9.99,
     "images": [
@@ -11523,16 +11089,6 @@
     "realRating": "4.1"
   },
   {
-    "productName": "Gucci GG Marmont Small Shoulder Bag [Rare Edition]",
-    "price": 1980,
-    "images": [
-      "https://media.gucci.com/style/DarkGray_Center_0_0_800x800/1628169614/443497_DTDIT_1000_001_100_0000_Light-GG-Marmont-small-shoulder-bag.jpg"
-    ],
-    "source": "Gucci",
-    "reviewText": "Stylish, recognizable, and high-quality.",
-    "realRating": "4.8"
-  },
-  {
     "productName": "ZEISS - VR ONE Virtual Reality Headset - White/Black",
     "price": 120,
     "images": [
@@ -11673,16 +11229,6 @@
     "realRating": "4.0"
   },
   {
-    "productName": "Rolex Oyster Perpetual Explorer II [Rare Edition]",
-    "price": 12724,
-    "images": [
-      "https://m.media-amazon.com/images/I/71JkPZyThFL._AC_UL320_.jpg"
-    ],
-    "source": "Amazon Luxury",
-    "reviewText": "Rugged and reliable for any adventure.",
-    "realRating": "4.6"
-  },
-  {
     "productName": "Brother - Shipping Label Tape Cartridge - White",
     "price": 27.99,
     "images": [
@@ -11813,16 +11359,6 @@
     "realRating": "4.8"
   },
   {
-    "productName": "Audemars Piguet Royal Oak [Rare Edition]",
-    "price": 58000,
-    "images": [
-      "https://img.chrono24.com/images/uhren/30485671-5v9h9n8q5n6z-Square280.jpg"
-    ],
-    "source": "Chrono24",
-    "reviewText": "The Genta masterpiece. Timeless.",
-    "realRating": "4.8"
-  },
-  {
     "productName": "Epson - 676 XL High-Yield Ink Cartridge - Magenta",
     "price": 26.99,
     "images": [
@@ -11923,16 +11459,6 @@
     "realRating": "4.7"
   },
   {
-    "productName": "Rolls-Royce Cullinan Blue Shadow [Rare Edition]",
-    "price": 450000,
-    "images": [
-      "https://m.media-amazon.com/images/I/61S1E6qS9vL._AC_SX679_.jpg"
-    ],
-    "source": "Amazon Luxury",
-    "reviewText": "Floating on air. The ultimate luxury SUV.",
-    "realRating": "4.8"
-  },
-  {
     "productName": "Etymotic - ETY-Plugs High-Fidelity Earplugs - Clear",
     "price": 14.99,
     "images": [
@@ -11951,16 +11477,6 @@
     "source": "Cdiscount",
     "reviewText": "Sound-isolating design; 40mm drivers; neodymium magnets; deep, enhanced bass; full-range sound; built-in microphone; controls for media and phone calls; foam ear cushions",
     "realRating": "4.5"
-  },
-  {
-    "productName": "Luxury Penthouse in Manhattan [Rare Edition]",
-    "price": 18500000,
-    "images": [
-      "https://img.jamesedition.com/listing_images/2024/01/15/10/30/00/e6765e0c-680e-41ff-be1e-769827640cfa/je/556x342xcxm.jpg"
-    ],
-    "source": "JamesEdition",
-    "reviewText": "Floor-to-ceiling windows with panoramic city views.",
-    "realRating": "4.9"
   },
   {
     "productName": "TP-LINK - Wireless N600 Dual-Band Gigabit Router - Black",
@@ -12061,16 +11577,6 @@
     "source": "Cdiscount",
     "reviewText": "Je ne m'attendais pas à ça, c'est génial.",
     "realRating": "4.7"
-  },
-  {
-    "productName": "Patek Philippe Nautilus 5711/1A [Rare Edition]",
-    "price": 145000,
-    "images": [
-      "https://img.chrono24.com/images/uhren/45841531-pk6tuz4q30c87w4ifymkxou6-Square280.jpg"
-    ],
-    "source": "Chrono24",
-    "reviewText": "The holy grail of luxury sports watches.",
-    "realRating": "4.9"
   },
   {
     "productName": "AudioQuest - Forest 9.8' USB A/B Cable - Black/Green",
@@ -12342,16 +11848,6 @@
     "source": "Cdiscount",
     "reviewText": "Excellent rapport qualité-prix, très satisfait.",
     "realRating": "3.6"
-  },
-  {
-    "productName": "Bugatti Chiron Super Sport [Rare Edition]",
-    "price": 3800000,
-    "images": [
-      "https://newsroom.bugatti.com/wp-content/uploads/2021/06/Bugatti-Chiron-Super-Sport-7.jpg"
-    ],
-    "source": "Bugatti",
-    "reviewText": "The pinnacle of automotive engineering. 440 km/h.",
-    "realRating": "4.9"
   },
   {
     "productName": "DigiPower - Re-Fuel Sunshade Visor for Most Drones - Black",
@@ -12694,16 +12190,6 @@
     "realRating": "4.7"
   },
   {
-    "productName": "Luxury Penthouse in Manhattan [Rare Edition]",
-    "price": 18500000,
-    "images": [
-      "https://img.jamesedition.com/listing_images/2024/01/15/10/30/00/e6765e0c-680e-41ff-be1e-769827640cfa/je/556x342xcxm.jpg"
-    ],
-    "source": "JamesEdition",
-    "reviewText": "Floor-to-ceiling windows with panoramic city views.",
-    "realRating": "4.9"
-  },
-  {
     "productName": "Geek Squad - Add-On Networked Audio Hub Setup",
     "price": 79.99,
     "images": [
@@ -12824,16 +12310,6 @@
     "realRating": "4.4"
   },
   {
-    "productName": "Rolex Submariner Date 'Hulk' [Rare Edition]",
-    "price": 19093,
-    "images": [
-      "https://m.media-amazon.com/images/I/712BY6k-jJL._AC_UL320_.jpg"
-    ],
-    "source": "Amazon Luxury",
-    "reviewText": "An absolute masterpiece of engineering and style.",
-    "realRating": "5.0"
-  },
-  {
     "productName": "Platinum - Holster Case for Samsung Galaxy S6 edge Plus Cell Phones - Noir",
     "price": 39.99,
     "images": [
@@ -12932,16 +12408,6 @@
     "source": "Cdiscount",
     "reviewText": "BDI Cavo TV Cabinet for Most Flat-Panel TVs Up to 60\": Holds up to 8 A/V components; MDF and wood veneer materials; 2 adjustable shelves; open compartments; tempered-glass doors; ventilated back panels; integrated levelers",
     "realRating": "4.1"
-  },
-  {
-    "productName": "Lamborghini Urus 4.0L V8 [Rare Edition]",
-    "price": 370000,
-    "images": [
-      "https://prod.pictures.autoscout24.net/listing-images/9fb554b2-0ac8-4802-b8b6-52a131ff249c_d7e538d8-bb7d-422f-aff4-330159d37284.jpg/800x600.jpg"
-    ],
-    "source": "AutoScout24",
-    "reviewText": "The SUV with the soul of a supercar.",
-    "realRating": "4.8"
   },
   {
     "productName": "The Conduit - PRE-OWNED - Nintendo Wii",
@@ -13054,16 +12520,6 @@
     "realRating": "4.6"
   },
   {
-    "productName": "Patek Philippe Nautilus 5711/1A [Rare Edition]",
-    "price": 145000,
-    "images": [
-      "https://img.chrono24.com/images/uhren/45841531-pk6tuz4q30c87w4ifymkxou6-Square280.jpg"
-    ],
-    "source": "Chrono24",
-    "reviewText": "The holy grail of luxury sports watches.",
-    "realRating": "4.9"
-  },
-  {
     "productName": "Emtec - Animalitos 8GB USB 2.0 Flash Drive - Aqua Blue/Red/White",
     "price": 11.99,
     "images": [
@@ -13122,26 +12578,6 @@
     "source": "Cdiscount",
     "reviewText": "Only at Best Buy\nCompatible with Apple iPhone 6 Plus and 6s Plus; polycarbonate shell; TPU inner construction; play-through design; contrasting colors",
     "realRating": "3.9"
-  },
-  {
-    "productName": "Rolls-Royce Cullinan Blue Shadow [Rare Edition]",
-    "price": 450000,
-    "images": [
-      "https://m.media-amazon.com/images/I/61S1E6qS9vL._AC_SX679_.jpg"
-    ],
-    "source": "Amazon Luxury",
-    "reviewText": "Floating on air. The ultimate luxury SUV.",
-    "realRating": "4.8"
-  },
-  {
-    "productName": "Hermès Birkin 30 Black Gold Hardware [Rare Edition]",
-    "price": 28500,
-    "images": [
-      "https://images.vestiairecollective.com/images/resized/w=2920,q=75,f=auto,/produit/sac-a-main-hermes-evelyne-en-cuir-noir-66687559-1_2.jpg"
-    ],
-    "source": "Vestiaire Collective",
-    "reviewText": "The most coveted bag in the world.",
-    "realRating": "5.0"
   },
   {
     "productName": "Niles - Flush-Mount IR MicroSensor",
@@ -13997,16 +13433,6 @@
     "realRating": "4.4"
   },
   {
-    "productName": "Porsche 911 GT3 RS (992) [Rare Edition]",
-    "price": 248000,
-    "images": [
-      "https://files.porsche.com/filestore/image/multimedia/none/992-gt3-rs-modelimage-spec/main/a6d0c0a0-0b7b-11ed-80f5-005056bb7008/porsche-main.jpg"
-    ],
-    "source": "Porsche",
-    "reviewText": "Born for the track, legal for the road.",
-    "realRating": "5.0"
-  },
-  {
     "productName": "Metra - DIN Installation Kit for Select Subaru Impreza and Forester Vehicles - Black",
     "price": 16.99,
     "images": [
@@ -14267,16 +13693,6 @@
     "realRating": "4.7"
   },
   {
-    "productName": "Rolls-Royce Cullinan Blue Shadow [Rare Edition]",
-    "price": 450000,
-    "images": [
-      "https://m.media-amazon.com/images/I/61S1E6qS9vL._AC_SX679_.jpg"
-    ],
-    "source": "Amazon Luxury",
-    "reviewText": "Floating on air. The ultimate luxury SUV.",
-    "realRating": "4.8"
-  },
-  {
     "productName": "Toastmaster - 4-Slice Toaster Oven - Stainless-Steel",
     "price": 49.99,
     "images": [
@@ -14345,16 +13761,6 @@
     "source": "Cdiscount",
     "reviewText": "Includes five 3/8\" sockets and sixteen 1/4\" sockets; dual-sided stubby ratchet with comfort-grip handle; hard storage case",
     "realRating": "4.0"
-  },
-  {
-    "productName": "Speck - Luxury Inked Case for Apple® iPhone® 6 and 6s - Noir/Orange",
-    "price": 49.99,
-    "images": [
-      "https://img.bbystatic.com/BestBuy_US/images/products/4215/4215512_sa.jpg"
-    ],
-    "source": "Cdiscount",
-    "reviewText": "Je ne m'attendais pas à ça, c'est génial.",
-    "realRating": "3.8"
   },
   {
     "productName": "Walker Edison - Highboy TV Stand for Most TVs Up to 55\" - Blanc",
@@ -14885,16 +14291,6 @@
     "source": "Cdiscount",
     "reviewText": "Je ne m'attendais pas à ça, c'est génial.",
     "realRating": "3.8"
-  },
-  {
-    "productName": "Palm Jumeirah Waterfront Villa",
-    "price": 57386000,
-    "images": [
-      "https://img.jamesedition.com/listing_images/2026/04/21/14/26/16/e6765e0c-680e-41ff-be1e-769827640cfa/je/556x342xcxm.jpg"
-    ],
-    "source": "JamesEdition",
-    "reviewText": "A masterpiece of modern luxury living in Dubai.",
-    "realRating": "5.0"
   },
   {
     "productName": "Fitbit - 6.5\" Replacement Charging Cable - Black",
@@ -15697,16 +15093,6 @@
     "realRating": "4.5"
   },
   {
-    "productName": "Rolex Submariner Date 'Hulk' [Rare Edition]",
-    "price": 19093,
-    "images": [
-      "https://m.media-amazon.com/images/I/712BY6k-jJL._AC_UL320_.jpg"
-    ],
-    "source": "Amazon Luxury",
-    "reviewText": "An absolute masterpiece of engineering and style.",
-    "realRating": "5.0"
-  },
-  {
     "productName": "B&W - TYPE 6000 3DR Solo Fitted Case - Yellow",
     "price": 269.99,
     "images": [
@@ -15955,16 +15341,6 @@
     "source": "Cdiscount",
     "reviewText": "Roar into battle as a Chaotic creature",
     "realRating": "4.1"
-  },
-  {
-    "productName": "WebRC - 1:24 Porsche Cayenne Radio-Control Car - Black",
-    "price": 24.99,
-    "images": [
-      "https://img.bbystatic.com/BestBuy_US/images/products/1242/1242951_sa.jpg"
-    ],
-    "source": "Cdiscount",
-    "reviewText": "WEBRC 1:24 Porsche Cayenne Radio-Control Car: 1:24 scale of the Porsche Cayenne; officially licensed by Porsche; full-function radio control",
-    "realRating": "4.4"
   },
   {
     "productName": "Speed Zone - PRE-OWNED - Nintendo Wii",
@@ -16529,16 +15905,6 @@
     "realRating": "3.7"
   },
   {
-    "productName": "Louis Vuitton Keepall 55 Bandoulière [Rare Edition]",
-    "price": 2450,
-    "images": [
-      "https://eu.louisvuitton.com/images/is/image/lv/1/PP_VP_L/louis-vuitton-keepall-bandouliere-55-monogram-canvas-voyage--M41414_PM2_Front%20view.png"
-    ],
-    "source": "Louis Vuitton",
-    "reviewText": "The ultimate travel companion.",
-    "realRating": "4.6"
-  },
-  {
     "productName": "iTouchless - 13-Gal. Round Deodorizer Sensor Trash Can - Noir",
     "price": 89.99,
     "images": [
@@ -16729,26 +16095,6 @@
     "realRating": "4.3"
   },
   {
-    "productName": "Ferrari 296 GTB [Rare Edition]",
-    "price": 342000,
-    "images": [
-      "https://cdn.jamesedition.com/media/2023/Ferrari/296-GTB/official.jpg"
-    ],
-    "source": "JamesEdition",
-    "reviewText": "Pure driving pleasure and hybrid innovation.",
-    "realRating": "5.0"
-  },
-  {
-    "productName": "Bugatti Chiron Super Sport [Rare Edition]",
-    "price": 3800000,
-    "images": [
-      "https://newsroom.bugatti.com/wp-content/uploads/2021/06/Bugatti-Chiron-Super-Sport-7.jpg"
-    ],
-    "source": "Bugatti",
-    "reviewText": "The pinnacle of automotive engineering. 440 km/h.",
-    "realRating": "4.9"
-  },
-  {
     "productName": "Niles - OS7.5 Indoor/Outdoor Speaker (Pair) - White",
     "price": 669.99,
     "images": [
@@ -16887,16 +16233,6 @@
     "source": "Cdiscount",
     "reviewText": "Parfait, ravi de l'achat.",
     "realRating": "4.5"
-  },
-  {
-    "productName": "Cartier Santos de Cartier Large [Rare Edition]",
-    "price": 7750,
-    "images": [
-      "https://www.cartier.com/dw/image/v2/BFCW_PRD/on/demandware.static/-/Sites-cartier-master/default/dw1e0a2f1c/images/images-630x630/WSSA0018_0_cartier_watches.png"
-    ],
-    "source": "Cartier",
-    "reviewText": "Elegant, masculine, and historic.",
-    "realRating": "4.7"
   },
   {
     "productName": "JisonCase - Matelassé Quilted Folio Case for Samsung Galaxy S 4 Cell Phones - Black",
@@ -17649,16 +16985,6 @@
     "realRating": "4.2"
   },
   {
-    "productName": "Louis Vuitton Keepall 55 Bandoulière [Rare Edition]",
-    "price": 2450,
-    "images": [
-      "https://eu.louisvuitton.com/images/is/image/lv/1/PP_VP_L/louis-vuitton-keepall-bandouliere-55-monogram-canvas-voyage--M41414_PM2_Front%20view.png"
-    ],
-    "source": "Louis Vuitton",
-    "reviewText": "The ultimate travel companion.",
-    "realRating": "4.6"
-  },
-  {
     "productName": "Breville - 7-Quart Slow Cooker - Silver/Black",
     "price": 129.99,
     "images": [
@@ -18052,16 +17378,6 @@
     "realRating": "4.1"
   },
   {
-    "productName": "Luxury Penthouse in Manhattan [Rare Edition]",
-    "price": 18500000,
-    "images": [
-      "https://img.jamesedition.com/listing_images/2024/01/15/10/30/00/e6765e0c-680e-41ff-be1e-769827640cfa/je/556x342xcxm.jpg"
-    ],
-    "source": "JamesEdition",
-    "reviewText": "Floor-to-ceiling windows with panoramic city views.",
-    "realRating": "4.9"
-  },
-  {
     "productName": "Water",
     "price": 0.99,
     "images": [
@@ -18110,16 +17426,6 @@
     "source": "Cdiscount",
     "reviewText": "Solid wood construction; 2 storage shelves; dark tobacco brown stain with protective NC lacquer finish",
     "realRating": "4.5"
-  },
-  {
-    "productName": "Luxury Penthouse in Manhattan",
-    "price": 18500000,
-    "images": [
-      "https://img.jamesedition.com/listing_images/2024/01/15/10/30/00/e6765e0c-680e-41ff-be1e-769827640cfa/je/556x342xcxm.jpg"
-    ],
-    "source": "JamesEdition",
-    "reviewText": "Floor-to-ceiling windows with panoramic city views.",
-    "realRating": "4.9"
   },
   {
     "productName": "Whynter - 70-Pint Portable Dehumidifier - Blanc",
@@ -18250,16 +17556,6 @@
     "source": "Cdiscount",
     "reviewText": "30-second instant heat; 1\" - 1.5\" tapered flocked barrel; 5 temperature settings up to 395&#176;; auto shut-off; digital display",
     "realRating": "4.3"
-  },
-  {
-    "productName": "Ferrari 296 GTB [Rare Edition]",
-    "price": 342000,
-    "images": [
-      "https://cdn.jamesedition.com/media/2023/Ferrari/296-GTB/official.jpg"
-    ],
-    "source": "JamesEdition",
-    "reviewText": "Pure driving pleasure and hybrid innovation.",
-    "realRating": "5.0"
   },
   {
     "productName": "Lasko - Pedestal Fan - Gray",
@@ -18432,16 +17728,6 @@
     "realRating": "4.7"
   },
   {
-    "productName": "Rolls-Royce Cullinan Blue Shadow [Rare Edition]",
-    "price": 450000,
-    "images": [
-      "https://m.media-amazon.com/images/I/61S1E6qS9vL._AC_SX679_.jpg"
-    ],
-    "source": "Amazon Luxury",
-    "reviewText": "Floating on air. The ultimate luxury SUV.",
-    "realRating": "4.8"
-  },
-  {
     "productName": "Metra - Dash Kit for Select 2009-2010 Kia Borrego - Black",
     "price": 16.99,
     "images": [
@@ -18492,26 +17778,6 @@
     "realRating": "3.8"
   },
   {
-    "productName": "Louis Vuitton Keepall 55 Bandoulière [Rare Edition]",
-    "price": 2450,
-    "images": [
-      "https://eu.louisvuitton.com/images/is/image/lv/1/PP_VP_L/louis-vuitton-keepall-bandouliere-55-monogram-canvas-voyage--M41414_PM2_Front%20view.png"
-    ],
-    "source": "Louis Vuitton",
-    "reviewText": "The ultimate travel companion.",
-    "realRating": "4.6"
-  },
-  {
-    "productName": "Visual Land - Prestige Elite 8QI - 8\" Tablet - 16GB - Red",
-    "price": 99.99,
-    "images": [
-      "https://img.bbystatic.com/BestBuy_US/images/products/4626/4626230_sa.jpg"
-    ],
-    "source": "Cdiscount",
-    "reviewText": "Vraiment top, je recommande vivement !",
-    "realRating": "4.7"
-  },
-  {
     "productName": "Peak Design - PROPad Camera Mounting Pad - Noir",
     "price": 29.99,
     "images": [
@@ -18540,16 +17806,6 @@
     "source": "Cdiscount",
     "reviewText": "Compatible with 58mm camera and camcorder lenses; UV protector, 812 warming filter and circular polarizer; 4-pocket filter pouch",
     "realRating": "4.1"
-  },
-  {
-    "productName": "Palm Jumeirah Waterfront Villa [Rare Edition]",
-    "price": 57386000,
-    "images": [
-      "https://img.jamesedition.com/listing_images/2026/04/21/14/26/16/e6765e0c-680e-41ff-be1e-769827640cfa/je/556x342xcxm.jpg"
-    ],
-    "source": "JamesEdition",
-    "reviewText": "A masterpiece of modern luxury living in Dubai.",
-    "realRating": "5.0"
   },
   {
     "productName": "Sunpak - 3-Way Pan Head",
@@ -18690,16 +17946,6 @@
     "source": "Cdiscount",
     "reviewText": "Compatible with Apple Watch 38mm; TPU material; clear design",
     "realRating": "4.3"
-  },
-  {
-    "productName": "Louis Vuitton Keepall 55 Bandoulière",
-    "price": 2450,
-    "images": [
-      "https://eu.louisvuitton.com/images/is/image/lv/1/PP_VP_L/louis-vuitton-keepall-bandouliere-55-monogram-canvas-voyage--M41414_PM2_Front%20view.png"
-    ],
-    "source": "Louis Vuitton",
-    "reviewText": "The ultimate travel companion.",
-    "realRating": "4.6"
   },
   {
     "productName": "Hal Leonard - Tom Waits: Anthology Sheet Music - Multi",
@@ -18912,16 +18158,6 @@
     "realRating": "4.7"
   },
   {
-    "productName": "Chanel Classic Flap Bag Medium [Rare Edition]",
-    "price": 10200,
-    "images": [
-      "https://www.chanel.com/images/q_auto,f_auto,fl_lossy,dpr_2.0/w_640/classic-flap-bag-black-lambskin-gold-tone-metal-packshot-default-as0116b0506194305-8843105746974.jpg"
-    ],
-    "source": "Chanel",
-    "reviewText": "A timeless piece of fashion history.",
-    "realRating": "4.7"
-  },
-  {
     "productName": "Sony - Alpha a7 II Full-Frame Mirrorless Camera (Body Only) - Black",
     "price": 1699.99,
     "images": [
@@ -19112,16 +18348,6 @@
     "realRating": "4.6"
   },
   {
-    "productName": "Bugatti Chiron Super Sport [Rare Edition]",
-    "price": 3800000,
-    "images": [
-      "https://newsroom.bugatti.com/wp-content/uploads/2021/06/Bugatti-Chiron-Super-Sport-7.jpg"
-    ],
-    "source": "Bugatti",
-    "reviewText": "The pinnacle of automotive engineering. 440 km/h.",
-    "realRating": "4.9"
-  },
-  {
     "productName": "Samsung - BD-J7500/ZA - Streaming 3D Wi-Fi Built-In Blu-ray Player with UHD 4K Upscaling - Black",
     "price": 249.98,
     "images": [
@@ -19150,16 +18376,6 @@
     "source": "Cdiscount",
     "reviewText": "WESTONE STAR Silicone Ear Tips: Compatible with most in-ear headphones; silicone construction; STAR flex zones; smooth bore stem with direct-coupled exit port",
     "realRating": "4.7"
-  },
-  {
-    "productName": "Gucci GG Marmont Small Shoulder Bag [Rare Edition]",
-    "price": 1980,
-    "images": [
-      "https://media.gucci.com/style/DarkGray_Center_0_0_800x800/1628169614/443497_DTDIT_1000_001_100_0000_Light-GG-Marmont-small-shoulder-bag.jpg"
-    ],
-    "source": "Gucci",
-    "reviewText": "Stylish, recognizable, and high-quality.",
-    "realRating": "4.8"
   },
   {
     "productName": "RoBo 3D - 1.75mm ABS Filament 2.2 lbs. - Black Forest",
@@ -19392,16 +18608,6 @@
     "realRating": "4.8"
   },
   {
-    "productName": "Hermès Birkin 30 Black Gold Hardware [Rare Edition]",
-    "price": 28500,
-    "images": [
-      "https://images.vestiairecollective.com/images/resized/w=2920,q=75,f=auto,/produit/sac-a-main-hermes-evelyne-en-cuir-noir-66687559-1_2.jpg"
-    ],
-    "source": "Vestiaire Collective",
-    "reviewText": "The most coveted bag in the world.",
-    "realRating": "5.0"
-  },
-  {
     "productName": "Spice Rack",
     "price": 19.99,
     "images": [
@@ -19470,16 +18676,6 @@
     "source": "Cdiscount",
     "reviewText": "Je ne m'attendais pas à ça, c'est génial.",
     "realRating": "4.5"
-  },
-  {
-    "productName": "Bugatti Chiron Super Sport [Rare Edition]",
-    "price": 3800000,
-    "images": [
-      "https://newsroom.bugatti.com/wp-content/uploads/2021/06/Bugatti-Chiron-Super-Sport-7.jpg"
-    ],
-    "source": "Bugatti",
-    "reviewText": "The pinnacle of automotive engineering. 440 km/h.",
-    "realRating": "4.9"
   },
   {
     "productName": "Big Hero 6: Battle in the Bay - PRE-OWNED - Nintendo 3DS",
@@ -19822,16 +19018,6 @@
     "realRating": "4.4"
   },
   {
-    "productName": "Philips Sonicare - DiamondClean Sonic Toothbrush - Amethyst",
-    "price": 219.99,
-    "images": [
-      "https://img.bbystatic.com/BestBuy_US/images/products/4260/4260901_rc.jpg"
-    ],
-    "source": "Cdiscount",
-    "reviewText": "5 modes, including sensitive; 2-minute Smartimer; Quadpacer; helps whiten teeth and improve gum health; up to 31,000 strokes/minute; rechargeable lithium-ion battery; glass charger; travel charger case",
-    "realRating": "4.5"
-  },
-  {
     "productName": "Kenwood - 300W Class D Bridgeable Multichannel MOSFET Amplifier - Gray",
     "price": 199.99,
     "images": [
@@ -20072,16 +19258,6 @@
     "realRating": "4.7"
   },
   {
-    "productName": "Rolex Submariner Date 'Hulk' [Rare Edition]",
-    "price": 19093,
-    "images": [
-      "https://m.media-amazon.com/images/I/712BY6k-jJL._AC_UL320_.jpg"
-    ],
-    "source": "Amazon Luxury",
-    "reviewText": "An absolute masterpiece of engineering and style.",
-    "realRating": "5.0"
-  },
-  {
     "productName": "Apple - Sport Band for Apple Watch™ 38mm - Antique Blanc",
     "price": 49,
     "images": [
@@ -20225,16 +19401,6 @@
     "realRating": "4.4"
   },
   {
-    "productName": "Cartier Santos de Cartier Large [Rare Edition]",
-    "price": 7750,
-    "images": [
-      "https://www.cartier.com/dw/image/v2/BFCW_PRD/on/demandware.static/-/Sites-cartier-master/default/dw1e0a2f1c/images/images-630x630/WSSA0018_0_cartier_watches.png"
-    ],
-    "source": "Cartier",
-    "reviewText": "Elegant, masculine, and historic.",
-    "realRating": "4.7"
-  },
-  {
     "productName": "Lenovo - Y Gaming Mouse Pad - Noir",
     "price": 9.99,
     "images": [
@@ -20343,16 +19509,6 @@
     "source": "Cdiscount",
     "reviewText": "Je ne m'attendais pas à ça, c'est génial.",
     "realRating": "3.5"
-  },
-  {
-    "productName": "Audemars Piguet Royal Oak [Rare Edition]",
-    "price": 58000,
-    "images": [
-      "https://img.chrono24.com/images/uhren/30485671-5v9h9n8q5n6z-Square280.jpg"
-    ],
-    "source": "Chrono24",
-    "reviewText": "The Genta masterpiece. Timeless.",
-    "realRating": "4.8"
   },
   {
     "productName": "HP - Officejet Pro 8620 e-All-in-One Wireless All-In-One Printer - Noir",
@@ -20575,18 +19731,6 @@
     "realRating": "3.8"
   },
   {
-    "productName": "Rolex Datejust",
-    "price": 10999.99,
-    "images": [
-      "https://cdn.dummyjson.com/product-images/mens-watches/rolex-datejust/1.webp",
-      "https://cdn.dummyjson.com/product-images/mens-watches/rolex-datejust/2.webp",
-      "https://cdn.dummyjson.com/product-images/mens-watches/rolex-datejust/3.webp"
-    ],
-    "source": "Amazon",
-    "reviewText": "The Rolex Datejust is an iconic and versatile timepiece with a date window. Known for its timeless design and reliability, it's a symbol of Rolex's watchmaking excellence.",
-    "realRating": "3.7"
-  },
-  {
     "productName": "Andis - Styliner Shave 'N' Trim Cordless Shaver - Black",
     "price": 19.99,
     "images": [
@@ -20695,16 +19839,6 @@
     "source": "Cdiscount",
     "reviewText": "Perfect gift card? Piece of cake. All Best Buy gift cards are shipped free and are good toward future purchases online and in U.S. or Puerto Rico Best Buy stores. Best Buy gift cards do not have an expiration date.",
     "realRating": "4.2"
-  },
-  {
-    "productName": "Lamborghini Urus 4.0L V8 [Rare Edition]",
-    "price": 370000,
-    "images": [
-      "https://prod.pictures.autoscout24.net/listing-images/9fb554b2-0ac8-4802-b8b6-52a131ff249c_d7e538d8-bb7d-422f-aff4-330159d37284.jpg/800x600.jpg"
-    ],
-    "source": "AutoScout24",
-    "reviewText": "The SUV with the soul of a supercar.",
-    "realRating": "4.8"
   },
   {
     "productName": "AudioQuest - 10' NRG-X3 Power Cable - Noir/Gray",
@@ -20825,16 +19959,6 @@
     "source": "Cdiscount",
     "reviewText": "QUADRONE Elite Quadcopter: 2 flying modes; 4 speeds; performs 360-degree flips and rolls; flies up, down, left and right; headless mode; up to 1000' flying range",
     "realRating": "4.4"
-  },
-  {
-    "productName": "Luxury Penthouse in Manhattan [Rare Edition]",
-    "price": 18500000,
-    "images": [
-      "https://img.jamesedition.com/listing_images/2024/01/15/10/30/00/e6765e0c-680e-41ff-be1e-769827640cfa/je/556x342xcxm.jpg"
-    ],
-    "source": "JamesEdition",
-    "reviewText": "Floor-to-ceiling windows with panoramic city views.",
-    "realRating": "4.9"
   },
   {
     "productName": "Jura - Automatic Milk Frother - Argent",
@@ -21077,16 +20201,6 @@
     "realRating": "3.5"
   },
   {
-    "productName": "Omega Speedmaster Professional [Rare Edition]",
-    "price": 6300,
-    "images": [
-      "https://www.omegawatches.com/media/catalog/product/o/m/omega-speedmaster-moonwatch-professional-31030425001001-f.png"
-    ],
-    "source": "Omega",
-    "reviewText": "The moon watch. A piece of history on your wrist.",
-    "realRating": "4.8"
-  },
-  {
     "productName": "Wahl - Pet Clipper Kit - Black",
     "price": 39.99,
     "images": [
@@ -21185,16 +20299,6 @@
     "source": "Cdiscount",
     "reviewText": "THAMES & KOSMOS Remote-Control Machines Space Explorers Kit: Introduces your child to robotics and space exploration; 237 building pieces; 64-page book; ages 8 and up",
     "realRating": "3.9"
-  },
-  {
-    "productName": "Chanel Classic Flap Bag Medium",
-    "price": 10200,
-    "images": [
-      "https://www.chanel.com/images/q_auto,f_auto,fl_lossy,dpr_2.0/w_640/classic-flap-bag-black-lambskin-gold-tone-metal-packshot-default-as0116b0506194305-8843105746974.jpg"
-    ],
-    "source": "Chanel",
-    "reviewText": "A timeless piece of fashion history.",
-    "realRating": "4.7"
   },
   {
     "productName": "RPS - TTL Dedicated External Flash - Black",
@@ -21315,16 +20419,6 @@
     "source": "Cdiscount",
     "reviewText": "Excellent rapport qualité-prix, très satisfait.",
     "realRating": "4.1"
-  },
-  {
-    "productName": "Porsche 911 GT3 RS (992) [Rare Edition]",
-    "price": 248000,
-    "images": [
-      "https://files.porsche.com/filestore/image/multimedia/none/992-gt3-rs-modelimage-spec/main/a6d0c0a0-0b7b-11ed-80f5-005056bb7008/porsche-main.jpg"
-    ],
-    "source": "Porsche",
-    "reviewText": "Born for the track, legal for the road.",
-    "realRating": "5.0"
   },
   {
     "productName": "LEGO Batman 3: Beyond Gotham - PRE-OWNED - Nintendo Wii U",
@@ -21937,16 +21031,6 @@
     "source": "Cdiscount",
     "reviewText": "Je ne m'attendais pas à ça, c'est génial.",
     "realRating": "4.2"
-  },
-  {
-    "productName": "Rolex Oyster Perpetual Explorer II [Rare Edition]",
-    "price": 12724,
-    "images": [
-      "https://m.media-amazon.com/images/I/71JkPZyThFL._AC_UL320_.jpg"
-    ],
-    "source": "Amazon Luxury",
-    "reviewText": "Rugged and reliable for any adventure.",
-    "realRating": "4.6"
   },
   {
     "productName": "The Secret Saturdays: Beasts of the 5th Sun - PRE-OWNED - Nintendo Wii",
@@ -22919,16 +22003,6 @@
     "realRating": "4.1"
   },
   {
-    "productName": "Omega Speedmaster Professional [Rare Edition]",
-    "price": 6300,
-    "images": [
-      "https://www.omegawatches.com/media/catalog/product/o/m/omega-speedmaster-moonwatch-professional-31030425001001-f.png"
-    ],
-    "source": "Omega",
-    "reviewText": "The moon watch. A piece of history on your wrist.",
-    "realRating": "4.8"
-  },
-  {
     "productName": "Chef Buddy - Waffle Cone Maker - White",
     "price": 29.99,
     "images": [
@@ -23207,18 +22281,6 @@
     "source": "Cdiscount",
     "reviewText": "MAKERBOT 1.75mm PLA Filament 5 lbs.: Compatible with the MakerBot Replicator Z18 3D printers; PLA material made from nontoxic resin; limited warping and curling; quality-tested; 5-lb. spool",
     "realRating": "4.5"
-  },
-  {
-    "productName": "Gucci Bloom Eau de",
-    "price": 79.99,
-    "images": [
-      "https://cdn.dummyjson.com/product-images/fragrances/gucci-bloom-eau-de/1.webp",
-      "https://cdn.dummyjson.com/product-images/fragrances/gucci-bloom-eau-de/2.webp",
-      "https://cdn.dummyjson.com/product-images/fragrances/gucci-bloom-eau-de/3.webp"
-    ],
-    "source": "Amazon",
-    "reviewText": "Gucci Bloom by Gucci is a floral and captivating fragrance, with notes of tuberose, jasmine, and Rangoon creeper. It's a modern and romantic scent.",
-    "realRating": "2.7"
   },
   {
     "productName": "Metra - Antenna Adapter Cable for Most 2009-2010 Honda Acura Vehicles - Blue/Black",
@@ -23652,16 +22714,6 @@
     "realRating": "4.2"
   },
   {
-    "productName": "Cartier Santos de Cartier Large [Rare Edition]",
-    "price": 7750,
-    "images": [
-      "https://www.cartier.com/dw/image/v2/BFCW_PRD/on/demandware.static/-/Sites-cartier-master/default/dw1e0a2f1c/images/images-630x630/WSSA0018_0_cartier_watches.png"
-    ],
-    "source": "Cartier",
-    "reviewText": "Elegant, masculine, and historic.",
-    "realRating": "4.7"
-  },
-  {
     "productName": "BLU - Studio 6.0 HD 4G with 8GB Memory Cell Phone (Unlocked) - Blanc",
     "price": 149.99,
     "images": [
@@ -23820,16 +22872,6 @@
     "source": "Cdiscount",
     "reviewText": "BAYOU CLASSIC Hose Regulator: Compatible with select Bayou Classic turkey fryers; stainless-steel braided LPG hose; 1/4\" male connector",
     "realRating": "4.7"
-  },
-  {
-    "productName": "Lamborghini Urus 4.0L V8",
-    "price": 370000,
-    "images": [
-      "https://prod.pictures.autoscout24.net/listing-images/9fb554b2-0ac8-4802-b8b6-52a131ff249c_d7e538d8-bb7d-422f-aff4-330159d37284.jpg/800x600.jpg"
-    ],
-    "source": "AutoScout24",
-    "reviewText": "The SUV with the soul of a supercar.",
-    "realRating": "4.8"
   },
   {
     "productName": "Geek Squad® - Digital Camera and Camcorder Setup and Training",
@@ -24702,16 +23744,6 @@
     "realRating": "4.1"
   },
   {
-    "productName": "Rolex Oyster Perpetual Explorer II [Rare Edition]",
-    "price": 12724,
-    "images": [
-      "https://m.media-amazon.com/images/I/71JkPZyThFL._AC_UL320_.jpg"
-    ],
-    "source": "Amazon Luxury",
-    "reviewText": "Rugged and reliable for any adventure.",
-    "realRating": "4.6"
-  },
-  {
     "productName": "Monster - Argent Advanced Performance 4' Fiber-Optic Audio Cable - Noir",
     "price": 39.99,
     "images": [
@@ -24720,16 +23752,6 @@
     "source": "Cdiscount",
     "reviewText": "Excellent rapport qualité-prix, très satisfait.",
     "realRating": "4.3"
-  },
-  {
-    "productName": "Ferrari 296 GTB [Rare Edition]",
-    "price": 342000,
-    "images": [
-      "https://cdn.jamesedition.com/media/2023/Ferrari/296-GTB/official.jpg"
-    ],
-    "source": "JamesEdition",
-    "reviewText": "Pure driving pleasure and hybrid innovation.",
-    "realRating": "5.0"
   },
   {
     "productName": "Modal - Case for Samsung Galaxy S6 Cell Phones - Blue/Gray",
@@ -24800,16 +23822,6 @@
     "source": "Cdiscount",
     "reviewText": "Fonctionnel et bien conçu.",
     "realRating": "4.4"
-  },
-  {
-    "productName": "Patek Philippe Nautilus 5711/1A [Rare Edition]",
-    "price": 145000,
-    "images": [
-      "https://img.chrono24.com/images/uhren/45841531-pk6tuz4q30c87w4ifymkxou6-Square280.jpg"
-    ],
-    "source": "Chrono24",
-    "reviewText": "The holy grail of luxury sports watches.",
-    "realRating": "4.9"
   },
   {
     "productName": "Dragon Ball: Raging Blast - PRE-OWNED - Xbox 360",
@@ -25194,16 +24206,6 @@
     "realRating": "3.9"
   },
   {
-    "productName": "Hermès Birkin 30 Black Gold Hardware [Rare Edition]",
-    "price": 28500,
-    "images": [
-      "https://images.vestiairecollective.com/images/resized/w=2920,q=75,f=auto,/produit/sac-a-main-hermes-evelyne-en-cuir-noir-66687559-1_2.jpg"
-    ],
-    "source": "Vestiaire Collective",
-    "reviewText": "The most coveted bag in the world.",
-    "realRating": "5.0"
-  },
-  {
     "productName": "Whirlpool - 14.3 Cu. Ft. Top-Freezer Refrigerator - Biscuit",
     "price": 549.99,
     "images": [
@@ -25212,16 +24214,6 @@
     "source": "Cdiscount",
     "reviewText": "Analog temperature controls; glass and wire shelves; dairy center; icemaker kit compatible",
     "realRating": "4.3"
-  },
-  {
-    "productName": "Audemars Piguet Royal Oak [Rare Edition]",
-    "price": 58000,
-    "images": [
-      "https://img.chrono24.com/images/uhren/30485671-5v9h9n8q5n6z-Square280.jpg"
-    ],
-    "source": "Chrono24",
-    "reviewText": "The Genta masterpiece. Timeless.",
-    "realRating": "4.8"
   },
   {
     "productName": "Conair - Custom Cut 21-Piece Haircut Kit - Chrome",
@@ -25365,16 +24357,6 @@
     "source": "Amazon",
     "reviewText": "The Puma Future Rider Trainers offer a blend of retro style and modern comfort. Perfect for casual wear, these trainers provide a fashionable and comfortable option for everyday use.",
     "realRating": "4.9"
-  },
-  {
-    "productName": "Palm Jumeirah Waterfront Villa [Rare Edition]",
-    "price": 57386000,
-    "images": [
-      "https://img.jamesedition.com/listing_images/2026/04/21/14/26/16/e6765e0c-680e-41ff-be1e-769827640cfa/je/556x342xcxm.jpg"
-    ],
-    "source": "JamesEdition",
-    "reviewText": "A masterpiece of modern luxury living in Dubai.",
-    "realRating": "5.0"
   },
   {
     "productName": "TP-LINK - Wireless AC750 Wall Plug Universal Wi-Fi Range Extender - White",
@@ -25827,16 +24809,6 @@
     "realRating": "4.1"
   },
   {
-    "productName": "Louis Vuitton Keepall 55 Bandoulière [Rare Edition]",
-    "price": 2450,
-    "images": [
-      "https://eu.louisvuitton.com/images/is/image/lv/1/PP_VP_L/louis-vuitton-keepall-bandouliere-55-monogram-canvas-voyage--M41414_PM2_Front%20view.png"
-    ],
-    "source": "Louis Vuitton",
-    "reviewText": "The ultimate travel companion.",
-    "realRating": "4.6"
-  },
-  {
     "productName": "Mario & Luigi: Bowser's Inside Story - PRE-OWNED - Nintendo DS",
     "price": 19.99,
     "images": [
@@ -25927,16 +24899,6 @@
     "source": "Cdiscount",
     "reviewText": "From our expanded online assortment; holds a subwoofer; aluminum chassis; adjustable shelves; large speaker grille",
     "realRating": "4.2"
-  },
-  {
-    "productName": "Ferrari 296 GTB",
-    "price": 342000,
-    "images": [
-      "https://cdn.jamesedition.com/media/2023/Ferrari/296-GTB/official.jpg"
-    ],
-    "source": "JamesEdition",
-    "reviewText": "Pure driving pleasure and hybrid innovation.",
-    "realRating": "5.0"
   },
   {
     "productName": "Frigidaire - 17 Cu. Ft. Upright Convertible Freezer/Refrigerator - White",
@@ -26384,16 +25346,6 @@
     "realRating": "4.3"
   },
   {
-    "productName": "Porsche 911 GT3 RS (992)",
-    "price": 248000,
-    "images": [
-      "https://files.porsche.com/filestore/image/multimedia/none/992-gt3-rs-modelimage-spec/main/a6d0c0a0-0b7b-11ed-80f5-005056bb7008/porsche-main.jpg"
-    ],
-    "source": "Porsche",
-    "reviewText": "Born for the track, legal for the road.",
-    "realRating": "5.0"
-  },
-  {
     "productName": "Zojirushi - 34-Oz. Euro Carafe - Blanc",
     "price": 35.99,
     "images": [
@@ -26427,16 +25379,6 @@
     "realRating": "4.0"
   },
   {
-    "productName": "Bugatti Chiron Super Sport [Rare Edition]",
-    "price": 3800000,
-    "images": [
-      "https://newsroom.bugatti.com/wp-content/uploads/2021/06/Bugatti-Chiron-Super-Sport-7.jpg"
-    ],
-    "source": "Bugatti",
-    "reviewText": "The pinnacle of automotive engineering. 440 km/h.",
-    "realRating": "4.9"
-  },
-  {
     "productName": "Harman Kardon - Esquire Mini Portable Bluetooth Speaker - Black",
     "price": 149.99,
     "images": [
@@ -26445,16 +25387,6 @@
     "source": "Cdiscount",
     "reviewText": "Compatible with most Bluetooth-enabled devices; 8W of power (4W x 2); dual-microphone conferencing system; rechargeable lithium-polymer battery; auxiliary input",
     "realRating": "4.8"
-  },
-  {
-    "productName": "Porsche 911 GT3 RS (992) [Rare Edition]",
-    "price": 248000,
-    "images": [
-      "https://files.porsche.com/filestore/image/multimedia/none/992-gt3-rs-modelimage-spec/main/a6d0c0a0-0b7b-11ed-80f5-005056bb7008/porsche-main.jpg"
-    ],
-    "source": "Porsche",
-    "reviewText": "Born for the track, legal for the road.",
-    "realRating": "5.0"
   },
   {
     "productName": "ECOXGEAR - ECOROX Waterproof Bluetooth Speaker - Black",
@@ -26687,16 +25619,6 @@
     "realRating": "3.9"
   },
   {
-    "productName": "Ferrari 296 GTB [Rare Edition]",
-    "price": 342000,
-    "images": [
-      "https://cdn.jamesedition.com/media/2023/Ferrari/296-GTB/official.jpg"
-    ],
-    "source": "JamesEdition",
-    "reviewText": "Pure driving pleasure and hybrid innovation.",
-    "realRating": "5.0"
-  },
-  {
     "productName": "Key Digital - Champion Series HDMI Matrix Switcher",
     "price": 735.99,
     "images": [
@@ -26705,16 +25627,6 @@
     "source": "Cdiscount",
     "reviewText": "KEY DIGITAL Champion Series HDMI Matrix Switcher: Offers digital switching of up to 4 HDMI inputs to 4 HDMI outputs; supports standard-definition, high-definition and 3D signals; Full Buffer technology",
     "realRating": "4.3"
-  },
-  {
-    "productName": "Rolls-Royce Cullinan Blue Shadow [Rare Edition]",
-    "price": 450000,
-    "images": [
-      "https://m.media-amazon.com/images/I/61S1E6qS9vL._AC_SX679_.jpg"
-    ],
-    "source": "Amazon Luxury",
-    "reviewText": "Floating on air. The ultimate luxury SUV.",
-    "realRating": "4.8"
   },
   {
     "productName": "Metra - Installation Kit for 2006-2009 BMW 3-Series Vehicles - Black",
@@ -26937,16 +25849,6 @@
     "realRating": "4.1"
   },
   {
-    "productName": "Rolls-Royce Cullinan Blue Shadow [Rare Edition]",
-    "price": 450000,
-    "images": [
-      "https://m.media-amazon.com/images/I/61S1E6qS9vL._AC_SX679_.jpg"
-    ],
-    "source": "Amazon Luxury",
-    "reviewText": "Floating on air. The ultimate luxury SUV.",
-    "realRating": "4.8"
-  },
-  {
     "productName": "Ballistic - Tungsten Tough Case for Apple® iPhone® 6 - Wood/Black",
     "price": 39.99,
     "images": [
@@ -27077,16 +25979,6 @@
     "realRating": "3.6"
   },
   {
-    "productName": "Rolex Oyster Perpetual Explorer II [Rare Edition]",
-    "price": 12724,
-    "images": [
-      "https://m.media-amazon.com/images/I/71JkPZyThFL._AC_UL320_.jpg"
-    ],
-    "source": "Amazon Luxury",
-    "reviewText": "Rugged and reliable for any adventure.",
-    "realRating": "4.6"
-  },
-  {
     "productName": "Bosch - 800 Series 30\" Externally Vented Range Hood - Stainless Steel",
     "price": 949.99,
     "images": [
@@ -27115,16 +26007,6 @@
     "source": "Cdiscount",
     "reviewText": "8 continuous and 2 pulse speeds; 450W of power; 48-oz. capacity; removable filler cap; dishwasher-safe jar; auto shutoff; ABS polymer housing; stable base design",
     "realRating": "4.2"
-  },
-  {
-    "productName": "Chanel Classic Flap Bag Medium [Rare Edition]",
-    "price": 10200,
-    "images": [
-      "https://www.chanel.com/images/q_auto,f_auto,fl_lossy,dpr_2.0/w_640/classic-flap-bag-black-lambskin-gold-tone-metal-packshot-default-as0116b0506194305-8843105746974.jpg"
-    ],
-    "source": "Chanel",
-    "reviewText": "A timeless piece of fashion history.",
-    "realRating": "4.7"
   },
   {
     "productName": "Peerless - Dual A/V Wall Shelves - Gloss Black",
@@ -27227,16 +26109,6 @@
     "realRating": "4.1"
   },
   {
-    "productName": "Audemars Piguet Royal Oak [Rare Edition]",
-    "price": 58000,
-    "images": [
-      "https://img.chrono24.com/images/uhren/30485671-5v9h9n8q5n6z-Square280.jpg"
-    ],
-    "source": "Chrono24",
-    "reviewText": "The Genta masterpiece. Timeless.",
-    "realRating": "4.8"
-  },
-  {
     "productName": "American DJ - Dura Clamp",
     "price": 9.99,
     "images": [
@@ -27295,16 +26167,6 @@
     "source": "Cdiscount",
     "reviewText": "2 door storage areas; 2 adjustable wood shelves; composite wood, laminate, metal and glass materials; cable-gathering wheels",
     "realRating": "4.4"
-  },
-  {
-    "productName": "Gucci GG Marmont Small Shoulder Bag",
-    "price": 1980,
-    "images": [
-      "https://media.gucci.com/style/DarkGray_Center_0_0_800x800/1628169614/443497_DTDIT_1000_001_100_0000_Light-GG-Marmont-small-shoulder-bag.jpg"
-    ],
-    "source": "Gucci",
-    "reviewText": "Stylish, recognizable, and high-quality.",
-    "realRating": "4.8"
   },
   {
     "productName": "Salamander Designs - Synergy Quad TV Stand for Flat-Panel TVs Up to 80\" - Black",
@@ -27545,16 +26407,6 @@
     "source": "Cdiscount",
     "reviewText": "Un peu cher mais la qualité est là.",
     "realRating": "3.8"
-  },
-  {
-    "productName": "Hermès Birkin 30 Black Gold Hardware [Rare Edition]",
-    "price": 28500,
-    "images": [
-      "https://images.vestiairecollective.com/images/resized/w=2920,q=75,f=auto,/produit/sac-a-main-hermes-evelyne-en-cuir-noir-66687559-1_2.jpg"
-    ],
-    "source": "Vestiaire Collective",
-    "reviewText": "The most coveted bag in the world.",
-    "realRating": "5.0"
   },
   {
     "productName": "Conair - Cordless/Battery-Operated Beard, Mustache and Stubble Trimmer - Silver/Black",
@@ -28015,16 +26867,6 @@
     "source": "Cdiscount",
     "reviewText": "Article reçu en parfait état, merci !",
     "realRating": "3.9"
-  },
-  {
-    "productName": "Gucci GG Marmont Small Shoulder Bag [Rare Edition]",
-    "price": 1980,
-    "images": [
-      "https://media.gucci.com/style/DarkGray_Center_0_0_800x800/1628169614/443497_DTDIT_1000_001_100_0000_Light-GG-Marmont-small-shoulder-bag.jpg"
-    ],
-    "source": "Gucci",
-    "reviewText": "Stylish, recognizable, and high-quality.",
-    "realRating": "4.8"
   },
   {
     "productName": "Hal Leonard - Ozzy Osbourne/Randy Rhoads: Tribute Sheet Music - Multi",
@@ -28537,16 +27379,6 @@
     "realRating": "3.9"
   },
   {
-    "productName": "Louis Vuitton Keepall 55 Bandoulière [Rare Edition]",
-    "price": 2450,
-    "images": [
-      "https://eu.louisvuitton.com/images/is/image/lv/1/PP_VP_L/louis-vuitton-keepall-bandouliere-55-monogram-canvas-voyage--M41414_PM2_Front%20view.png"
-    ],
-    "source": "Louis Vuitton",
-    "reviewText": "The ultimate travel companion.",
-    "realRating": "4.6"
-  },
-  {
     "productName": "Conair - Sonic Facial Brush - White",
     "price": 79.99,
     "images": [
@@ -28645,16 +27477,6 @@
     "source": "Cdiscount",
     "reviewText": "SPREE SmartCap Fitness Monitor: Measures calories burned, heart rate, body temperature and movement; integrates wireless POD (Performance Optimization Device); compatible with Apple iOS and Android devices",
     "realRating": "4.6"
-  },
-  {
-    "productName": "Chanel Classic Flap Bag Medium [Rare Edition]",
-    "price": 10200,
-    "images": [
-      "https://www.chanel.com/images/q_auto,f_auto,fl_lossy,dpr_2.0/w_640/classic-flap-bag-black-lambskin-gold-tone-metal-packshot-default-as0116b0506194305-8843105746974.jpg"
-    ],
-    "source": "Chanel",
-    "reviewText": "A timeless piece of fashion history.",
-    "realRating": "4.7"
   },
   {
     "productName": "Toastmaster - Double-Burner Cooktop - Black",
@@ -29275,16 +28097,6 @@
     "realRating": "4.7"
   },
   {
-    "productName": "GE - 7.5 Cu. Ft. 10-Cycle Steam Gas Dryer - Diamond Gray",
-    "price": 1099.99,
-    "images": [
-      "https://img.bbystatic.com/BestBuy_US/images/products/1285/1285179_sa.jpg"
-    ],
-    "source": "Cdiscount",
-    "reviewText": "Rotary-electronic controls with LEDs; 10 cycles; HE Sensor Dry system; stainless-steel drum; Quiet-by-Design sound package",
-    "realRating": "4.1"
-  },
-  {
     "productName": "Metra - Dash Kit for Select 2007-2009 Kia Spectra/Spectra 5 - Black",
     "price": 16.99,
     "images": [
@@ -29303,16 +28115,6 @@
     "source": "Cdiscount",
     "reviewText": "Je ne m'attendais pas à ça, c'est génial.",
     "realRating": "4.6"
-  },
-  {
-    "productName": "Palm Jumeirah Waterfront Villa [Rare Edition]",
-    "price": 57386000,
-    "images": [
-      "https://img.jamesedition.com/listing_images/2026/04/21/14/26/16/e6765e0c-680e-41ff-be1e-769827640cfa/je/556x342xcxm.jpg"
-    ],
-    "source": "JamesEdition",
-    "reviewText": "A masterpiece of modern luxury living in Dubai.",
-    "realRating": "5.0"
   },
   {
     "productName": "Russound - 150W 2-Way Indoor/Outdoor Speakers (Pair)",
@@ -29443,16 +28245,6 @@
     "source": "Cdiscount",
     "reviewText": "9.6V motor; bagless dirt bowl; washable filter; squeegee tool",
     "realRating": "4.0"
-  },
-  {
-    "productName": "Patek Philippe Nautilus 5711/1A [Rare Edition]",
-    "price": 145000,
-    "images": [
-      "https://img.chrono24.com/images/uhren/45841531-pk6tuz4q30c87w4ifymkxou6-Square280.jpg"
-    ],
-    "source": "Chrono24",
-    "reviewText": "The holy grail of luxury sports watches.",
-    "realRating": "4.9"
   },
   {
     "productName": "VersaCheck X1 Accounting & Checks gT (Single User License)",
@@ -29915,16 +28707,6 @@
     "realRating": "4.3"
   },
   {
-    "productName": "Gucci GG Marmont Small Shoulder Bag [Rare Edition]",
-    "price": 1980,
-    "images": [
-      "https://media.gucci.com/style/DarkGray_Center_0_0_800x800/1628169614/443497_DTDIT_1000_001_100_0000_Light-GG-Marmont-small-shoulder-bag.jpg"
-    ],
-    "source": "Gucci",
-    "reviewText": "Stylish, recognizable, and high-quality.",
-    "realRating": "4.8"
-  },
-  {
     "productName": "Sharp - 240W 5-Disc Compact Stereo/2-Way Speaker System - Noir",
     "price": 189.99,
     "images": [
@@ -30283,16 +29065,6 @@
     "source": "Cdiscount",
     "reviewText": "Perfect gift card? Piece of cake. All Best Buy gift cards are shipped free and are good toward future purchases online and in U.S. or Puerto Rico Best Buy stores. Best Buy gift cards do not have an expiration date.",
     "realRating": "4.2"
-  },
-  {
-    "productName": "Hermès Birkin 30 Black Gold Hardware",
-    "price": 28500,
-    "images": [
-      "https://images.vestiairecollective.com/images/resized/w=2920,q=75,f=auto,/produit/sac-a-main-hermes-evelyne-en-cuir-noir-66687559-1_2.jpg"
-    ],
-    "source": "Vestiaire Collective",
-    "reviewText": "The most coveted bag in the world.",
-    "realRating": "5.0"
   },
   {
     "productName": "AudioQuest - NRG-1.5 3' AC Power Cable - Black/Gray/Silver/Red",
@@ -30885,16 +29657,6 @@
     "realRating": "4.4"
   },
   {
-    "productName": "Bugatti Chiron Super Sport",
-    "price": 3800000,
-    "images": [
-      "https://newsroom.bugatti.com/wp-content/uploads/2021/06/Bugatti-Chiron-Super-Sport-7.jpg"
-    ],
-    "source": "Bugatti",
-    "reviewText": "The pinnacle of automotive engineering. 440 km/h.",
-    "realRating": "4.9"
-  },
-  {
     "productName": "AT&T - CLP99003 Connect to Cell DECT 6.0 Cordless Expansion Handset - Silver",
     "price": 22.99,
     "images": [
@@ -30943,16 +29705,6 @@
     "source": "Cdiscount",
     "reviewText": "Parfait, ravi de l'achat.",
     "realRating": "4.5"
-  },
-  {
-    "productName": "Lamborghini Urus 4.0L V8 [Rare Edition]",
-    "price": 370000,
-    "images": [
-      "https://prod.pictures.autoscout24.net/listing-images/9fb554b2-0ac8-4802-b8b6-52a131ff249c_d7e538d8-bb7d-422f-aff4-330159d37284.jpg/800x600.jpg"
-    ],
-    "source": "AutoScout24",
-    "reviewText": "The SUV with the soul of a supercar.",
-    "realRating": "4.8"
   },
   {
     "productName": "Metra - Speaker Adapter Plates for Most 1995-2005 GM Full-Size Pick-Up Vehicles (Pair) - Black",
@@ -31675,16 +30427,6 @@
     "realRating": "3.5"
   },
   {
-    "productName": "Gucci GG Marmont Small Shoulder Bag [Rare Edition]",
-    "price": 1980,
-    "images": [
-      "https://media.gucci.com/style/DarkGray_Center_0_0_800x800/1628169614/443497_DTDIT_1000_001_100_0000_Light-GG-Marmont-small-shoulder-bag.jpg"
-    ],
-    "source": "Gucci",
-    "reviewText": "Stylish, recognizable, and high-quality.",
-    "realRating": "4.8"
-  },
-  {
     "productName": "Spracht - HS-2014 Zum Pro DECT 6.0/USB Combination Headset - Black",
     "price": 229.99,
     "images": [
@@ -31773,16 +30515,6 @@
     "source": "Cdiscount",
     "reviewText": "Compatible with most heads and DSLR cameras; extends to 59.4\"; aluminum construction; adjustable leg locks; alloy D-shaped tube design; rubber foot; wrist strap",
     "realRating": "4.2"
-  },
-  {
-    "productName": "Philips Sonicare - DiamondClean Rechargeable Toothbrush - Black",
-    "price": 219.99,
-    "images": [
-      "https://img.bbystatic.com/BestBuy_US/images/products/1991/1991007_rc.jpg"
-    ],
-    "source": "Cdiscount",
-    "reviewText": "Sonic technology; 5 brushing modes; quadpacer interval timer; dual-charging system; 2 brush heads",
-    "realRating": "4.4"
   },
   {
     "productName": "MakerBot - 1.75mm PLA Filament 10 lbs. - Cool Gray",
@@ -31895,16 +30627,6 @@
     "realRating": "4.5"
   },
   {
-    "productName": "Metra - Installation Kit for Select Porsche Vehicles - Gray",
-    "price": 119.99,
-    "images": [
-      "https://img.bbystatic.com/BestBuy_US/images/products/2252/2252169_sa.jpg"
-    ],
-    "source": "Cdiscount",
-    "reviewText": "Compatible with select Porsche vehicles; double-DIN radio provision; mounting sleeve; ABS plastic material",
-    "realRating": "4.5"
-  },
-  {
     "productName": "CybertronPC - Patriot-HBX Desktop - AMD A4-Series - 16GB Memory - 1TB + 8GB Hybrid Hard Drive - Green",
     "price": 499.99,
     "images": [
@@ -31923,16 +30645,6 @@
     "source": "Cdiscount",
     "reviewText": "Compatible with internet-connected gaming consoles, tablets, TVs, mobile phones and more; provides high-definition entertainment; 6-month duration",
     "realRating": "4.2"
-  },
-  {
-    "productName": "Louis Vuitton Keepall 55 Bandoulière [Rare Edition]",
-    "price": 2450,
-    "images": [
-      "https://eu.louisvuitton.com/images/is/image/lv/1/PP_VP_L/louis-vuitton-keepall-bandouliere-55-monogram-canvas-voyage--M41414_PM2_Front%20view.png"
-    ],
-    "source": "Louis Vuitton",
-    "reviewText": "The ultimate travel companion.",
-    "realRating": "4.6"
   },
   {
     "productName": "Ballistic - Tungsten Slim Case for Apple® iPhone® 6 Plus - Gray/Noir",
@@ -32035,16 +30747,6 @@
     "realRating": "3.8"
   },
   {
-    "productName": "Hermès Birkin 30 Black Gold Hardware [Rare Edition]",
-    "price": 28500,
-    "images": [
-      "https://images.vestiairecollective.com/images/resized/w=2920,q=75,f=auto,/produit/sac-a-main-hermes-evelyne-en-cuir-noir-66687559-1_2.jpg"
-    ],
-    "source": "Vestiaire Collective",
-    "reviewText": "The most coveted bag in the world.",
-    "realRating": "5.0"
-  },
-  {
     "productName": "My Baby: First Steps - PRE-OWNED - Nintendo Wii",
     "price": 9.99,
     "images": [
@@ -32102,16 +30804,6 @@
     ],
     "source": "Cdiscount",
     "reviewText": "Febreze Freshness scent control dial; Febreze Set & Refresh scent cartridge; 2 speeds; remote",
-    "realRating": "4.8"
-  },
-  {
-    "productName": "Audemars Piguet Royal Oak [Rare Edition]",
-    "price": 58000,
-    "images": [
-      "https://img.chrono24.com/images/uhren/30485671-5v9h9n8q5n6z-Square280.jpg"
-    ],
-    "source": "Chrono24",
-    "reviewText": "The Genta masterpiece. Timeless.",
     "realRating": "4.8"
   },
   {
@@ -32255,16 +30947,6 @@
     "realRating": "4.5"
   },
   {
-    "productName": "Rolex Submariner Date 'Hulk' [Rare Edition]",
-    "price": 19093,
-    "images": [
-      "https://m.media-amazon.com/images/I/712BY6k-jJL._AC_UL320_.jpg"
-    ],
-    "source": "Amazon Luxury",
-    "reviewText": "An absolute masterpiece of engineering and style.",
-    "realRating": "5.0"
-  },
-  {
     "productName": "Insignia™ - 9\" Table Fan - Blue",
     "price": 14.99,
     "images": [
@@ -32293,16 +30975,6 @@
     "source": "Cdiscount",
     "reviewText": "GRIFFIN TECHNOLOGY GuitarConnect Pro Guitar Input: Compatible with 30-pin- and Lightning-enabled Apple iPad and iPhone models and Mac computers; 1/4\" mono instrument jack; 3 detachable cables; gain control wheel; noise-free digital connection",
     "realRating": "4.1"
-  },
-  {
-    "productName": "Lamborghini Urus 4.0L V8 [Rare Edition]",
-    "price": 370000,
-    "images": [
-      "https://prod.pictures.autoscout24.net/listing-images/9fb554b2-0ac8-4802-b8b6-52a131ff249c_d7e538d8-bb7d-422f-aff4-330159d37284.jpg/800x600.jpg"
-    ],
-    "source": "AutoScout24",
-    "reviewText": "The SUV with the soul of a supercar.",
-    "realRating": "4.8"
   },
   {
     "productName": "Nikon - Digital Camera Body Cap",
@@ -32605,16 +31277,6 @@
     "realRating": "4.0"
   },
   {
-    "productName": "Luxury Penthouse in Manhattan [Rare Edition]",
-    "price": 18500000,
-    "images": [
-      "https://img.jamesedition.com/listing_images/2024/01/15/10/30/00/e6765e0c-680e-41ff-be1e-769827640cfa/je/556x342xcxm.jpg"
-    ],
-    "source": "JamesEdition",
-    "reviewText": "Floor-to-ceiling windows with panoramic city views.",
-    "realRating": "4.9"
-  },
-  {
     "productName": "Samsung - BD-J5700/ZA - Streaming Wi-Fi Built-In Blu-ray Player - Noir",
     "price": 99.99,
     "images": [
@@ -32623,16 +31285,6 @@
     "source": "Cdiscount",
     "reviewText": "Très bonne qualité, solide et bien fini.",
     "realRating": "4.4"
-  },
-  {
-    "productName": "Hermès Birkin 30 Black Gold Hardware [Rare Edition]",
-    "price": 28500,
-    "images": [
-      "https://images.vestiairecollective.com/images/resized/w=2920,q=75,f=auto,/produit/sac-a-main-hermes-evelyne-en-cuir-noir-66687559-1_2.jpg"
-    ],
-    "source": "Vestiaire Collective",
-    "reviewText": "The most coveted bag in the world.",
-    "realRating": "5.0"
   },
   {
     "productName": "Mattel - Bounce-Off Game - Blue/Green/Black",
@@ -33143,16 +31795,6 @@
     "source": "Cdiscount",
     "reviewText": "Only at Best Buy\nCompatible with Apple iPhone 6 and 6s; polycarbonate shell; TPU interior; camera cutout; play-through design; stylish print; contrasting inner color",
     "realRating": "4.3"
-  },
-  {
-    "productName": "Palm Jumeirah Waterfront Villa [Rare Edition]",
-    "price": 57386000,
-    "images": [
-      "https://img.jamesedition.com/listing_images/2026/04/21/14/26/16/e6765e0c-680e-41ff-be1e-769827640cfa/je/556x342xcxm.jpg"
-    ],
-    "source": "JamesEdition",
-    "reviewText": "A masterpiece of modern luxury living in Dubai.",
-    "realRating": "5.0"
   },
   {
     "productName": "Alvin and the Chipmunks: Chip Wrecked - PRE-OWNED - Nintendo Wii",
@@ -34350,16 +32992,6 @@
     "realRating": "4.2"
   },
   {
-    "productName": "Rolex Submariner Date 'Hulk' [Rare Edition]",
-    "price": 19093,
-    "images": [
-      "https://m.media-amazon.com/images/I/712BY6k-jJL._AC_UL320_.jpg"
-    ],
-    "source": "Amazon Luxury",
-    "reviewText": "An absolute masterpiece of engineering and style.",
-    "realRating": "5.0"
-  },
-  {
     "productName": "RCA - 25255RE2 2-Line DECT 6.0 Expandable Corded/Cordless Phone System - Black",
     "price": 149.99,
     "images": [
@@ -34518,16 +33150,6 @@
     "source": "Cdiscount",
     "reviewText": "Vraiment top, je recommande vivement !",
     "realRating": "3.8"
-  },
-  {
-    "productName": "Lamborghini Urus 4.0L V8 [Rare Edition]",
-    "price": 370000,
-    "images": [
-      "https://prod.pictures.autoscout24.net/listing-images/9fb554b2-0ac8-4802-b8b6-52a131ff249c_d7e538d8-bb7d-422f-aff4-330159d37284.jpg/800x600.jpg"
-    ],
-    "source": "AutoScout24",
-    "reviewText": "The SUV with the soul of a supercar.",
-    "realRating": "4.8"
   },
   {
     "productName": "ZeroChroma - Folio-Slide Case for Apple® iPad® Air and iPad Air 2 - Teal",
@@ -35090,16 +33712,6 @@
     "realRating": "3.9"
   },
   {
-    "productName": "Luxury Penthouse in Manhattan [Rare Edition]",
-    "price": 18500000,
-    "images": [
-      "https://img.jamesedition.com/listing_images/2024/01/15/10/30/00/e6765e0c-680e-41ff-be1e-769827640cfa/je/556x342xcxm.jpg"
-    ],
-    "source": "JamesEdition",
-    "reviewText": "Floor-to-ceiling windows with panoramic city views.",
-    "realRating": "4.9"
-  },
-  {
     "productName": "CHI - Air Style Series Ceramic Hair Dryer - Black Matte",
     "price": 79.99,
     "images": [
@@ -35238,16 +33850,6 @@
     "source": "Cdiscount",
     "reviewText": "Unite super heroes and dastardly villains to save Gotham &#8212; and the world",
     "realRating": "4.4"
-  },
-  {
-    "productName": "Patek Philippe Nautilus 5711/1A",
-    "price": 145000,
-    "images": [
-      "https://img.chrono24.com/images/uhren/45841531-pk6tuz4q30c87w4ifymkxou6-Square280.jpg"
-    ],
-    "source": "Chrono24",
-    "reviewText": "The holy grail of luxury sports watches.",
-    "realRating": "4.9"
   },
   {
     "productName": "Trident - Aegis Case for Select Samsung Cell Phones - Black",
@@ -35390,16 +33992,6 @@
     "realRating": "4.7"
   },
   {
-    "productName": "Porsche 911 GT3 RS (992) [Rare Edition]",
-    "price": 248000,
-    "images": [
-      "https://files.porsche.com/filestore/image/multimedia/none/992-gt3-rs-modelimage-spec/main/a6d0c0a0-0b7b-11ed-80f5-005056bb7008/porsche-main.jpg"
-    ],
-    "source": "Porsche",
-    "reviewText": "Born for the track, legal for the road.",
-    "realRating": "5.0"
-  },
-  {
     "productName": "Nintendo - $10 Nintendo eShop Prepaid Card",
     "price": 10,
     "images": [
@@ -35488,16 +34080,6 @@
     "source": "Cdiscount",
     "reviewText": "68W total system power (32W RMS); 2.5\" satellite speakers; 6.5\" subwoofer with a Power Pro Series driver; magnetically shielded design",
     "realRating": "4.4"
-  },
-  {
-    "productName": "Palm Jumeirah Waterfront Villa [Rare Edition]",
-    "price": 57386000,
-    "images": [
-      "https://img.jamesedition.com/listing_images/2026/04/21/14/26/16/e6765e0c-680e-41ff-be1e-769827640cfa/je/556x342xcxm.jpg"
-    ],
-    "source": "JamesEdition",
-    "reviewText": "A masterpiece of modern luxury living in Dubai.",
-    "realRating": "5.0"
   },
   {
     "productName": "Jensen - Rechargeable Cordless Phone Battery - Noir",
@@ -35630,16 +34212,6 @@
     "realRating": "3.7"
   },
   {
-    "productName": "Audemars Piguet Royal Oak [Rare Edition]",
-    "price": 58000,
-    "images": [
-      "https://img.chrono24.com/images/uhren/30485671-5v9h9n8q5n6z-Square280.jpg"
-    ],
-    "source": "Chrono24",
-    "reviewText": "The Genta masterpiece. Timeless.",
-    "realRating": "4.8"
-  },
-  {
     "productName": "Bowers & Wilkins - 8\" 2-Way Round In-Ceiling Speakers (Pair) - White/Black",
     "price": 599.98,
     "images": [
@@ -35710,16 +34282,6 @@
     "realRating": "4.3"
   },
   {
-    "productName": "Bugatti Chiron Super Sport [Rare Edition]",
-    "price": 3800000,
-    "images": [
-      "https://newsroom.bugatti.com/wp-content/uploads/2021/06/Bugatti-Chiron-Super-Sport-7.jpg"
-    ],
-    "source": "Bugatti",
-    "reviewText": "The pinnacle of automotive engineering. 440 km/h.",
-    "realRating": "4.9"
-  },
-  {
     "productName": "Sonic & SEGA All-Stars Racing - PRE-OWNED - Nintendo Wii",
     "price": 14.99,
     "images": [
@@ -35758,16 +34320,6 @@
     "source": "Cdiscount",
     "reviewText": "Super produit ! Tout est parfait.",
     "realRating": "4.0"
-  },
-  {
-    "productName": "Gucci GG Marmont Small Shoulder Bag [Rare Edition]",
-    "price": 1980,
-    "images": [
-      "https://media.gucci.com/style/DarkGray_Center_0_0_800x800/1628169614/443497_DTDIT_1000_001_100_0000_Light-GG-Marmont-small-shoulder-bag.jpg"
-    ],
-    "source": "Gucci",
-    "reviewText": "Stylish, recognizable, and high-quality.",
-    "realRating": "4.8"
   },
   {
     "productName": "StubHub - $50 StubHub Gift Card",
@@ -35818,16 +34370,6 @@
     "source": "Cdiscount",
     "reviewText": "From our expanded online assortment; compatible with most speakers; solid 13 AWG PSC+ and PSC conductors; silver-plated BFA banana connectors; single biwire design",
     "realRating": "4.2"
-  },
-  {
-    "productName": "WebRC - 1:24 Remote-Controlled Porsche 911 GT3 - White",
-    "price": 24.99,
-    "images": [
-      "https://img.bbystatic.com/BestBuy_US/images/products/1242/1242879_sa.jpg"
-    ],
-    "source": "Cdiscount",
-    "reviewText": "WEBRC 1:24 Remote-Controlled Porsche 911 GT3: 1:24-scale officially licensed replica; light effects; full-function radio control and multidirectional operation",
-    "realRating": "3.9"
   },
   {
     "productName": "Insignia™ - Case for Samsung Galaxy S6 edge Cell Phones - Noir",
@@ -36160,16 +34702,6 @@
     "realRating": "3.8"
   },
   {
-    "productName": "Porsche 911 GT3 RS (992) [Rare Edition]",
-    "price": 248000,
-    "images": [
-      "https://files.porsche.com/filestore/image/multimedia/none/992-gt3-rs-modelimage-spec/main/a6d0c0a0-0b7b-11ed-80f5-005056bb7008/porsche-main.jpg"
-    ],
-    "source": "Porsche",
-    "reviewText": "Born for the track, legal for the road.",
-    "realRating": "5.0"
-  },
-  {
     "productName": "ZeroLemon - 6\" Lightning-to-USB Cable - Noir",
     "price": 14.99,
     "images": [
@@ -36380,16 +34912,6 @@
     "realRating": "4.1"
   },
   {
-    "productName": "Cartier Santos de Cartier Large [Rare Edition]",
-    "price": 7750,
-    "images": [
-      "https://www.cartier.com/dw/image/v2/BFCW_PRD/on/demandware.static/-/Sites-cartier-master/default/dw1e0a2f1c/images/images-630x630/WSSA0018_0_cartier_watches.png"
-    ],
-    "source": "Cartier",
-    "reviewText": "Elegant, masculine, and historic.",
-    "realRating": "4.7"
-  },
-  {
     "productName": "Sleeping Dogs - PRE-OWNED - Xbox One",
     "price": 9.99,
     "images": [
@@ -36468,18 +34990,6 @@
     "source": "Cdiscount",
     "reviewText": "From our expanded online assortment; more than 20 rock and pop classics arranged for the ukulele",
     "realRating": "4.2"
-  },
-  {
-    "productName": "Chanel Coco Noir Eau De",
-    "price": 129.99,
-    "images": [
-      "https://cdn.dummyjson.com/product-images/fragrances/chanel-coco-noir-eau-de/1.webp",
-      "https://cdn.dummyjson.com/product-images/fragrances/chanel-coco-noir-eau-de/2.webp",
-      "https://cdn.dummyjson.com/product-images/fragrances/chanel-coco-noir-eau-de/3.webp"
-    ],
-    "source": "Amazon",
-    "reviewText": "Coco Noir by Chanel is an elegant and mysterious fragrance, featuring notes of grapefruit, rose, and sandalwood. Perfect for evening occasions.",
-    "realRating": "4.3"
   },
   {
     "productName": "Altec - 4000 mAh Power Bank - Pink",
@@ -36722,16 +35232,6 @@
     "realRating": "4.6"
   },
   {
-    "productName": "Louis Vuitton Keepall 55 Bandoulière [Rare Edition]",
-    "price": 2450,
-    "images": [
-      "https://eu.louisvuitton.com/images/is/image/lv/1/PP_VP_L/louis-vuitton-keepall-bandouliere-55-monogram-canvas-voyage--M41414_PM2_Front%20view.png"
-    ],
-    "source": "Louis Vuitton",
-    "reviewText": "The ultimate travel companion.",
-    "realRating": "4.6"
-  },
-  {
     "productName": "Swiza - MAVERICK 13\" Backpack",
     "price": 99.99,
     "images": [
@@ -36970,16 +35470,6 @@
     "source": "Cdiscount",
     "reviewText": "Fonctionnel et bien conçu.",
     "realRating": "4.2"
-  },
-  {
-    "productName": "Palm Jumeirah Waterfront Villa [Rare Edition]",
-    "price": 57386000,
-    "images": [
-      "https://img.jamesedition.com/listing_images/2026/04/21/14/26/16/e6765e0c-680e-41ff-be1e-769827640cfa/je/556x342xcxm.jpg"
-    ],
-    "source": "JamesEdition",
-    "reviewText": "A masterpiece of modern luxury living in Dubai.",
-    "realRating": "5.0"
   },
   {
     "productName": "GE - 4.2 Cu. Ft. 13-Cycle Top-Loading Washer - Blanc",
@@ -37932,16 +36422,6 @@
     "realRating": "4.1"
   },
   {
-    "productName": "Rolls-Royce Cullinan Blue Shadow [Rare Edition]",
-    "price": 450000,
-    "images": [
-      "https://m.media-amazon.com/images/I/61S1E6qS9vL._AC_SX679_.jpg"
-    ],
-    "source": "Amazon Luxury",
-    "reviewText": "Floating on air. The ultimate luxury SUV.",
-    "realRating": "4.8"
-  },
-  {
     "productName": "mophie - 5000 powerstation plus External Battery for Lightning-Equipped Apple® Devices - Silver/Black",
     "price": 99.99,
     "images": [
@@ -37990,16 +36470,6 @@
     "source": "Cdiscount",
     "reviewText": "Absorbs sound and reduces echoes in a room; noise reduction coefficient of 1.15 NRC; mounts on a wall horizontally or vertically; easy-clip-mount installation; fabric-wrapped design",
     "realRating": "4.0"
-  },
-  {
-    "productName": "Omega Speedmaster Professional [Rare Edition]",
-    "price": 6300,
-    "images": [
-      "https://www.omegawatches.com/media/catalog/product/o/m/omega-speedmaster-moonwatch-professional-31030425001001-f.png"
-    ],
-    "source": "Omega",
-    "reviewText": "The moon watch. A piece of history on your wrist.",
-    "realRating": "4.8"
   },
   {
     "productName": "Sony - 18-250mm f/3.5-6.3 Telephoto Zoom Lens for Select Sony Alpha Digital SLR Cameras - Black",
@@ -38180,16 +36650,6 @@
     "source": "Cdiscount",
     "reviewText": "Perfect gift card? Piece of cake. All Best Buy gift cards are shipped free and are good toward future purchases online and in U.S. or Puerto Rico Best Buy stores. Best Buy gift cards do not have an expiration date.",
     "realRating": "4.4"
-  },
-  {
-    "productName": "Cartier Santos de Cartier Large [Rare Edition]",
-    "price": 7750,
-    "images": [
-      "https://www.cartier.com/dw/image/v2/BFCW_PRD/on/demandware.static/-/Sites-cartier-master/default/dw1e0a2f1c/images/images-630x630/WSSA0018_0_cartier_watches.png"
-    ],
-    "source": "Cartier",
-    "reviewText": "Elegant, masculine, and historic.",
-    "realRating": "4.7"
   },
   {
     "productName": "UKPro - 54\" Telescoping Floating Pole for Most GoPro HERO Cameras - Orange",
@@ -38582,16 +37042,6 @@
     "realRating": "4.6"
   },
   {
-    "productName": "Vitamix - Professional Series 500 Gallery Collection 64-Oz. Blender - Noir Diamond",
-    "price": 529.99,
-    "images": [
-      "https://img.bbystatic.com/BestBuy_US/images/products/4311/4311700_rc.jpg"
-    ],
-    "source": "Cdiscount",
-    "reviewText": "Un peu cher mais la qualité est là.",
-    "realRating": "4.5"
-  },
-  {
     "productName": "Niles - OS6.3 2-Way Indoor/Outdoor Speakers (Pair) - Black",
     "price": 409.99,
     "images": [
@@ -38750,16 +37200,6 @@
     "source": "Cdiscount",
     "reviewText": "Très bonne qualité, solide et bien fini.",
     "realRating": "3.6"
-  },
-  {
-    "productName": "Hermès Birkin 30 Black Gold Hardware [Rare Edition]",
-    "price": 28500,
-    "images": [
-      "https://images.vestiairecollective.com/images/resized/w=2920,q=75,f=auto,/produit/sac-a-main-hermes-evelyne-en-cuir-noir-66687559-1_2.jpg"
-    ],
-    "source": "Vestiaire Collective",
-    "reviewText": "The most coveted bag in the world.",
-    "realRating": "5.0"
   },
   {
     "productName": "Tavik - Outer Edge Bumper Case for Apple® iPhone® 6 - White/Magenta",
@@ -39472,16 +37912,6 @@
     "realRating": "4.5"
   },
   {
-    "productName": "Ferrari 296 GTB [Rare Edition]",
-    "price": 342000,
-    "images": [
-      "https://cdn.jamesedition.com/media/2023/Ferrari/296-GTB/official.jpg"
-    ],
-    "source": "JamesEdition",
-    "reviewText": "Pure driving pleasure and hybrid innovation.",
-    "realRating": "5.0"
-  },
-  {
     "productName": "Apple - Apple Watch™ Sport 38mm Argent Aluminum Case - Blanc Sports Band",
     "price": 299,
     "images": [
@@ -39660,16 +38090,6 @@
     "source": "Cdiscount",
     "reviewText": "Excellent rapport qualité-prix, très satisfait.",
     "realRating": "3.8"
-  },
-  {
-    "productName": "Audemars Piguet Royal Oak [Rare Edition]",
-    "price": 58000,
-    "images": [
-      "https://img.chrono24.com/images/uhren/30485671-5v9h9n8q5n6z-Square280.jpg"
-    ],
-    "source": "Chrono24",
-    "reviewText": "The Genta masterpiece. Timeless.",
-    "realRating": "4.8"
   },
   {
     "productName": "Remington - Premium Rotary Shaver - Black",
@@ -40005,16 +38425,6 @@
     "realRating": "4.4"
   },
   {
-    "productName": "Cartier Santos de Cartier Large [Rare Edition]",
-    "price": 7750,
-    "images": [
-      "https://www.cartier.com/dw/image/v2/BFCW_PRD/on/demandware.static/-/Sites-cartier-master/default/dw1e0a2f1c/images/images-630x630/WSSA0018_0_cartier_watches.png"
-    ],
-    "source": "Cartier",
-    "reviewText": "Elegant, masculine, and historic.",
-    "realRating": "4.7"
-  },
-  {
     "productName": "Veggy World — PRE-OWNED - Nintendo DS",
     "price": 9.99,
     "images": [
@@ -40285,16 +38695,6 @@
     "realRating": "4.2"
   },
   {
-    "productName": "Cartier Santos de Cartier Large [Rare Edition]",
-    "price": 7750,
-    "images": [
-      "https://www.cartier.com/dw/image/v2/BFCW_PRD/on/demandware.static/-/Sites-cartier-master/default/dw1e0a2f1c/images/images-630x630/WSSA0018_0_cartier_watches.png"
-    ],
-    "source": "Cartier",
-    "reviewText": "Elegant, masculine, and historic.",
-    "realRating": "4.7"
-  },
-  {
     "productName": "SpeakerCraft - 10\" In-Ground Subwoofer - Green",
     "price": 549.98,
     "images": [
@@ -40543,16 +38943,6 @@
     "source": "Cdiscount",
     "reviewText": "Compatible with most 2008-2009 Saturn Astra vehicles; Quick Release Snap-In ISO mount system with custom trim ring; DIN and ISO radio provisions; oversize under-radio storage pocket",
     "realRating": "4.3"
-  },
-  {
-    "productName": "Rolex Submariner Date 'Hulk' [Rare Edition]",
-    "price": 19093,
-    "images": [
-      "https://m.media-amazon.com/images/I/712BY6k-jJL._AC_UL320_.jpg"
-    ],
-    "source": "Amazon Luxury",
-    "reviewText": "An absolute masterpiece of engineering and style.",
-    "realRating": "5.0"
   },
   {
     "productName": "Definitive Technology - SuperCube 6000 9\" 1500W Powered Subwoofer - Black",
@@ -41595,16 +39985,6 @@
     "realRating": "4.3"
   },
   {
-    "productName": "Rolls-Royce Cullinan Blue Shadow",
-    "price": 450000,
-    "images": [
-      "https://m.media-amazon.com/images/I/61S1E6qS9vL._AC_SX679_.jpg"
-    ],
-    "source": "Amazon Luxury",
-    "reviewText": "Floating on air. The ultimate luxury SUV.",
-    "realRating": "4.8"
-  },
-  {
     "productName": "Kung Fu Panda: Showdown of Legendary Legends - Nintendo Wii U",
     "price": 39.99,
     "images": [
@@ -42105,16 +40485,6 @@
     "realRating": "4.7"
   },
   {
-    "productName": "Ferrari 296 GTB [Rare Edition]",
-    "price": 342000,
-    "images": [
-      "https://cdn.jamesedition.com/media/2023/Ferrari/296-GTB/official.jpg"
-    ],
-    "source": "JamesEdition",
-    "reviewText": "Pure driving pleasure and hybrid innovation.",
-    "realRating": "5.0"
-  },
-  {
     "productName": "Fellowes - Office Suites Laptop Riser Plus - Gray",
     "price": 39.99,
     "images": [
@@ -42455,16 +40825,6 @@
     "realRating": "4.6"
   },
   {
-    "productName": "Cartier Santos de Cartier Large",
-    "price": 7750,
-    "images": [
-      "https://www.cartier.com/dw/image/v2/BFCW_PRD/on/demandware.static/-/Sites-cartier-master/default/dw1e0a2f1c/images/images-630x630/WSSA0018_0_cartier_watches.png"
-    ],
-    "source": "Cartier",
-    "reviewText": "Elegant, masculine, and historic.",
-    "realRating": "4.7"
-  },
-  {
     "productName": "Fender® - SQUIER® SA-50 Acoustic Guitar Pack - Natural",
     "price": 169.99,
     "images": [
@@ -42683,16 +41043,6 @@
     "source": "Cdiscount",
     "reviewText": "Speed through new thrills with an altered Sonic",
     "realRating": "4.6"
-  },
-  {
-    "productName": "Luxury Penthouse in Manhattan [Rare Edition]",
-    "price": 18500000,
-    "images": [
-      "https://img.jamesedition.com/listing_images/2024/01/15/10/30/00/e6765e0c-680e-41ff-be1e-769827640cfa/je/556x342xcxm.jpg"
-    ],
-    "source": "JamesEdition",
-    "reviewText": "Floor-to-ceiling windows with panoramic city views.",
-    "realRating": "4.9"
   },
   {
     "productName": "Brown Leather Belt Watch",
@@ -43257,16 +41607,6 @@
     "realRating": "4.1"
   },
   {
-    "productName": "Luxury Penthouse in Manhattan [Rare Edition]",
-    "price": 18500000,
-    "images": [
-      "https://img.jamesedition.com/listing_images/2024/01/15/10/30/00/e6765e0c-680e-41ff-be1e-769827640cfa/je/556x342xcxm.jpg"
-    ],
-    "source": "JamesEdition",
-    "reviewText": "Floor-to-ceiling windows with panoramic city views.",
-    "realRating": "4.9"
-  },
-  {
     "productName": "Crane - smartHeater Infrared Heater - Gray",
     "price": 189.99,
     "images": [
@@ -43437,16 +41777,6 @@
     "realRating": "4.5"
   },
   {
-    "productName": "Porsche 911 GT3 RS (992) [Rare Edition]",
-    "price": 248000,
-    "images": [
-      "https://files.porsche.com/filestore/image/multimedia/none/992-gt3-rs-modelimage-spec/main/a6d0c0a0-0b7b-11ed-80f5-005056bb7008/porsche-main.jpg"
-    ],
-    "source": "Porsche",
-    "reviewText": "Born for the track, legal for the road.",
-    "realRating": "5.0"
-  },
-  {
     "productName": "RPS - External Flash - Noir",
     "price": 149.99,
     "images": [
@@ -43475,16 +41805,6 @@
     "source": "Cdiscount",
     "reviewText": "From our expanded online assortment; compatible with ZR-6 multizone receivers and ZR-6 multizone receiver/VS-6 component video switcher combos; built-in metadata display and plasma/LCD-resistant IR sensor; weather-resistant design",
     "realRating": "4.5"
-  },
-  {
-    "productName": "Chanel Classic Flap Bag Medium [Rare Edition]",
-    "price": 10200,
-    "images": [
-      "https://www.chanel.com/images/q_auto,f_auto,fl_lossy,dpr_2.0/w_640/classic-flap-bag-black-lambskin-gold-tone-metal-packshot-default-as0116b0506194305-8843105746974.jpg"
-    ],
-    "source": "Chanel",
-    "reviewText": "A timeless piece of fashion history.",
-    "realRating": "4.7"
   },
   {
     "productName": "Hal Leonard - Various Composers: The Best Latin Songs Ever Sheet Music - Multi",
@@ -43907,16 +42227,6 @@
     "realRating": "4.2"
   },
   {
-    "productName": "Omega Speedmaster Professional [Rare Edition]",
-    "price": 6300,
-    "images": [
-      "https://www.omegawatches.com/media/catalog/product/o/m/omega-speedmaster-moonwatch-professional-31030425001001-f.png"
-    ],
-    "source": "Omega",
-    "reviewText": "The moon watch. A piece of history on your wrist.",
-    "realRating": "4.8"
-  },
-  {
     "productName": "Shadow Warrior - PRE-OWNED - Xbox One",
     "price": 19.99,
     "images": [
@@ -43925,16 +42235,6 @@
     "source": "Cdiscount",
     "reviewText": "Become a legend to stop an evil force from destroying our world",
     "realRating": "3.9"
-  },
-  {
-    "productName": "Omega Speedmaster Professional [Rare Edition]",
-    "price": 6300,
-    "images": [
-      "https://www.omegawatches.com/media/catalog/product/o/m/omega-speedmaster-moonwatch-professional-31030425001001-f.png"
-    ],
-    "source": "Omega",
-    "reviewText": "The moon watch. A piece of history on your wrist.",
-    "realRating": "4.8"
   },
   {
     "productName": "Niles - 8\" 2-Way High-Definition In-Wall Loudspeakers (Pair) - Black",
@@ -43987,16 +42287,6 @@
     "realRating": "4.8"
   },
   {
-    "productName": "Lamborghini Urus 4.0L V8 [Rare Edition]",
-    "price": 370000,
-    "images": [
-      "https://prod.pictures.autoscout24.net/listing-images/9fb554b2-0ac8-4802-b8b6-52a131ff249c_d7e538d8-bb7d-422f-aff4-330159d37284.jpg/800x600.jpg"
-    ],
-    "source": "AutoScout24",
-    "reviewText": "The SUV with the soul of a supercar.",
-    "realRating": "4.8"
-  },
-  {
     "productName": "TP-LINK - 24-Port 10/100/1000 Mbps Gigabit Ethernet Switch - Gray",
     "price": 99.99,
     "images": [
@@ -44025,16 +42315,6 @@
     "source": "Cdiscount",
     "reviewText": "TOASTMASTER 2-Slice Wide-Slot Toaster: Knob control; adjustable browning dial; 8 temperature settings; cancel option; high-rise toast lift; self-centering bread guides; stainless-steel finish; slide-out crumb tray",
     "realRating": "4.4"
-  },
-  {
-    "productName": "Rolex Oyster Perpetual Explorer II [Rare Edition]",
-    "price": 12724,
-    "images": [
-      "https://m.media-amazon.com/images/I/71JkPZyThFL._AC_UL320_.jpg"
-    ],
-    "source": "Amazon Luxury",
-    "reviewText": "Rugged and reliable for any adventure.",
-    "realRating": "4.6"
   },
   {
     "productName": "Sony - Camera Jacket Case - Black",
@@ -44627,16 +42907,6 @@
     "realRating": "4.0"
   },
   {
-    "productName": "Bugatti Chiron Super Sport [Rare Edition]",
-    "price": 3800000,
-    "images": [
-      "https://newsroom.bugatti.com/wp-content/uploads/2021/06/Bugatti-Chiron-Super-Sport-7.jpg"
-    ],
-    "source": "Bugatti",
-    "reviewText": "The pinnacle of automotive engineering. 440 km/h.",
-    "realRating": "4.9"
-  },
-  {
     "productName": "Simpli Home - Connaught Console Sofa Table - Dark Chestnut Brown",
     "price": 229.99,
     "images": [
@@ -44735,16 +43005,6 @@
     "source": "Cdiscount",
     "reviewText": "Compatible with most point-and-shoot and DSLR cameras with a SD card slot; 32GB capacity; built-in Wi-Fi",
     "realRating": "4.2"
-  },
-  {
-    "productName": "Patek Philippe Nautilus 5711/1A [Rare Edition]",
-    "price": 145000,
-    "images": [
-      "https://img.chrono24.com/images/uhren/45841531-pk6tuz4q30c87w4ifymkxou6-Square280.jpg"
-    ],
-    "source": "Chrono24",
-    "reviewText": "The holy grail of luxury sports watches.",
-    "realRating": "4.9"
   },
   {
     "productName": "We Cheer — PRE-OWNED - Nintendo Wii",
@@ -44999,16 +43259,6 @@
     "realRating": "4.1"
   },
   {
-    "productName": "Porsche 911 GT3 RS (992) [Rare Edition]",
-    "price": 248000,
-    "images": [
-      "https://files.porsche.com/filestore/image/multimedia/none/992-gt3-rs-modelimage-spec/main/a6d0c0a0-0b7b-11ed-80f5-005056bb7008/porsche-main.jpg"
-    ],
-    "source": "Porsche",
-    "reviewText": "Born for the track, legal for the road.",
-    "realRating": "5.0"
-  },
-  {
     "productName": "VTech - DS6751-3 DECT 6.0 Expandable Cordless Phone System with Connect to Cell Digital Answering System - Champagne/Black",
     "price": 99.99,
     "images": [
@@ -45259,16 +43509,6 @@
     "realRating": "4.2"
   },
   {
-    "productName": "Lamborghini Urus 4.0L V8 [Rare Edition]",
-    "price": 370000,
-    "images": [
-      "https://prod.pictures.autoscout24.net/listing-images/9fb554b2-0ac8-4802-b8b6-52a131ff249c_d7e538d8-bb7d-422f-aff4-330159d37284.jpg/800x600.jpg"
-    ],
-    "source": "AutoScout24",
-    "reviewText": "The SUV with the soul of a supercar.",
-    "realRating": "4.8"
-  },
-  {
     "productName": "Apple - 6.6' Lightning-to-USB 2.0 Cable - White",
     "price": 32.99,
     "images": [
@@ -45447,16 +43687,6 @@
     "source": "Cdiscount",
     "reviewText": "Compatible with Apple iPhone 6 and iPhone 6s; Ballistic Corners; impact-resistant design; raised lips and corners; slim construction",
     "realRating": "4.4"
-  },
-  {
-    "productName": "Patek Philippe Nautilus 5711/1A [Rare Edition]",
-    "price": 145000,
-    "images": [
-      "https://img.chrono24.com/images/uhren/45841531-pk6tuz4q30c87w4ifymkxou6-Square280.jpg"
-    ],
-    "source": "Chrono24",
-    "reviewText": "The holy grail of luxury sports watches.",
-    "realRating": "4.9"
   },
   {
     "productName": "Hasbro Family Fun Pack - PRE-OWNED - PlayStation 4",
@@ -46109,16 +44339,6 @@
     "realRating": "4.0"
   },
   {
-    "productName": "Lamborghini Urus 4.0L V8 [Rare Edition]",
-    "price": 370000,
-    "images": [
-      "https://prod.pictures.autoscout24.net/listing-images/9fb554b2-0ac8-4802-b8b6-52a131ff249c_d7e538d8-bb7d-422f-aff4-330159d37284.jpg/800x600.jpg"
-    ],
-    "source": "AutoScout24",
-    "reviewText": "The SUV with the soul of a supercar.",
-    "realRating": "4.8"
-  },
-  {
     "productName": "Bobble - Replacement Carbon Filters (2-Pack) - Lavender",
     "price": 9.99,
     "images": [
@@ -46167,16 +44387,6 @@
     "source": "Cdiscount",
     "reviewText": "Compatible with Apple iPhone 6; TPU material; camera cut-out",
     "realRating": "4.0"
-  },
-  {
-    "productName": "Audemars Piguet Royal Oak",
-    "price": 58000,
-    "images": [
-      "https://img.chrono24.com/images/uhren/30485671-5v9h9n8q5n6z-Square280.jpg"
-    ],
-    "source": "Chrono24",
-    "reviewText": "The Genta masterpiece. Timeless.",
-    "realRating": "4.8"
   },
   {
     "productName": "Studio Designs - Riviera Drafting Chair - Black",
@@ -47740,16 +45950,6 @@
     "realRating": "4.0"
   },
   {
-    "productName": "Rolls-Royce Cullinan Blue Shadow [Rare Edition]",
-    "price": 450000,
-    "images": [
-      "https://m.media-amazon.com/images/I/61S1E6qS9vL._AC_SX679_.jpg"
-    ],
-    "source": "Amazon Luxury",
-    "reviewText": "Floating on air. The ultimate luxury SUV.",
-    "realRating": "4.8"
-  },
-  {
     "productName": "John Frieda - Loose Curls 1-1/2\" Curling Iron - Silver",
     "price": 32.99,
     "images": [
@@ -48120,16 +46320,6 @@
     "realRating": "4.4"
   },
   {
-    "productName": "Omega Speedmaster Professional [Rare Edition]",
-    "price": 6300,
-    "images": [
-      "https://www.omegawatches.com/media/catalog/product/o/m/omega-speedmaster-moonwatch-professional-31030425001001-f.png"
-    ],
-    "source": "Omega",
-    "reviewText": "The moon watch. A piece of history on your wrist.",
-    "realRating": "4.8"
-  },
-  {
     "productName": "TEAC - Bluetooth Turntable - Cherry",
     "price": 299.99,
     "images": [
@@ -48270,16 +46460,6 @@
     "realRating": "4.0"
   },
   {
-    "productName": "WebRC - 1:14 Porsche Cayenne Turbo Radio-Control Car - Noir",
-    "price": 59.99,
-    "images": [
-      "https://img.bbystatic.com/BestBuy_US/images/products/1242/1242997_sa.jpg"
-    ],
-    "source": "Cdiscount",
-    "reviewText": "Très bonne qualité, solide et bien fini.",
-    "realRating": "4.7"
-  },
-  {
     "productName": "iLive - Portable USB Charger - Blue",
     "price": 22.99,
     "images": [
@@ -48348,16 +46528,6 @@
     "source": "Cdiscount",
     "reviewText": "Built-in high-speed wireless LANPrints up to 9 ISO ipm in black, up to 5.8 ISO ipm in color (Print speeds vary with use. See mfg. for info on print speeds.)",
     "realRating": "3.9"
-  },
-  {
-    "productName": "Rolex Submariner Date 'Hulk' [Rare Edition]",
-    "price": 19093,
-    "images": [
-      "https://m.media-amazon.com/images/I/712BY6k-jJL._AC_UL320_.jpg"
-    ],
-    "source": "Amazon Luxury",
-    "reviewText": "An absolute masterpiece of engineering and style.",
-    "realRating": "5.0"
   },
   {
     "productName": "Snoopy's Grand Adventure - Nintendo Wii U",
@@ -48883,16 +47053,6 @@
     "realRating": "4.6"
   },
   {
-    "productName": "Bugatti Chiron Super Sport [Rare Edition]",
-    "price": 3800000,
-    "images": [
-      "https://newsroom.bugatti.com/wp-content/uploads/2021/06/Bugatti-Chiron-Super-Sport-7.jpg"
-    ],
-    "source": "Bugatti",
-    "reviewText": "The pinnacle of automotive engineering. 440 km/h.",
-    "realRating": "4.9"
-  },
-  {
     "productName": "Fellowes - Office Suites Adjustable Keyboard Tray - Black",
     "price": 139.99,
     "images": [
@@ -49233,16 +47393,6 @@
     "realRating": "4.2"
   },
   {
-    "productName": "Patek Philippe Nautilus 5711/1A [Rare Edition]",
-    "price": 145000,
-    "images": [
-      "https://img.chrono24.com/images/uhren/45841531-pk6tuz4q30c87w4ifymkxou6-Square280.jpg"
-    ],
-    "source": "Chrono24",
-    "reviewText": "The holy grail of luxury sports watches.",
-    "realRating": "4.9"
-  },
-  {
     "productName": "Better Chef - 2-Slice Toaster - White",
     "price": 19.99,
     "images": [
@@ -49500,16 +47650,6 @@
     ],
     "source": "Cdiscount",
     "reviewText": "Compatible with Apple iPhone 6 and 6 Plus; fisheye, wide-angle, 10x macro and 15x macro lenses; clip-on design; includes 3 pendants, a microfiber carry bag and 2 lens caps",
-    "realRating": "4.6"
-  },
-  {
-    "productName": "Rolex Oyster Perpetual Explorer II [Rare Edition]",
-    "price": 12724,
-    "images": [
-      "https://m.media-amazon.com/images/I/71JkPZyThFL._AC_UL320_.jpg"
-    ],
-    "source": "Amazon Luxury",
-    "reviewText": "Rugged and reliable for any adventure.",
     "realRating": "4.6"
   },
   {
@@ -49996,18 +48136,6 @@
     "realRating": "4.5"
   },
   {
-    "productName": "Rolex Cellini Moonphase",
-    "price": 12999.99,
-    "images": [
-      "https://cdn.dummyjson.com/product-images/mens-watches/rolex-cellini-moonphase/1.webp",
-      "https://cdn.dummyjson.com/product-images/mens-watches/rolex-cellini-moonphase/2.webp",
-      "https://cdn.dummyjson.com/product-images/mens-watches/rolex-cellini-moonphase/3.webp"
-    ],
-    "source": "Amazon",
-    "reviewText": "The Rolex Cellini Moonphase is a masterpiece of horology, featuring a moon phase complication and exquisite design. It reflects Rolex's commitment to precision and elegance.",
-    "realRating": "2.6"
-  },
-  {
     "productName": "BIC America - 6-1/2\" 2-Way In-Ceiling Speaker (Each) - White",
     "price": 39.99,
     "images": [
@@ -50148,16 +48276,6 @@
     "realRating": "4.3"
   },
   {
-    "productName": "Lamborghini Urus 4.0L V8 [Rare Edition]",
-    "price": 370000,
-    "images": [
-      "https://prod.pictures.autoscout24.net/listing-images/9fb554b2-0ac8-4802-b8b6-52a131ff249c_d7e538d8-bb7d-422f-aff4-330159d37284.jpg/800x600.jpg"
-    ],
-    "source": "AutoScout24",
-    "reviewText": "The SUV with the soul of a supercar.",
-    "realRating": "4.8"
-  },
-  {
     "productName": "Hal Leonard - Fab Four FAQ 2.0 - Multi",
     "price": 19.99,
     "images": [
@@ -50276,16 +48394,6 @@
     "source": "Cdiscount",
     "reviewText": "10x magnification; waterproof/fog-proof construction; multicoated optics; roof prism",
     "realRating": "4.2"
-  },
-  {
-    "productName": "Gucci GG Marmont Small Shoulder Bag [Rare Edition]",
-    "price": 1980,
-    "images": [
-      "https://media.gucci.com/style/DarkGray_Center_0_0_800x800/1628169614/443497_DTDIT_1000_001_100_0000_Light-GG-Marmont-small-shoulder-bag.jpg"
-    ],
-    "source": "Gucci",
-    "reviewText": "Stylish, recognizable, and high-quality.",
-    "realRating": "4.8"
   },
   {
     "productName": "Discovery Kids - Kids Exploration Laptop - Fuchsia",
