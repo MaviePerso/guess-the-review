@@ -11,7 +11,7 @@ const io = new Server(httpServer, {
 
 const PORT = process.env.PORT || 3001;
 const rooms = new Map();
-let DB_PATH = path.join(process.cwd(), 'server', 'db_scraped_live.json'); if (!fs.existsSync(DB_PATH)) DB_PATH = path.join(process.cwd(), 'server', 'db_50k.json');
+let DB_PATH = path.join(process.cwd(), 'server', 'db_5000.json');
 
 // Massive database loaded into memory
 let questionDatabase = [];
