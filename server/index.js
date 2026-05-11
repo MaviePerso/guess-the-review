@@ -160,7 +160,7 @@ function generateRoomCode() {
 }
 
 httpServer.on('request', async (req, res) => {
-  const url = new URL(req.url, http://localhost);
+  const url = new URL(req.url, "http://localhost");
   
   // CORS headers for frontend solo mode
   res.setHeader('Access-Control-Allow-Origin', '*');
@@ -187,3 +187,4 @@ httpServer.on('request', async (req, res) => {
 });
 
 httpServer.listen(PORT, "0.0.0.0", () => console.log(🚀 Server started on port  (Pure Random Mode)));
+
