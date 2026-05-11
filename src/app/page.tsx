@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import { useState, useEffect, Suspense } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
@@ -37,7 +37,7 @@ function HomeContent() {
       clearTimeout(timeout);
       socket.emit("CREATE_ROOM", { pseudo, mode: gameMode }, (res: any) => {
         if (res.success) {
-          router.push(/room/?pseudo=);
+          router.push("/room/" + res.room.code + "?pseudo=" + encodeURIComponent(pseudo) + (streamerMode ? "&streamer=true" : ""));
         } else {
           alert(res.error);
         }
@@ -61,7 +61,7 @@ function HomeContent() {
     if (!socket.connected) {
       socket.connect();
     }
-    router.push(/room/?pseudo=);
+    router.push("/room/" + roomCode.toUpperCase() + "?pseudo=" + encodeURIComponent(pseudo) + (streamerMode ? "&streamer=true" : ""));
   };
 
   return (
