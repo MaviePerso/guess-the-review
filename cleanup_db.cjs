@@ -2,66 +2,55 @@ const fs = require('fs');
 const axios = require('axios');
 
 async function cleanup() {
-    console.log("=== Nettoyage de la base de données ===");
+    console.log("=== Nettoyage et Correction des Images ===");
     const db = JSON.parse(fs.readFileSync('server/db_verified.json', 'utf8'));
-    console.log(`Taille initiale: ${db.length}`);
+    
+    // On enlève d'abord tous les produits qui ont déjà des images cassées ou source.unsplash
+    const filtered = db.filter(item => {
+        if (!item.images || item.images.length === 0) return false;
+        const url = item.images[0];
+        if (url.includes('unsplash.com') && url.includes('featured')) return false; // On vire les vieux liens unsplash morts
+        return true;
+    });
 
-    const placeholderSize = 14867; // Taille spécifique de l'image "Unavailable" de BestBuy
+    console.log(`Taille après filtrage initial: ${filtered.length}`);
+
     const cleaned = [];
     let removed = 0;
 
-    const batchSize = 100;
-    for (let i = 0; i < db.length; i += batchSize) {
-        const batch = db.slice(i, i + batchSize);
-        
-        await Promise.all(batch.map(async (item) => {
-            const url = item.images[0];
-            
-            if (!url || url.includes('placeholder') || url.includes('unavailable')) {
-                removed++;
-                return;
-            }
+    // On complète pour atteindre 11 000 objets avec des images GARANTIES (LoremFlickr)
+    const target = 11000;
+    const luxuryKeywords = [
+        "luxury watch", "supercar", "mansion interior", "diamond ring", "private jet", 
+        "yacht", "designer handbag", "luxury perfume", "rolex", "ferrari", "gucci bag",
+        "caviar", "champagne crystal", "penthouse view", "gold bar", "premium sneakers",
+        "luxury hotel suite", "classic car", "gaming setup ultra", "high-end audio"
+    ];
 
-            if (url.includes('bbystatic.com')) {
-                try {
-                    const res = await axios.head(url, { timeout: 2000 });
-                    const size = parseInt(res.headers['content-length']);
-                    if (size === placeholderSize) {
-                        removed++;
-                        return;
-                    }
-                } catch (e) {
-                    removed++;
-                    return;
-                }
-            }
-
-            cleaned.push(item);
-        }));
+    while (filtered.length + cleaned.length < target) {
+        const kw = luxuryKeywords[Math.floor(Math.random() * luxuryKeywords.length)];
+        const id = Math.floor(Math.random() * 10000);
+        const price = Math.floor(Math.random() * 50000) + 1000;
         
-        process.stdout.write(`\rAnalysé: ${i + batch.length}/${db.length} - Supprimés: ${removed}`);
+        cleaned.push({
+            productName: `${kw.toUpperCase()} - Édition Signature #${id}`,
+            price: price,
+            // LoremFlickr est beaucoup plus stable que source.unsplash
+            images: [`https://loremflickr.com/800/800/${encodeURIComponent(kw.replace(' ', ','))}?lock=${id}`],
+            source: "Luxe & Prestige",
+            reviewText: "Un chef-d'œuvre de design et de performance. Indispensable pour toute collection sérieuse.",
+            realRating: (4.2 + Math.random() * 0.8).toFixed(1)
+        });
+        if (cleaned.length % 100 === 0) process.stdout.write(`\rGénération: ${cleaned.length} nouveaux produits...`);
     }
 
-    if (cleaned.length < 10000) {
-        console.log(`\nComplétion de la base (${cleaned.length} < 10000)...`);
-        const luxuryKeywords = ["Luxury Car", "Diamond Jewelry", "Mansion", "Yacht", "Private Jet", "Designer Bag", "Expensive Watch"];
-        
-        for (const kw of luxuryKeywords) {
-            for (let j = 0; j < 200; j++) {
-                cleaned.push({
-                    productName: `${kw} Exclusive - Édition Limitée ${j}`,
-                    price: Math.floor(Math.random() * 100000) + 5000,
-                    images: [`https://source.unsplash.com/featured/?${encodeURIComponent(kw)}&sig=${j}`],
-                    source: "Luxe & Prestige",
-                    reviewText: "Un produit d'exception pour ceux qui ne se contentent que du meilleur.",
-                    realRating: (4.0 + Math.random()).toFixed(1)
-                });
-            }
-        }
-    }
+    const finalDb = filtered.concat(cleaned);
+    
+    // Une dernière vérification sur TOUTE la base pour s'assurer que productName et images existent
+    const verifiedFinal = finalDb.filter(item => item.productName && item.images && item.images[0]);
 
-    fs.writeFileSync('server/db_verified.json', JSON.stringify(cleaned, null, 2));
-    console.log(`\nNettoyage terminé ! Nouvelle taille: ${cleaned.length}`);
+    fs.writeFileSync('server/db_verified.json', JSON.stringify(verifiedFinal, null, 2));
+    console.log(`\nBase finale de ${verifiedFinal.length} produits prête avec images corrigées !`);
 }
 
 cleanup();

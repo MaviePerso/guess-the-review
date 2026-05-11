@@ -1,4 +1,4 @@
-import { Server } from "socket.io";
+﻿import { Server } from "socket.io";
 import { createServer } from "http";
 import fs from 'fs';
 import path from 'path';
@@ -13,49 +13,50 @@ const PORT = process.env.PORT || 3001;
 const rooms = new Map();
 let DB_PATH = path.join(process.cwd(), 'server', 'db_verified.json');
 
-// Massive database loaded into memory
 let questionDatabase = [];
 
 try {
   const rawData = JSON.parse(fs.readFileSync(DB_PATH, 'utf8'));
-  
-  // Format the massive DB to add random sources and clean it up
   const sources = ["eBay", "Cdiscount", "Rakuten", "Fnac", "Darty"];
   
   questionDatabase = rawData.map(item => {
-    // If it's the old Amazon format, map the fields
+    const priceValue = parseFloat(item.price) || 20;
     return {
       productName: item.productName || item.title || "Produit Inconnu",
       reviewText: item.reviewText || "Produit conforme à la description, très satisfait.",
-      realRating: item.realRating || item.rating || (Math.round((3.5 + Math.random() * 1.5) * 10) / 10),
-      price: item.price || (Math.round((10 + Math.random() * 200) * 100) / 100),
+      realRating: parseFloat(item.realRating || item.rating) || 4.2,
+      price: priceValue,
       images: item.images || (item.image ? [item.image] : []),
-      // Give it a random source from the list
-      source: sources[Math.floor(Math.random() * sources.length)]
+      source: item.source || sources[Math.floor(Math.random() * sources.length)],
+      isLuxury: priceValue > 1000
     };
   }).filter(item => item.images && item.images.length > 0 && item.price > 0);
   
-  console.log(`[DB] Loaded HUGE database: ${questionDatabase.length} products ready for random selection.`);
+  console.log([DB] Loaded  products.);
 } catch (e) {
-  console.error("[DB] Critical error loading massive database:", e.message);
+  console.error("[DB] Error loading DB:", e.message);
 }
 
-// Function to get completely random questions from the massive DB
 function getQuestions(count = 12) {
-  if (questionDatabase.length < count) return [];
+  const luxury = questionDatabase.filter(q => q.isLuxury);
+  const normal = questionDatabase.filter(q => !q.isLuxury);
   
-  // Efficient shuffle of a subset
-  const result = [];
-  const usedIndices = new Set();
+  const selected = [];
   
-  while(result.length < count) {
-      const randIndex = Math.floor(Math.random() * questionDatabase.length);
-      if(!usedIndices.has(randIndex)) {
-          usedIndices.add(randIndex);
-          result.push(questionDatabase[randIndex]);
-      }
-  }
-  return result;
+  // Toujours mettre 3-4 objets de luxe par session
+  const luxCount = Math.min(luxury.length, 4);
+  const normCount = count - luxCount;
+
+  // Shuffle luxury
+  const shuffledLux = [...luxury].sort(() => Math.random() - 0.5);
+  selected.push(...shuffledLux.slice(0, luxCount));
+
+  // Shuffle normal
+  const shuffledNorm = [...normal].sort(() => Math.random() - 0.5);
+  selected.push(...shuffledNorm.slice(0, normCount));
+
+  // Final shuffle of the selection
+  return selected.sort(() => Math.random() - 0.5);
 }
 
 const safeCb = (cb, data) => { if (typeof cb === 'function') cb(data); };
@@ -65,10 +66,7 @@ io.on("connection", (socket) => {
     if (!pseudo || pseudo.trim().length === 0) return safeCb(callback, { error: "Pseudo invalide" });
     const code = generateRoomCode();
     const player = { id: socket.id, pseudo: pseudo.trim(), isHost: true, connected: true, score: 0 };
-    
-    // Fetch questions INSTANTLY
     const qs = getQuestions(12);
-    
     const newRoom = {
       code, hostId: socket.id, state: "LOBBY", players: [player],
       currentQuestionIndex: 0, questions: qs, isLoadingQuestions: false,
@@ -85,9 +83,8 @@ io.on("connection", (socket) => {
     if (!room) return safeCb(callback, { error: "Cette room n'existe pas." });
     const existing = room.players.find(p => p.pseudo.toLowerCase() === pseudo?.trim().toLowerCase());
     if (existing) {
-      const wasHost = room.hostId === existing.id;
       existing.id = socket.id; existing.connected = true;
-      if (wasHost) room.hostId = socket.id;
+      if (room.hostId === existing.id) room.hostId = socket.id;
       socket.join(roomCode);
       safeCb(callback, { success: true, room });
       io.to(roomCode).emit("ROOM_UPDATED", room);
@@ -103,10 +100,7 @@ io.on("connection", (socket) => {
 
   socket.on("START_GAME", ({ code } = {}, callback) => {
     const room = rooms.get(code);
-    if (!room) return safeCb(callback, { error: "Erreur" });
-    if (room.hostId !== socket.id) return safeCb(callback, { error: "Non autorisé" });
-    if (!room.questions || room.questions.length === 0) return safeCb(callback, { error: "Aucun produit trouvé." });
-    
+    if (!room || room.hostId !== socket.id) return safeCb(callback, { error: "Non autorisé" });
     room.state = "PLAYING"; room.currentQuestionIndex = 0; room.answers = {};
     room.players.forEach(p => p.score = 0);
     io.to(code).emit("ROOM_UPDATED", room);
@@ -173,8 +167,7 @@ function generateRoomCode() {
 }
 
 httpServer.on('request', async (req, res) => {
-  const urlObj = new URL(req.url, `http://localhost:${PORT}`);
-  if (urlObj.pathname === '/health' || urlObj.pathname === '/') {
+  if (req.url === '/health' || req.url === '/') {
     res.writeHead(200, { 'Content-Type': 'application/json' });
     res.end(JSON.stringify({ status: 'ok', items: questionDatabase.length }));
     return;
@@ -182,4 +175,4 @@ httpServer.on('request', async (req, res) => {
   res.writeHead(404); res.end();
 });
 
-httpServer.listen(PORT, "0.0.0.0", () => console.log(`🚀 Serveur démarré port ${PORT}`));
+httpServer.listen(PORT, "0.0.0.0", () => console.log(🚀 Server started on port ));
