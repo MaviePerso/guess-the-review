@@ -141,7 +141,7 @@ function RoomPageContent() {
         {room.state === "PLAYING" && room.questions && (
           <div style={{ display: "flex", alignItems: "center", gap: "1rem" }}>
             <div style={{ fontSize: "1.2rem", fontWeight: "bold", color: timeLeft <= 10 ? "var(--danger)" : "inherit" }}>
-              ? {Math.floor(timeLeft / 60)}:{(timeLeft % 60).toString().padStart(2, '0')}
+              Temps restant : {Math.floor(timeLeft / 60)}:{(timeLeft % 60).toString().padStart(2, '0')}
             </div>
             <div style={{ fontSize: "1.2rem", fontWeight: "bold", background: "var(--bg-card)", padding: "0.5rem 1rem", borderRadius: "12px", border: "1px solid var(--border)" }}>
               {room.currentQuestionIndex + 1} / {room.questions.length}

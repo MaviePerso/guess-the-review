@@ -25,7 +25,7 @@ function SoloPageContent() {
   const [lastPricePoints, setLastPricePoints] = useState(0);
 
   useEffect(() => {
-    // Uses the local Next.js API route — no Render dependency, instant!
+    // Uses the local Next.js API route ï¿½ no Render dependency, instant!
     fetch("/api/questions?count=10")
       .then(res => res.json())
       .then(data => { setGameQuestions(data); setLoading(false); })
@@ -105,7 +105,7 @@ function SoloPageContent() {
         <div style={{ display:"flex", justifyContent:"space-between", alignItems:"center" }}>
           <span style={{ fontSize:"1.2rem", fontWeight:"bold" }}>Score: {Math.round(score * 10) / 10}</span>
           <div style={{ display:"flex", alignItems:"center", gap:"10px", fontWeight:"bold", color: timeLeft <= 10 ? "var(--danger)" : "inherit" }}>
-            ? {Math.floor(timeLeft / 60)}:{(timeLeft % 60).toString().padStart(2, '0')}
+            Temps restant : {Math.floor(timeLeft / 60)}:{(timeLeft % 60).toString().padStart(2, '0')}
           </div>
           <span style={{ fontSize:"1rem", color:"#6b7280" }}>{currentIndex + 1} / {gameQuestions.length}</span>
         </div>
@@ -127,7 +127,7 @@ function SoloPageContent() {
               )}
               {(mode === "price" || mode === "both") && (
                 <div style={{ display:"flex", flexDirection:"column", gap:"0.5rem" }}>
-                  <label style={{ fontWeight:"bold" }}>Prix estime ? (€)</label>
+                  <label style={{ fontWeight:"bold" }}>Prix estime ? (ï¿½)</label>
                   <input type="number" min="0" step="1" className="input" placeholder="Ex: 25" value={guessPrice} onChange={e => setGuessPrice(e.target.value)} />
                 </div>
               )}
@@ -144,7 +144,7 @@ function SoloPageContent() {
               )}
               {(mode === "price" || mode === "both") && (
                 <div style={{ marginBottom:"0.5rem" }}>
-                  <p>Le prix etait : <strong>{currentQ.price} €</strong></p>
+                  <p>Le prix etait : <strong>{currentQ.price} ï¿½</strong></p>
                   <p style={{ fontSize:"0.9rem", color:"var(--primary)", fontWeight:"bold" }}>+{lastPricePoints} pts</p>
                 </div>
               )}
