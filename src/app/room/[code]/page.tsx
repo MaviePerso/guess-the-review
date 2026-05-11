@@ -180,7 +180,7 @@ function RoomPageContent() {
                 </div>
               )}
               
-              <ImageCarousel images={currentQ.images || []} />
+              <ImageCarousel images={currentQ.images || []} onImageFail={() => { if (isHost) handleNext(); }} />
               <div style={{ textAlign: "center", marginTop: "0.5rem", fontSize: "0.8rem", color: "var(--text-muted)" }}>Source: {currentQ.source}</div>
               
               <div className="review-text" style={{ marginTop: "1.5rem", fontStyle: "italic", fontSize: "1.1rem", borderLeft: "4px solid var(--primary)", paddingLeft: "1rem" }}>
@@ -294,3 +294,4 @@ export default function RoomPage() {
     </Suspense>
   );
 }
+

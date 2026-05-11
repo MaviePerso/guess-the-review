@@ -9,11 +9,18 @@ export async function GET(request: Request) {
   }
 
   try {
+    const urlObj = new URL(url);
+    const referer = urlObj.hostname.includes('amazon') 
+      ? 'https://www.amazon.com/' 
+      : (urlObj.hostname.includes('bestbuy') || urlObj.hostname.includes('bbystatic'))
+        ? 'https://www.bestbuy.com/'
+        : urlObj.origin + '/';
+
     const response = await fetch(url, {
       headers: {
         'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
         'Accept': 'image/avif,image/webp,image/apng,image/svg+xml,image/*,*/*;q=0.8',
-        'Referer': 'https://www.amazon.com/',
+        'Referer': referer,
       },
     });
 
@@ -23,6 +30,11 @@ export async function GET(request: Request) {
 
     const contentType = response.headers.get('content-type');
     const buffer = await response.arrayBuffer();
+    
+    // Check for BestBuy "Image Unavailable" placeholder
+    if (buffer.byteLength === 14867) {
+      throw new Error('Placeholder image detected (14867 bytes)');
+    }
 
     return new NextResponse(buffer, {
       headers: {
@@ -35,3 +47,5 @@ export async function GET(request: Request) {
     return new NextResponse('Error fetching image', { status: 500 });
   }
 }
+
+

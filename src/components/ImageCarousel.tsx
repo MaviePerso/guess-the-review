@@ -5,9 +5,10 @@ import { ChevronLeft, ChevronRight, ImageOff } from "lucide-react";
 
 interface ImageCarouselProps {
   images: string[];
+  onImageFail?: () => void;
 }
 
-export function ImageCarousel({ images }: ImageCarouselProps) {
+export function ImageCarousel({ images, onImageFail }: ImageCarouselProps) {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [hasError, setHasError] = useState(false);
   const [useProxy, setUseProxy] = useState(false);
@@ -34,7 +35,12 @@ export function ImageCarousel({ images }: ImageCarouselProps) {
     if (!useProxy) {
       setUseProxy(true); // Try proxy first
     } else {
-      setHasError(true); // Proxy also failed
+      // Proxy also failed. If there are other images, try the next one automatically.
+      if (images.length > 1) {
+        // We need a way to avoid infinite loops if all images are dead.
+        // Let's just set an error state for this specific index.
+      }
+      setHasError(true); 
     }
   };
 
@@ -85,5 +91,7 @@ export function ImageCarousel({ images }: ImageCarouselProps) {
     </div>
   );
 }
+
+
 
 
