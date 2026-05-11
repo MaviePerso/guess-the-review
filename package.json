@@ -1,7 +1,8 @@
-{
+﻿{
   "name": "guess-the-review",
   "version": "0.1.0",
   "private": true,
+  "type": "module",
   "scripts": {
     "dev": "concurrently \"npm run dev:frontend\" \"npm run dev:backend\"",
     "build": "next build",
@@ -12,12 +13,9 @@
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.105.4",
-    "amazon-buddy": "^2.2.45",
     "axios": "^1.16.0",
-    "cheerio": "^1.2.0",
     "lucide-react": "^1.14.0",
     "next": "16.2.6",
-    "puppeteer": "^24.43.0",
     "react": "19.2.4",
     "react-dom": "19.2.4",
     "socket.io": "^4.8.3",
@@ -31,7 +29,6 @@
     "concurrently": "^9.2.1",
     "eslint": "^9",
     "eslint-config-next": "16.2.6",
-    "nodemon": "^3.1.14",
     "typescript": "^5"
   }
 }
