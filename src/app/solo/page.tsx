@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useState, useEffect, Suspense } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
@@ -25,7 +25,6 @@ function SoloPageContent() {
   const [lastPricePoints, setLastPricePoints] = useState(0);
 
   useEffect(() => {
-    // Uses the local Next.js API route \ufffd no Render dependency, instant!
     fetch("/api/questions?count=10")
       .then(res => res.json())
       .then(data => { setGameQuestions(data); setLoading(false); })
@@ -50,25 +49,15 @@ function SoloPageContent() {
 
   useEffect(() => {
     if (loading || hasRevealed || currentIndex >= gameQuestions.length) return;
-    if (timeLeft <= 0) {
-      handleSubmit(true);
-      return;
-    }
-    const timerId = setInterval(() => {
-      setTimeLeft(t => t - 1);
-    }, 1000);
+    if (timeLeft <= 0) { handleSubmit(true); return; }
+    const timerId = setInterval(() => setTimeLeft(t => t - 1), 1000);
     return () => clearInterval(timerId);
   }, [loading, hasRevealed, currentIndex, gameQuestions.length, timeLeft]);
 
-  const calculateNoteScore = (guess: number, real: number) =>
-    Math.round(Math.max(0, 1 - Math.abs(real - guess)) * 10) / 10;
-
+  const calculateNoteScore = (guess: number, real: number) => Math.round(Math.max(0, 1 - Math.abs(real - guess)) * 10) / 10;
   const calculatePriceScore = (guess: string, real: number) => {
     const acc = (1 - Math.abs(real - Number(guess)) / real) * 100;
-    if (acc >= 100) return 1; if (acc >= 98) return 0.9; if (acc >= 96) return 0.8;
-    if (acc >= 94) return 0.7; if (acc >= 92) return 0.6; if (acc >= 90) return 0.5;
-    if (acc >= 88) return 0.4; if (acc >= 86) return 0.3; if (acc >= 84) return 0.2;
-    if (acc >= 82) return 0.1; return 0;
+    if (acc >= 90) return 1; if (acc >= 80) return 0.5; return 0;
   };
 
   const handleSubmit = (autoSubmit = false) => {
@@ -76,7 +65,6 @@ function SoloPageContent() {
     if ((mode === "price" || mode === "both") && (guessPrice === "" || Number(guessPrice) < 0)) {
       if (autoSubmit !== true) return alert("Entre un prix valide !");
       finalPrice = "0";
-      setGuessPrice("0");
     }
     let notePts = 0, pricePts = 0;
     if (mode === "note" || mode === "both") { notePts = calculateNoteScore(guessRating, currentQ.realRating); setLastNotePoints(notePts); }
@@ -121,17 +109,17 @@ function SoloPageContent() {
             <>
               {(mode === "note" || mode === "both") && (
                 <div style={{ display:"flex", flexDirection:"column", gap:"0.5rem" }}>
-                  <label style={{ fontWeight:"bold" }}>Note estim\u00e9e ? ({guessRating.toFixed(1)} ?)</label>
+                  <label style={{ fontWeight:"bold" }}>Note estim\u00e9e \u2b50 ({guessRating.toFixed(1)} \u2b50)</label>
                   <input type="range" min="1.0" max="5.0" step="0.1" value={guessRating} onChange={e => setGuessRating(Number(e.target.value))} style={{ width:"100%", accentColor:"var(--primary)" }} />
                 </div>
               )}
               {(mode === "price" || mode === "both") && (
                 <div style={{ display:"flex", flexDirection:"column", gap:"0.5rem" }}>
-                  <label style={{ fontWeight:"bold" }}>Prix estim\u00e9 ? (\ufffd)</label>
+                  <label style={{ fontWeight:"bold" }}>Prix estim\u00e9 \u20ac</label>
                   <input type="number" min="0" step="1" className="input" placeholder="Ex: 25" value={guessPrice} onChange={e => setGuessPrice(e.target.value)} />
                 </div>
               )}
-              <button className="btn btn-primary" onClick={() => handleSubmit(false)} style={{ marginTop:"1rem" }}>Valider ma reponse</button>
+              <button className="btn btn-primary" onClick={() => handleSubmit(false)} style={{ marginTop:"1rem" }}>Valider ma r\u00e9ponse</button>
             </>
           ) : (
             <div style={{ textAlign:"center", padding:"1rem", background:"var(--bg-card)", borderRadius:"8px", border:"1px solid var(--border)" }}>
@@ -144,7 +132,7 @@ function SoloPageContent() {
               )}
               {(mode === "price" || mode === "both") && (
                 <div style={{ marginBottom:"0.5rem" }}>
-                  <p>Le prix \u00e9tait : <strong>{currentQ.price} \ufffd</strong></p>
+                  <p>Le prix \u00e9tait : <strong>{currentQ.price} \u20ac</strong></p>
                   <p style={{ fontSize:"0.9rem", color:"var(--primary)", fontWeight:"bold" }}>+{lastPricePoints} pts</p>
                 </div>
               )}
@@ -166,6 +154,3 @@ export default function SoloPage() {
     </Suspense>
   );
 }
-
-
-
