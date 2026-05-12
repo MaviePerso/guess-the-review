@@ -1,10 +1,9 @@
-﻿"use client";
+"use client";
 
 import { useState, useEffect, Suspense } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { Users, User, Play, EyeOff } from "lucide-react";
 import { socket } from "@/lib/socket";
-import AdBanner from "@/components/AdBanner";
 
 function HomeContent() {
   const router = useRouter();
@@ -25,10 +24,15 @@ function HomeContent() {
 
   const handleCreateRoom = () => {
     if (!pseudo.trim()) return alert("Entre un pseudo !");
-    if (!socket.connected) socket.connect();
+    
+    if (!socket.connected) {
+      socket.connect();
+    }
+    
     const timeout = setTimeout(() => {
-        alert("Impossible de se connecter au serveur. Le serveur est peut-etre en veille (Render). Attends 30 secondes et reessaie.");
-    }, 20000);
+        alert("Impossible de se connecter au serveur. Le serveur est peut-\u00eatre en veille (Render). Attends 30 secondes et r\u00e9essaie.");
+    }, 8000);
+
     const onConnect = () => {
       clearTimeout(timeout);
       socket.emit("CREATE_ROOM", { pseudo, mode: gameMode }, (res: any) => {
@@ -39,20 +43,30 @@ function HomeContent() {
         }
       });
     };
-    if (socket.connected) onConnect();
-    else socket.once("connect", onConnect);
+
+    if (socket.connected) {
+      onConnect();
+    } else {
+      socket.once("connect", onConnect);
+    }
+
+    socket.once("connect_error", (err) => {
+        clearTimeout(timeout);
+        alert("Erreur de connexion au serveur : " + err.message);
+    });
   };
 
   const handleJoinRoom = () => {
     if (!pseudo.trim() || !roomCode.trim()) return alert("Infos manquantes !");
-    if (!socket.connected) socket.connect();
+    if (!socket.connected) {
+      socket.connect();
+    }
     router.push("/room/" + roomCode.toUpperCase() + "?pseudo=" + encodeURIComponent(pseudo) + (streamerMode ? "&streamer=true" : ""));
   };
 
   return (
     <div className="container">
       <div className="header">
-        <div style={{ background: "red", color: "white", padding: "5px", textAlign: "center", fontWeight: "bold" }}>V1.6 - STABLE</div>
         <h1 className="title">Guess The <span>Review</span></h1>
         <p className="subtitle">Devine la note globale ou le prix des pires et meilleurs objets du net.</p>
       </div>
@@ -65,7 +79,7 @@ function HomeContent() {
             </button>
             <div style={{ height: "1px", background: "var(--border)", margin: "1rem 0" }}></div>
             <button className="btn btn-secondary" onClick={() => setMode("create")}>
-              <Users size={20} /> Creer une room
+              <Users size={20} /> Cr\u00e9er une room
             </button>
             <button className="btn btn-outline" onClick={() => setMode("join")}>
               <Play size={20} /> Rejoindre une room
@@ -75,7 +89,7 @@ function HomeContent() {
 
         {mode === "solo_setup" && (
           <div style={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
-            <h2 style={{ textAlign: "center" }}>Parametres Solo</h2>
+            <h2 style={{ textAlign: "center" }}>Param\u00e8tres Solo</h2>
             <select className="input" value={gameMode} onChange={(e) => setGameMode(e.target.value)}>
               <option value="note">Deviner la Note uniquement</option>
               <option value="price">Deviner le Prix uniquement</option>
@@ -88,7 +102,7 @@ function HomeContent() {
 
         {mode === "create" && (
           <div style={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
-            <h2 style={{ textAlign: "center" }}>Creer une room</h2>
+            <h2 style={{ textAlign: "center" }}>Cr\u00e9er une room</h2>
             <input className="input" placeholder="Ton pseudo..." value={pseudo} onChange={(e) => setPseudo(e.target.value)} maxLength={15} />
             <select className="input" value={gameMode} onChange={(e) => setGameMode(e.target.value)}>
               <option value="note">Deviner la Note uniquement</option>
@@ -99,7 +113,7 @@ function HomeContent() {
               <input type="checkbox" checked={streamerMode} onChange={(e) => setStreamerMode(e.target.checked)} />
               <EyeOff size={16} /> Mode Streamer (cache le code)
             </label>
-            <button className="btn btn-secondary" onClick={handleCreateRoom}>Creer et inviter</button>
+            <button className="btn btn-secondary" onClick={handleCreateRoom}>Cr\u00e9er et inviter</button>
             <button className="btn btn-outline" onClick={() => setMode("menu")}>Retour</button>
           </div>
         )}
@@ -118,7 +132,6 @@ function HomeContent() {
           </div>
         )}
       </div>
-      <AdBanner slot="home_bottom" />
     </div>
   );
 }
