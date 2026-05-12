@@ -25,7 +25,6 @@ function SoloPageContent() {
   const [lastPricePoints, setLastPricePoints] = useState(0);
 
   useEffect(() => {
-    // Uses the local Next.js API route Ã¯Â¿Â½ no Render dependency, instant!
     fetch("/api/questions?count=10")
       .then(res => res.json())
       .then(data => { setGameQuestions(data); setLoading(false); })
@@ -90,7 +89,7 @@ function SoloPageContent() {
 
   if (currentIndex >= gameQuestions.length) return (
     <div className="container" style={{ textAlign:"center" }}>
-      <h1 className="title">Partie termin€e !</h1>
+      <h1 className="title">Partie terminée !</h1>
       <p className="subtitle">Ton score : {Math.round(score * 10) / 10} / {totalMaxScore}</p>
       <div style={{ display:"flex", gap:"1rem", justifyContent:"center", marginTop:"2rem" }}>
         <button className="btn btn-primary" onClick={() => window.location.reload()}><RotateCcw size={20} /> Rejouer</button>
@@ -121,30 +120,30 @@ function SoloPageContent() {
             <>
               {(mode === "note" || mode === "both") && (
                 <div style={{ display:"flex", flexDirection:"column", gap:"0.5rem" }}>
-                  <label style={{ fontWeight:"bold" }}>Note estimée â­ ({guessRating.toFixed(1)} â­)</label>
+                  <label style={{ fontWeight:"bold" }}>Note estimée ⭐ ({guessRating.toFixed(1)} ⭐)</label>
                   <input type="range" min="1.0" max="5.0" step="0.1" value={guessRating} onChange={e => setGuessRating(Number(e.target.value))} style={{ width:"100%", accentColor:"var(--primary)" }} />
                 </div>
               )}
               {(mode === "price" || mode === "both") && (
                 <div style={{ display:"flex", flexDirection:"column", gap:"0.5rem" }}>
-                  <label style={{ fontWeight:"bold" }}>Prix estimé ? (Ã¯Â¿Â½)</label>
+                  <label style={{ fontWeight:"bold" }}>Prix estimé (€)</label>
                   <input type="number" min="0" step="1" className="input" placeholder="Ex: 25" value={guessPrice} onChange={e => setGuessPrice(e.target.value)} />
                 </div>
               )}
-              <button className="btn btn-primary" onClick={() => handleSubmit(false)} style={{ marginTop:"1rem" }}>Valider ma reponse</button>
+              <button className="btn btn-primary" onClick={() => handleSubmit(false)} style={{ marginTop:"1rem" }}>Valider ma réponse</button>
             </>
           ) : (
             <div style={{ textAlign:"center", padding:"1rem", background:"var(--bg-card)", borderRadius:"8px", border:"1px solid var(--border)" }}>
-              <h3 style={{ fontSize:"1.5rem", marginBottom:"1rem" }}>Resultats</h3>
+              <h3 style={{ fontSize:"1.5rem", marginBottom:"1rem" }}>Résultats</h3>
               {(mode === "note" || mode === "both") && (
                 <div style={{ marginBottom:"0.5rem" }}>
-                  <p>La note Ã©tait : <strong>{currentQ.realRating} â­</strong></p>
+                  <p>La note était : <strong>{currentQ.realRating} ⭐</strong></p>
                   <p style={{ fontSize:"0.9rem", color:"var(--primary)", fontWeight:"bold" }}>+{lastNotePoints} pts</p>
                 </div>
               )}
               {(mode === "price" || mode === "both") && (
                 <div style={{ marginBottom:"0.5rem" }}>
-                  <p>Le prix €tait : <strong>{currentQ.price} Ã¯Â¿Â½</strong></p>
+                  <p>Le prix était : <strong>{currentQ.price} €</strong></p>
                   <p style={{ fontSize:"0.9rem", color:"var(--primary)", fontWeight:"bold" }}>+{lastPricePoints} pts</p>
                 </div>
               )}
@@ -166,6 +165,3 @@ export default function SoloPage() {
     </Suspense>
   );
 }
-
-
-
