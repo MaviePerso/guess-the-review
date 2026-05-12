@@ -24,7 +24,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="fr" className={${geistSans.variable} }>
+    <html lang="fr" className={$($)geistSans.variable} geistMono.variable}}>
       <head>
         <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8669837001236314" crossOrigin="anonymous"></script>
       </head>
