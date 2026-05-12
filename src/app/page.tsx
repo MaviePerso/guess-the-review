@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useState, useEffect, Suspense } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
@@ -31,7 +31,7 @@ function HomeContent() {
     }
     
     const timeout = setTimeout(() => {
-        alert("Impossible de se connecter au serveur. Le serveur est peut-être en veille (Render). Attends 30 secondes et réessaie.");
+        alert("Impossible de se connecter au serveur. Le serveur est peut-Ãªtre en veille (Render). Attends 30 secondes et rÃ©essaie.");
     }, 8000);
 
     const onConnect = () => {
@@ -80,7 +80,7 @@ function HomeContent() {
             </button>
             <div style={{ height: "1px", background: "var(--border)", margin: "1rem 0" }}></div>
             <button className="btn btn-secondary" onClick={() => setMode("create")}>
-              <Users size={20} /> Créer une room
+              <Users size={20} /> CrÃ©er une room
             </button>
             <button className="btn btn-outline" onClick={() => setMode("join")}>
               <Play size={20} /> Rejoindre une room
@@ -90,7 +90,7 @@ function HomeContent() {
 
         {mode === "solo_setup" && (
           <div style={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
-            <h2 style={{ textAlign: "center" }}>Paramètres Solo</h2>
+            <h2 style={{ textAlign: "center" }}>ParamÃ¨tres Solo</h2>
             <select className="input" value={gameMode} onChange={(e) => setGameMode(e.target.value)}>
               <option value="note">Deviner la Note uniquement</option>
               <option value="price">Deviner le Prix uniquement</option>
@@ -103,7 +103,7 @@ function HomeContent() {
 
         {mode === "create" && (
           <div style={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
-            <h2 style={{ textAlign: "center" }}>Créer une room</h2>
+            <h2 style={{ textAlign: "center" }}>CrÃ©er une room</h2>
             <input className="input" placeholder="Ton pseudo..." value={pseudo} onChange={(e) => setPseudo(e.target.value)} maxLength={15} />
             <select className="input" value={gameMode} onChange={(e) => setGameMode(e.target.value)}>
               <option value="note">Deviner la Note uniquement</option>
@@ -114,7 +114,7 @@ function HomeContent() {
               <input type="checkbox" checked={streamerMode} onChange={(e) => setStreamerMode(e.target.checked)} />
               <EyeOff size={16} /> Mode Streamer (cache le code)
             </label>
-            <button className="btn btn-secondary" onClick={handleCreateRoom}>Créer et inviter</button>
+            <button className="btn btn-secondary" onClick={handleCreateRoom}>CrÃ©er et inviter</button>
             <button className="btn btn-outline" onClick={() => setMode("menu")}>Retour</button>
           </div>
         )}
