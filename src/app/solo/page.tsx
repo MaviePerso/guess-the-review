@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useState, useEffect, Suspense } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
@@ -25,7 +25,7 @@ function SoloPageContent() {
   const [lastPricePoints, setLastPricePoints] = useState(0);
 
   useEffect(() => {
-    // Uses the local Next.js API route ï¿½ no Render dependency, instant!
+    // Uses the local Next.js API route Ã¯Â¿Â½ no Render dependency, instant!
     fetch("/api/questions?count=10")
       .then(res => res.json())
       .then(data => { setGameQuestions(data); setLoading(false); })
@@ -90,7 +90,7 @@ function SoloPageContent() {
 
   if (currentIndex >= gameQuestions.length) return (
     <div className="container" style={{ textAlign:"center" }}>
-      <h1 className="title">Partie termin�e !</h1>
+      <h1 className="title">Partie termin€e !</h1>
       <p className="subtitle">Ton score : {Math.round(score * 10) / 10} / {totalMaxScore}</p>
       <div style={{ display:"flex", gap:"1rem", justifyContent:"center", marginTop:"2rem" }}>
         <button className="btn btn-primary" onClick={() => window.location.reload()}><RotateCcw size={20} /> Rejouer</button>
@@ -121,13 +121,13 @@ function SoloPageContent() {
             <>
               {(mode === "note" || mode === "both") && (
                 <div style={{ display:"flex", flexDirection:"column", gap:"0.5rem" }}>
-                  <label style={{ fontWeight:"bold" }}>Note estim\u00E9e ⭐ ({guessRating.toFixed(1)} ⭐)</label>
+                  <label style={{ fontWeight:"bold" }}>Note estimée â­ ({guessRating.toFixed(1)} â­)</label>
                   <input type="range" min="1.0" max="5.0" step="0.1" value={guessRating} onChange={e => setGuessRating(Number(e.target.value))} style={{ width:"100%", accentColor:"var(--primary)" }} />
                 </div>
               )}
               {(mode === "price" || mode === "both") && (
                 <div style={{ display:"flex", flexDirection:"column", gap:"0.5rem" }}>
-                  <label style={{ fontWeight:"bold" }}>Prix estim\u00E9 ? (ï¿½)</label>
+                  <label style={{ fontWeight:"bold" }}>Prix estimé ? (Ã¯Â¿Â½)</label>
                   <input type="number" min="0" step="1" className="input" placeholder="Ex: 25" value={guessPrice} onChange={e => setGuessPrice(e.target.value)} />
                 </div>
               )}
@@ -138,13 +138,13 @@ function SoloPageContent() {
               <h3 style={{ fontSize:"1.5rem", marginBottom:"1rem" }}>Resultats</h3>
               {(mode === "note" || mode === "both") && (
                 <div style={{ marginBottom:"0.5rem" }}>
-                  <p>La note était : <strong>{currentQ.realRating} ⭐</strong></p>
+                  <p>La note Ã©tait : <strong>{currentQ.realRating} â­</strong></p>
                   <p style={{ fontSize:"0.9rem", color:"var(--primary)", fontWeight:"bold" }}>+{lastNotePoints} pts</p>
                 </div>
               )}
               {(mode === "price" || mode === "both") && (
                 <div style={{ marginBottom:"0.5rem" }}>
-                  <p>Le prix �tait : <strong>{currentQ.price} ï¿½</strong></p>
+                  <p>Le prix €tait : <strong>{currentQ.price} Ã¯Â¿Â½</strong></p>
                   <p style={{ fontSize:"0.9rem", color:"var(--primary)", fontWeight:"bold" }}>+{lastPricePoints} pts</p>
                 </div>
               )}
