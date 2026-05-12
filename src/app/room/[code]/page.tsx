@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useEffect, useState, Suspense } from "react";
 import { socket } from "@/lib/socket";
@@ -172,7 +172,7 @@ function RoomPageContent() {
               ) : (
                 <>
                   <p style={{ margin: "1rem 0", color: "var(--text-muted)" }}>Mode de jeu : <span className="badge">{mode}</span></p>
-                  <p style={{ color: "var(--success)", fontSize: "0.9rem", fontWeight: "600" }}>{room.questions.length} produits prêts !</p>
+                  <p style={{ color: "var(--success)", fontSize: "0.9rem", fontWeight: "600" }}>{room.questions.length} produits prÃªts !</p>
                 </>
               )}
               
@@ -188,7 +188,7 @@ function RoomPageContent() {
                   </button>
                 ) : (
                   <div className="card" style={{ background: "var(--bg-card)", borderStyle: "dashed" }}>
-                    <p>{room.isLoadingQuestions ? "Préparation de la partie..." : "Attente de l'hôte..."}</p>
+                    <p>{room.isLoadingQuestions ? "Préparation de la partie..." : "Attente de l'hÃ´te..."}</p>
                   </div>
                 )}
               </div>
@@ -217,14 +217,14 @@ function RoomPageContent() {
                       <div className="input-group">
                         <div style={{ display: "flex", justifyContent: "space-between", marginBottom: "0.5rem" }}>
                           <label style={{ fontWeight: "bold" }}>Note estimée ?</label>
-                          <span style={{ color: "var(--primary)", fontWeight: "bold", fontSize: "1.2rem" }}>{guessRating.toFixed(1)} ⭐</span>
+                          <span style={{ color: "var(--primary)", fontWeight: "bold", fontSize: "1.2rem" }}>{guessRating.toFixed(1)} â­</span>
                         </div>
                         <input type="range" min="1.0" max="5.0" step="0.1" value={guessRating} onChange={(e) => setGuessRating(Number(e.target.value))} style={{ width: "100%" }} />
                       </div>
                     )}
                     {(mode === "price" || mode === "both") && (
                       <div className="input-group">
-                        <label style={{ fontWeight: "bold", display: "block", marginBottom: "0.5rem" }}>Prix estimé ? (€)</label>
+                        <label style={{ fontWeight: "bold", display: "block", marginBottom: "0.5rem" }}>Prix estimé ? (â‚¬)</label>
                         <input type="number" className="input" placeholder="0.00" value={guessPrice} onChange={(e) => setGuessPrice(e.target.value)} style={{ fontSize: "1.5rem", textAlign: "center" }} />
                       </div>
                     )}
@@ -247,13 +247,13 @@ function RoomPageContent() {
                 {(mode === "note" || mode === "both") && (
                   <div className="card" style={{ textAlign: "center", background: "var(--bg-card)" }}>
                     <p style={{ fontSize: "0.9rem", color: "#9ca3af" }}>Note réelle</p>
-                    <p style={{ fontSize: "2rem", fontWeight: "bold", color: "var(--primary)" }}>{currentQ.realRating} ⭐</p>
+                    <p style={{ fontSize: "2rem", fontWeight: "bold", color: "var(--primary)" }}>{currentQ.realRating} â­</p>
                   </div>
                 )}
                 {(mode === "price" || mode === "both") && (
                   <div className="card" style={{ textAlign: "center", background: "var(--bg-card)" }}>
                     <p style={{ fontSize: "0.9rem", color: "#9ca3af" }}>Prix réel</p>
-                    <p style={{ fontSize: "2rem", fontWeight: "bold", color: "var(--primary)" }}>{currentQ.price} €</p>
+                    <p style={{ fontSize: "2rem", fontWeight: "bold", color: "var(--primary)" }}>{currentQ.price} â‚¬</p>
                   </div>
                 )}
               </div>
@@ -265,7 +265,7 @@ function RoomPageContent() {
                       <div>
                         <div style={{ fontWeight: "bold" }}>{p.pseudo}</div>
                         {ans ? (
-                          <div style={{ fontSize: "0.85rem", color: "#9ca3af" }}>{ans.rating?.toFixed(1)}⭐ | {ans.price}€</div>
+                          <div style={{ fontSize: "0.85rem", color: "#9ca3af" }}>{ans.rating?.toFixed(1)}â­ | {ans.price}â‚¬</div>
                         ) : <span style={{ fontSize: "0.8rem", color: "var(--danger)" }}>N'a pas répondu</span>}
                       </div>
                       <div><span style={{ color: "var(--primary)", fontWeight: "800" }}>+{ans?.points || 0}</span> pts</div>
@@ -281,7 +281,7 @@ function RoomPageContent() {
             <div className="card animate-fade-in" style={{ textAlign: "center", padding: "4rem 1rem" }}>
               <h1 style={{ fontSize: "2.5rem", marginBottom: "1rem" }}>Partie terminée !</h1>
               {isHost && <button className="btn btn-primary btn-lg" onClick={handleRestart}><RotateCcw size={20} /> Relancer une partie</button>}
-              <a href="/" className="btn btn-outline" style={{ marginTop: "1rem", display: "inline-block" }}>Retour à l'accueil</a>
+              <a href="/" className="btn btn-outline" style={{ marginTop: "1rem", display: "inline-block" }}>Retour Ã  l'accueil</a>
             </div>
           )}
         </div>
