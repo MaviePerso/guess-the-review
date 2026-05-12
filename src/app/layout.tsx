@@ -28,8 +28,8 @@ export default function RootLayout({
       <head>
         <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8669837001236314" crossOrigin="anonymous"></script>
       </head>
-      <body>
-        <main style={{ minHeight: 'auto' }}>
+      <body style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh', margin: 0 }}>
+        <main style={{ flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
           {children}
         </main>
         <Footer />
