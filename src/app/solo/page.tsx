@@ -121,13 +121,13 @@ function SoloPageContent() {
             <>
               {(mode === "note" || mode === "both") && (
                 <div style={{ display:"flex", flexDirection:"column", gap:"0.5rem" }}>
-                  <label style={{ fontWeight:"bold" }}>Note estimée ⭐ ({guessRating.toFixed(1)} ⭐)</label>
+                  <label style={{ fontWeight:"bold" }}>Note estim\u00E9e ⭐ ({guessRating.toFixed(1)} ⭐)</label>
                   <input type="range" min="1.0" max="5.0" step="0.1" value={guessRating} onChange={e => setGuessRating(Number(e.target.value))} style={{ width:"100%", accentColor:"var(--primary)" }} />
                 </div>
               )}
               {(mode === "price" || mode === "both") && (
                 <div style={{ display:"flex", flexDirection:"column", gap:"0.5rem" }}>
-                  <label style={{ fontWeight:"bold" }}>Prix estime ? (ï¿½)</label>
+                  <label style={{ fontWeight:"bold" }}>Prix estim\u00E9 ? (ï¿½)</label>
                   <input type="number" min="0" step="1" className="input" placeholder="Ex: 25" value={guessPrice} onChange={e => setGuessPrice(e.target.value)} />
                 </div>
               )}
