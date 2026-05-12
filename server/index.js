@@ -146,7 +146,7 @@ io.on("connection", (socket) => {
 
     socket.on("REPLACE_QUESTION", ({ code } = {}, callback) => {
     const room = rooms.get(code);
-    if (!room || room.hostId !== socket.id) return { error: "Non autorisé" };
+    if (!room) return; // Anyone can request replace if image is broken
     const newQs = getQuestions(1);
     if (newQs.length > 0) {
       room.questions[room.currentQuestionIndex] = newQs[0];
