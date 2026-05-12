@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import { useState, useEffect, Suspense } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
@@ -90,7 +90,7 @@ function SoloPageContent() {
 
   if (currentIndex >= gameQuestions.length) return (
     <div className="container" style={{ textAlign:"center" }}>
-      <h1 className="title">Partie Terminee !</h1>
+      <h1 className="title">Partie termin�e !</h1>
       <p className="subtitle">Ton score : {Math.round(score * 10) / 10} / {totalMaxScore}</p>
       <div style={{ display:"flex", gap:"1rem", justifyContent:"center", marginTop:"2rem" }}>
         <button className="btn btn-primary" onClick={() => window.location.reload()}><RotateCcw size={20} /> Rejouer</button>
@@ -144,7 +144,7 @@ function SoloPageContent() {
               )}
               {(mode === "price" || mode === "both") && (
                 <div style={{ marginBottom:"0.5rem" }}>
-                  <p>Le prix etait : <strong>{currentQ.price} ï¿½</strong></p>
+                  <p>Le prix �tait : <strong>{currentQ.price} ï¿½</strong></p>
                   <p style={{ fontSize:"0.9rem", color:"var(--primary)", fontWeight:"bold" }}>+{lastPricePoints} pts</p>
                 </div>
               )}
