@@ -29,7 +29,7 @@ export default function RootLayout({
         <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8669837001236314" crossOrigin="anonymous"></script>
       </head>
       <body>
-        <main style={{ minHeight: '70vh' }}>
+        <main style={{ minHeight: 'auto' }}>
           {children}
         </main>
         <Footer />
