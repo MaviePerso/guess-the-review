@@ -1,4 +1,1 @@
-# Google AdSense ads.txt
-# Remplacer ca-pub-8669837001236314 par ton ID une fois approuve
-google.com, ca-pub-8669837001236314, DIRECT, f08c47fec0942fa0
-
+﻿google.com, pub-8669837001236314, DIRECT, f08c47fec0942fa0
