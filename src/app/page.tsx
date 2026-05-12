@@ -1,6 +1,6 @@
-"use client";
+﻿"use client";
 
-import { useState, useEffect, Suspense } from "next/navigation";
+import { useState, useEffect, Suspense } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { Users, User, Play, EyeOff } from "lucide-react";
 import { socket } from "@/lib/socket";
