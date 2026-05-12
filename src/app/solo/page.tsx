@@ -78,7 +78,7 @@ function SoloPageContent() {
 
   if (currentIndex >= gameQuestions.length) return (
     <div className="container" style={{ textAlign:"center" }}>
-      <h1 className="title">Partie Termin\u00e9e !</h1>
+      <h1 className="title">Partie Terminée !</h1>
       <p className="subtitle">Ton score : {Math.round(score * 10) / 10} / {totalMaxScore}</p>
       <div style={{ display:"flex", gap:"1rem", justifyContent:"center", marginTop:"2rem" }}>
         <button className="btn btn-primary" onClick={() => window.location.reload()}><RotateCcw size={20} /> Rejouer</button>
@@ -109,30 +109,30 @@ function SoloPageContent() {
             <>
               {(mode === "note" || mode === "both") && (
                 <div style={{ display:"flex", flexDirection:"column", gap:"0.5rem" }}>
-                  <label style={{ fontWeight:"bold" }}>Note estim\u00e9e \u2b50 ({guessRating.toFixed(1)} \u2b50)</label>
+                  <label style={{ fontWeight:"bold" }}>Note estimée ⭐ ({guessRating.toFixed(1)} ⭐)</label>
                   <input type="range" min="1.0" max="5.0" step="0.1" value={guessRating} onChange={e => setGuessRating(Number(e.target.value))} style={{ width:"100%", accentColor:"var(--primary)" }} />
                 </div>
               )}
               {(mode === "price" || mode === "both") && (
                 <div style={{ display:"flex", flexDirection:"column", gap:"0.5rem" }}>
-                  <label style={{ fontWeight:"bold" }}>Prix estim\u00e9 \u20ac</label>
+                  <label style={{ fontWeight:"bold" }}>Prix estimé €</label>
                   <input type="number" min="0" step="1" className="input" placeholder="Ex: 25" value={guessPrice} onChange={e => setGuessPrice(e.target.value)} />
                 </div>
               )}
-              <button className="btn btn-primary" onClick={() => handleSubmit(false)} style={{ marginTop:"1rem" }}>Valider ma r\u00e9ponse</button>
+              <button className="btn btn-primary" onClick={() => handleSubmit(false)} style={{ marginTop:"1rem" }}>Valider ma réponse</button>
             </>
           ) : (
             <div style={{ textAlign:"center", padding:"1rem", background:"var(--bg-card)", borderRadius:"8px", border:"1px solid var(--border)" }}>
-              <h3 style={{ fontSize:"1.5rem", marginBottom:"1rem" }}>R\u00e9sultats</h3>
+              <h3 style={{ fontSize:"1.5rem", marginBottom:"1rem" }}>Résultats</h3>
               {(mode === "note" || mode === "both") && (
                 <div style={{ marginBottom:"0.5rem" }}>
-                  <p>La note \u00e9tait : <strong>{currentQ.realRating} \u2b50</strong></p>
+                  <p>La note était : <strong>{currentQ.realRating} ⭐</strong></p>
                   <p style={{ fontSize:"0.9rem", color:"var(--primary)", fontWeight:"bold" }}>+{lastNotePoints} pts</p>
                 </div>
               )}
               {(mode === "price" || mode === "both") && (
                 <div style={{ marginBottom:"0.5rem" }}>
-                  <p>Le prix \u00e9tait : <strong>{currentQ.price} \u20ac</strong></p>
+                  <p>Le prix était : <strong>{currentQ.price} €</strong></p>
                   <p style={{ fontSize:"0.9rem", color:"var(--primary)", fontWeight:"bold" }}>+{lastPricePoints} pts</p>
                 </div>
               )}
