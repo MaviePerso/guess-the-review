@@ -4,6 +4,7 @@ import { useState, useEffect, Suspense } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { ArrowRight, RotateCcw, Home, Loader2 } from "lucide-react";
 import { ImageCarousel } from "@/components/ImageCarousel";
+import AdBanner from "@/components/AdBanner";
 
 function SoloPageContent() {
   const router = useRouter();
@@ -148,6 +149,7 @@ function SoloPageContent() {
                   <p style={{ fontSize:"0.9rem", color:"var(--primary)", fontWeight:"bold" }}>+{lastPricePoints} pts</p>
                 </div>
               )}
+              <AdBanner slot="solo_results" format="rectangle" style={{ margin: "1rem 0" }} />
               <button className="btn btn-primary" style={{ width:"100%", marginTop:"1.5rem" }} onClick={handleNext}>
                 Question suivante <ArrowRight size={20} />
               </button>

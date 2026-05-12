@@ -35,12 +35,11 @@ export function ImageCarousel({ images, onImageFail }: ImageCarouselProps) {
     if (!useProxy) {
       setUseProxy(true); // Try proxy first
     } else {
-      // Proxy also failed. If there are other images, try the next one automatically.
-      if (images.length > 1) {
-        // We need a way to avoid infinite loops if all images are dead.
-        // Let's just set an error state for this specific index.
-      }
       setHasError(true); 
+      // If the image is dead even with proxy, notify the parent to skip this question
+      if (onImageFail) {
+        setTimeout(() => onImageFail(), 1000); // Small delay so the user sees "Corrupted" before it skips
+      }
     }
   };
 
@@ -91,6 +90,7 @@ export function ImageCarousel({ images, onImageFail }: ImageCarouselProps) {
     </div>
   );
 }
+
 
 
 

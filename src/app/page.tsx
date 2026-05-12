@@ -4,6 +4,8 @@ import { useState, useEffect, Suspense } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { Users, User, Play, EyeOff } from "lucide-react";
 import { socket } from "@/lib/socket";
+import AdBanner from "@/components/AdBanner";
+import { socket } from "@/lib/socket";
 
 function HomeContent() {
   const router = useRouter();
@@ -143,3 +145,4 @@ export default function Home() {
     </Suspense>
   );
 }
+

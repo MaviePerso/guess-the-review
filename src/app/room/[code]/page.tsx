@@ -5,6 +5,7 @@ import { socket } from "@/lib/socket";
 import { useParams, useSearchParams } from "next/navigation";
 import { Copy, Users, Play, ArrowRight, RotateCcw, Loader2, Eye, EyeOff } from "lucide-react";
 import { ImageCarousel } from "@/components/ImageCarousel";
+import AdBanner from "@/components/AdBanner";
 
 function RoomPageContent() {
   const params = useParams();

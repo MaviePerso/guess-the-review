@@ -1,0 +1,3 @@
+# Google AdSense ads.txt
+# Remplacer ca-pub-XXXXXXXXXXXXXXXX par ton ID une fois approuve
+google.com, ca-pub-XXXXXXXXXXXXXXXX, DIRECT, f08c47fec0942fa0
