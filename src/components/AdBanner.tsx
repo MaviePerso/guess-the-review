@@ -23,7 +23,7 @@ export default function AdBanner({ slot, format = 'auto', style }: AdBannerProps
       {/* Placeholder pour AdSense */}
       <ins className="adsbygoogle"
            style={{ display: 'block' }}
-           data-ad-client="ca-pub-XXXXXXXXXXXXXXXX" // Remplacer par ton ID plus tard
+           data-ad-client="ca-pub-8669837001236314" // Remplacer par ton ID plus tard
            data-ad-slot={slot}
            data-ad-format={format}
            data-full-width-responsive="true"></ins>
@@ -31,3 +31,4 @@ export default function AdBanner({ slot, format = 'auto', style }: AdBannerProps
     </div>
   );
 }
+
