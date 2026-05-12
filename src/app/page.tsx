@@ -1,84 +1,27 @@
 ﻿"use client";
-
-import { useState, useEffect, Suspense } from "react";
-import { useRouter, useSearchParams } from "next/navigation";
-import { Users, User, Play, EyeOff } from "lucide-react";
-import { socket } from "@/lib/socket";
+import { useState, Suspense } from "react";
+import { useRouter } from "next/navigation";
+import { Users, User, Play } from "lucide-react";
 import AdBanner from "@/components/AdBanner";
 
 function HomeContent() {
   const router = useRouter();
-  const searchParams = useSearchParams();
-  const [pseudo, setPseudo] = useState("");
-  const [roomCode, setRoomCode] = useState("");
   const [mode, setMode] = useState("menu");
-  const [gameMode, setGameMode] = useState("note");
-  const [streamerMode, setStreamerMode] = useState(false);
-
-  useEffect(() => {
-    const joinCode = searchParams?.get("join");
-    if (joinCode) {
-      setRoomCode(joinCode.toUpperCase());
-      setMode("join");
-    }
-  }, [searchParams]);
-
-  const handleCreateRoom = () => {
-    if (!pseudo.trim()) return alert("Entre un pseudo !");
-    
-    if (!socket.connected) {
-      socket.connect();
-    }
-    
-    const timeout = setTimeout(() => {
-        alert("Impossible de se connecter au serveur. Le serveur est peut-être en veille (Render). Attends 30 secondes et réessaie.");
-    }, 20000);
-
-    const onConnect = () => {
-      clearTimeout(timeout);
-      socket.emit("CREATE_ROOM", { pseudo, mode: gameMode }, (res: any) => {
-        if (res.success) {
-          router.push("/room/" + res.room.code + "?pseudo=" + encodeURIComponent(pseudo) + (streamerMode ? "&streamer=true" : ""));
-        } else {
-          alert(res.error);
-        }
-      });
-    };
-
-    if (socket.connected) {
-      onConnect();
-    } else {
-      socket.once("connect", onConnect);
-    }
-
-    socket.once("connect_error", (err) => {
-        clearTimeout(timeout);
-        alert("Erreur de connexion au serveur : " + err.message);
-    });
-  };
-
-  const handleJoinRoom = () => {
-    if (!pseudo.trim() || !roomCode.trim()) return alert("Infos manquantes !");
-    if (!socket.connected) {
-      socket.connect();
-    }
-    router.push("/room/" + roomCode.toUpperCase() + "?pseudo=" + encodeURIComponent(pseudo) + (streamerMode ? "&streamer=true" : ""));
-  };
 
   return (
     <div className="container">
-      <div className="header">
-        <h1 className="title">Guess The <span>Review</span></h1>
-        <p className="subtitle">Devine la note globale ou le prix des pires et meilleurs objets du net.</p>
+      <div style={{ textAlign: 'center', marginBottom: '2rem' }}>
+        <h1 className="title">Guess The <span className="orange-text">Review</span></h1>
+        <p style={{ color: '#64748b' }}>Devine la note ou le prix des produits !</p>
       </div>
 
-      <div className="card" style={{ maxWidth: "500px", margin: "0 auto", width: "100%" }}>
+      <div className="card">
         {mode === "menu" && (
-          <div style={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
-            <button className="btn btn-primary" onClick={() => setMode("solo_setup")}>
+          <div>
+            <button className="btn btn-primary" onClick={() => router.push("/solo?mode=both")}>
               <User size={20} /> Jouer Solo
             </button>
-            <div style={{ height: "1px", background: "var(--border)", margin: "1rem 0" }}></div>
+            <div style={{ height: '1px', background: '#e2e8f0', margin: '15px 0' }}></div>
             <button className="btn btn-secondary" onClick={() => setMode("create")}>
               <Users size={20} /> Créer une room
             </button>
@@ -88,59 +31,29 @@ function HomeContent() {
           </div>
         )}
 
-        {mode === "solo_setup" && (
-          <div style={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
-            <h2 style={{ textAlign: "center" }}>Paramètres Solo</h2>
-            <select className="input" value={gameMode} onChange={(e) => setGameMode(e.target.value)}>
-              <option value="note">Deviner la Note uniquement</option>
-              <option value="price">Deviner le Prix uniquement</option>
-              <option value="both">Deviner Note & Prix</option>
-            </select>
-            <button className="btn btn-primary" onClick={() => router.push("/solo?mode=" + gameMode)}>Lancer</button>
-            <button className="btn btn-outline" onClick={() => setMode("menu")}>Retour</button>
-          </div>
-        )}
-
         {mode === "create" && (
-          <div style={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
-            <h2 style={{ textAlign: "center" }}>Créer une room</h2>
-            <input className="input" placeholder="Ton pseudo..." value={pseudo} onChange={(e) => setPseudo(e.target.value)} maxLength={15} />
-            <select className="input" value={gameMode} onChange={(e) => setGameMode(e.target.value)}>
-              <option value="note">Deviner la Note uniquement</option>
-              <option value="price">Deviner le Prix uniquement</option>
-              <option value="both">Deviner Note & Prix</option>
-            </select>
-            <label style={{ display: "flex", alignItems: "center", gap: "0.5rem", cursor: "pointer", fontSize: "0.9rem", color: "var(--text-muted)" }}>
-              <input type="checkbox" checked={streamerMode} onChange={(e) => setStreamerMode(e.target.checked)} />
-              <EyeOff size={16} /> Mode Streamer (cache le code)
-            </label>
-            <button className="btn btn-secondary" onClick={handleCreateRoom}>Créer et inviter</button>
+          <div style={{ textAlign: 'center' }}>
+            <h2>Bientôt disponible en multi...</h2>
             <button className="btn btn-outline" onClick={() => setMode("menu")}>Retour</button>
           </div>
         )}
-
+        
         {mode === "join" && (
-          <div style={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
-            <h2 style={{ textAlign: "center" }}>Rejoindre</h2>
-            <input className="input" placeholder="Code de la room..." value={roomCode} onChange={(e) => setRoomCode(e.target.value.toUpperCase())} maxLength={5} />
-            <input className="input" placeholder="Ton pseudo..." value={pseudo} onChange={(e) => setPseudo(e.target.value)} maxLength={15} />
-            <label style={{ display: "flex", alignItems: "center", gap: "0.5rem", cursor: "pointer", fontSize: "0.9rem", color: "var(--text-muted)" }}>
-              <input type="checkbox" checked={streamerMode} onChange={(e) => setStreamerMode(e.target.checked)} />
-              <EyeOff size={16} /> Mode Streamer (cache le code)
-            </label>
-            <button className="btn btn-secondary" onClick={handleJoinRoom}>Rejoindre</button>
+          <div style={{ textAlign: 'center' }}>
+            <h2>Rejoindre une partie...</h2>
             <button className="btn btn-outline" onClick={() => setMode("menu")}>Retour</button>
           </div>
         )}
       </div>
-      <AdBanner slot="home_bottom" format="auto" />
+      <AdBanner slot="home_bottom" />
+      <div style={{ fontSize: '10px', color: '#ccc', textAlign: 'center', marginTop: '20px' }}>v1.2 - Production</div>
     </div>
   );
 }
 
 export default function Home() {
   return (
-    <Suspense fallback={<div>Loading...</div>}>
+    <Suspense fallback={<div>Chargement...</div>}>
       <HomeContent />
     </Suspense>
   );
