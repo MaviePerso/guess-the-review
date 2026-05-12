@@ -15,7 +15,7 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: "Guess The Review - Devine le prix et la note !",
-  description: "Devine le prix et la note des produits Amazon et BestBuy !",
+  description: "Devine la note globale ou le prix des pires et meilleurs objets du net.", icons: { icon: "data:image/x-icon;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQEAYAAABPYyMiAAAABmJLR0T///////8JWPfcAAAACXBIWXMAAABIAAAASABGyWs+AAAAF0lEQVRIx2NgGAWjYBSMglEwCkbBSAcACBAAAeg64mYAAAAASUVORK5CYII=" },
 };
 
 export default function RootLayout({
