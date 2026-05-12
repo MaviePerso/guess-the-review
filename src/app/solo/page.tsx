@@ -102,10 +102,9 @@ function SoloPageContent() {
       <div className="card">
         {currentQ.productName && <div style={{ color:"#6b7280", fontWeight:"600", marginBottom:"1rem", textAlign:"center" }}>{currentQ.productName}</div>}
         <div style={{ paddingBottom:"1.5rem" }}>
-          <div style={{ visibility: isImageReady ? "visible" : "hidden", height: isImageReady ? "auto" : "0", overflow: "hidden" }}>
-            <ImageCarousel 
+          <ImageCarousel 
               images={currentQ.images || (currentQ.imageUrl ? [currentQ.imageUrl] : [])} 
-              onImageSuccess={() => setIsImageReady(true)}
+              onImageReady={() => setIsImageReady(true)}
               onImageFail={async () => { 
                 setIsImageReady(false);
                 const res = await fetch("/api/questions?count=1&t=" + Date.now()); 
@@ -117,12 +116,6 @@ function SoloPageContent() {
                 } 
               }} 
             />
-          </div>
-          {!isImageReady && (
-            <div style={{ height: "300px", display: "flex", alignItems: "center", justifyContent: "center", background: "var(--bg-card)", borderRadius: "12px" }}>
-              <Loader2 size={32} className="animate-spin" style={{ color: "var(--primary)" }} />
-            </div>
-          )}
         </div>
         <div className="review-text">"{currentQ.reviewText}"</div>
         <div style={{ marginTop:"2rem", display:"flex", flexDirection:"column", gap:"1.5rem" }}>

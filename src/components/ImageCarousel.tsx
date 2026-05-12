@@ -1,48 +1,95 @@
 "use client";
 
-import { useState } from "react";
-import { ChevronLeft, ChevronRight, ImageOff } from "lucide-react";
+import { useState, useEffect } from "react";
+import { ChevronLeft, ChevronRight, ImageOff, Loader2 } from "lucide-react";
+
+// BestBuy placeholder sizes to reject
+const PLACEHOLDER_SIZES = [14867, 3495, 11462];
+const PLACEHOLDER_WIDTH = 122; // known BestBuy unavailable image width
 
 interface ImageCarouselProps {
   images: string[];
   onImageFail?: () => void;
-  onImageSuccess?: () => void;
+  onImageReady?: () => void;
 }
 
-export function ImageCarousel({ images, onImageFail, onImageSuccess }: ImageCarouselProps) {
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const [hasError, setHasError] = useState(false);
-  const [useProxy, setUseProxy] = useState(false);
+async function validateImage(url: string): Promise<boolean> {
+  return new Promise((resolve) => {
+    const img = new Image();
+    const timer = setTimeout(() => {
+      img.src = "";
+      resolve(false); // Timeout = treat as broken
+    }, 6000);
+    img.onload = () => {
+      clearTimeout(timer);
+      // Reject if image is too small (placeholder dimensions)
+      if (img.naturalWidth <= PLACEHOLDER_WIDTH || img.naturalHeight <= 10) {
+        resolve(false);
+      } else {
+        resolve(true);
+      }
+    };
+    img.onerror = () => {
+      clearTimeout(timer);
+      resolve(false);
+    };
+    img.src = url;
+  });
+}
 
-  if (!images || images.length === 0) {
+export function ImageCarousel({ images, onImageFail, onImageReady }: ImageCarouselProps) {
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [status, setStatus] = useState<"loading" | "ok" | "error">("loading");
+
+  useEffect(() => {
+    setStatus("loading");
+    setCurrentIndex(0);
+
+    if (!images || images.length === 0) {
+      setStatus("error");
+      onImageFail?.();
+      return;
+    }
+
+    let cancelled = false;
+
+    const checkImages = async () => {
+      for (const url of images) {
+        if (cancelled) return;
+        const ok = await validateImage(url);
+        if (ok) {
+          if (!cancelled) {
+            setStatus("ok");
+            onImageReady?.();
+          }
+          return;
+        }
+      }
+      // All images failed
+      if (!cancelled) {
+        setStatus("error");
+        onImageFail?.();
+      }
+    };
+
+    checkImages();
+    return () => { cancelled = true; };
+  }, [images]);
+
+  const next = () => setCurrentIndex((i) => (i + 1) % images.length);
+  const prev = () => setCurrentIndex((i) => (i - 1 + images.length) % images.length);
+
+  if (status === "loading") {
     return (
       <div className="carousel-container" style={{ display: "flex", alignItems: "center", justifyContent: "center", background: "var(--bg-card)", height: "300px" }}>
-        <div style={{ textAlign: "center", color: "var(--text-muted)" }}>
-          <ImageOff size={48} style={{ marginBottom: "10px" }} />
-          <p>Image non disponible</p>
-        </div>
+        <Loader2 size={40} className="animate-spin" style={{ color: "var(--primary)" }} />
       </div>
     );
   }
 
-  const next = () => { setHasError(false); setUseProxy(false); setCurrentIndex((i) => (i + 1) % images.length); };
-  const prev = () => { setHasError(false); setUseProxy(false); setCurrentIndex((i) => (i - 1 + images.length) % images.length); };
-
-  const currentImageUrl = useProxy 
-    ? "/api/proxy-image?url=" + encodeURIComponent(images[currentIndex])
-    : images[currentIndex];
-
-  const handleImageError = () => {
-    if (!useProxy) {
-      setUseProxy(true); // Try proxy first
-    } else {
-      setHasError(true); 
-      // If the image is dead even with proxy, notify the parent to skip this question
-      if (onImageFail) {
-        onImageFail(); // Small delay so the user sees "Corrupted" before it skips
-      }
-    }
-  };
+  if (status === "error") {
+    return null; // Parent handles the swap, show nothing
+  }
 
   return (
     <div className="carousel-container">
@@ -51,21 +98,17 @@ export function ImageCarousel({ images, onImageFail, onImageSuccess }: ImageCaro
           <ChevronLeft size={24} />
         </button>
       )}
-      
-      {hasError ? (
-        <div style={{ display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", background: "var(--bg-card)", height: "300px", width: "100%", borderRadius: "12px" }}>
-          <ImageOff size={48} style={{ marginBottom: "10px", color: "var(--text-muted)" }} />
-          <p style={{ color: "var(--text-muted)", fontSize: "0.9rem" }}>Image corrompue</p>
-        </div>
-      ) : (
-        <img 
-          src={currentImageUrl} 
-          alt="Produit" 
-          className="carousel-img" 
-          referrerPolicy="no-referrer" 
-          onLoad={(e) => { if (onImageSuccess) { if (e.currentTarget.naturalWidth < 50) onImageFail?.(); else onImageSuccess(); } }} onError={handleImageError}
-        />
-      )}
+
+      <img
+        src={images[currentIndex]}
+        alt="Produit"
+        className="carousel-img"
+        referrerPolicy="no-referrer"
+        onError={() => {
+          // Fallback if somehow a bad image slips through
+          onImageFail?.();
+        }}
+      />
 
       {images.length > 1 && (
         <button className="carousel-btn right" onClick={next}>
@@ -76,12 +119,12 @@ export function ImageCarousel({ images, onImageFail, onImageSuccess }: ImageCaro
       {images.length > 1 && (
         <div style={{ position: "absolute", bottom: "-20px", display: "flex", gap: "5px", left: "50%", transform: "translateX(-50%)" }}>
           {images.map((_, idx) => (
-            <div 
-              key={idx} 
+            <div
+              key={idx}
               style={{
-                width: "8px", 
-                height: "8px", 
-                borderRadius: "50%", 
+                width: "8px",
+                height: "8px",
+                borderRadius: "50%",
                 background: idx === currentIndex ? "var(--primary)" : "#d1d5db"
               }}
             />
@@ -91,8 +134,3 @@ export function ImageCarousel({ images, onImageFail, onImageSuccess }: ImageCaro
     </div>
   );
 }
-
-
-
-
-

@@ -204,21 +204,14 @@ function RoomPageContent() {
                 </div>
               )}
               
-              <div style={{ visibility: isImageReady ? "visible" : "hidden", height: isImageReady ? "auto" : "0", overflow: "hidden" }}>
-            <ImageCarousel 
+              <ImageCarousel 
               images={currentQ.images || []} 
-              onImageSuccess={() => setIsImageReady(true)}
+              onImageReady={() => setIsImageReady(true)}
               onImageFail={() => { 
                 setIsImageReady(false);
                 socket.emit("REPLACE_QUESTION", { code }); 
               }} 
             />
-          </div>
-          {!isImageReady && (
-            <div style={{ height: "300px", display: "flex", alignItems: "center", justifyContent: "center", background: "var(--bg-card)", borderRadius: "12px" }}>
-              <Loader2 size={32} className="animate-spin" style={{ color: "var(--primary)" }} />
-            </div>
-          )}
               <div style={{ textAlign: "center", marginTop: "0.5rem", fontSize: "0.8rem", color: "var(--text-muted)" }}>Source: {currentQ.source}</div>
               
               <div className="review-text" style={{ marginTop: "1.5rem", fontStyle: "italic", fontSize: "1.1rem", borderLeft: "4px solid var(--primary)", paddingLeft: "1rem" }}>
