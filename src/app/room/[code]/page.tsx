@@ -118,7 +118,7 @@ function RoomPageContent() {
   const copyInviteLink = () => {
     const link = window.location.origin + "/?join=" + code;
     navigator.clipboard.writeText(link);
-    alert("Lien d'invitation copié !");
+    alert("Lien d'invitation copi� !");
   };
 
   return (
@@ -163,10 +163,10 @@ function RoomPageContent() {
                 <div style={{ marginTop: "2rem", color: "var(--primary)" }}>
                   <div style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: "10px" }}>
                     <Loader2 className="animate-spin" />
-                    <span>Récupération de produits inédits...</span>
+                    <span>R�cup�ration de produits in�dits...</span>
                   </div>
                   <p style={{ fontSize: "0.8rem", color: "var(--text-muted)", marginTop: "0.5rem" }}>
-                    On fouille les bases de données pour toi !
+                    On fouille les bases de donn�es pour toi !
                   </p>
                 </div>
               ) : (
@@ -184,11 +184,11 @@ function RoomPageContent() {
                     disabled={room.isLoadingQuestions}
                     style={{ padding: "1rem 3rem", opacity: room.isLoadingQuestions ? 0.5 : 1 }}
                   >
-                    <Play size={20} style={{ marginRight: "8px" }} /> Démarrer la partie
+                    <Play size={20} style={{ marginRight: "8px" }} /> D�marrer la partie
                   </button>
                 ) : (
                   <div className="card" style={{ background: "var(--bg-card)", borderStyle: "dashed" }}>
-                    <p>{room.isLoadingQuestions ? "Préparation de la partie..." : "Attente de l'hÃ´te..."}</p>
+                    <p>{room.isLoadingQuestions ? "Pr�paration de la partie..." : "Attente de l'hÃ´te..."}</p>
                   </div>
                 )}
               </div>
@@ -216,7 +216,7 @@ function RoomPageContent() {
                     {(mode === "note" || mode === "both") && (
                       <div className="input-group">
                         <div style={{ display: "flex", justifyContent: "space-between", marginBottom: "0.5rem" }}>
-                          <label style={{ fontWeight: "bold" }}>Note estimée ?</label>
+                          <label style={{ fontWeight: "bold" }}>Note estim�e ?</label>
                           <span style={{ color: "var(--primary)", fontWeight: "bold", fontSize: "1.2rem" }}>{guessRating.toFixed(1)} â­</span>
                         </div>
                         <input type="range" min="1.0" max="5.0" step="0.1" value={guessRating} onChange={(e) => setGuessRating(Number(e.target.value))} style={{ width: "100%" }} />
@@ -224,15 +224,15 @@ function RoomPageContent() {
                     )}
                     {(mode === "price" || mode === "both") && (
                       <div className="input-group">
-                        <label style={{ fontWeight: "bold", display: "block", marginBottom: "0.5rem" }}>Prix estimé ? (â‚¬)</label>
+                        <label style={{ fontWeight: "bold", display: "block", marginBottom: "0.5rem" }}>Prix estim� ? (â‚¬)</label>
                         <input type="number" className="input" placeholder="0.00" value={guessPrice} onChange={(e) => setGuessPrice(e.target.value)} style={{ fontSize: "1.5rem", textAlign: "center" }} />
                       </div>
                     )}
-                    <button className="btn btn-primary btn-lg" onClick={() => handleSubmit(false)} style={{ height: "60px" }}>Valider ma réponse</button>
+                    <button className="btn btn-primary btn-lg" onClick={() => handleSubmit(false)} style={{ height: "60px" }}>Valider ma r�ponse</button>
                   </div>
                 ) : (
                   <div style={{ textAlign: "center", padding: "3rem 1rem", background: "rgba(34, 197, 94, 0.05)", borderRadius: "16px", border: "2px dashed var(--success)" }}>
-                    <h3 style={{ color: "var(--success)", fontSize: "1.5rem", marginBottom: "0.5rem" }}>Réponse enregistrée !</h3>
+                    <h3 style={{ color: "var(--success)", fontSize: "1.5rem", marginBottom: "0.5rem" }}>R�ponse enregistr�e !</h3>
                     <p style={{ color: "var(--text-muted)" }}>En attente des autres joueurs...</p>
                   </div>
                 )}
@@ -242,17 +242,17 @@ function RoomPageContent() {
 
           {room.state === "REVEAL" && currentQ && (
             <div className="card animate-scale-in">
-              <h2 style={{ textAlign: "center", fontSize: "1.8rem", marginBottom: "2rem" }}>Résultats du tour</h2>
+              <h2 style={{ textAlign: "center", fontSize: "1.8rem", marginBottom: "2rem" }}>R�sultats du tour</h2>
               <div className="grid" style={{ gap: "1rem", marginBottom: "2.5rem" }}>
                 {(mode === "note" || mode === "both") && (
                   <div className="card" style={{ textAlign: "center", background: "var(--bg-card)" }}>
-                    <p style={{ fontSize: "0.9rem", color: "#9ca3af" }}>Note réelle</p>
+                    <p style={{ fontSize: "0.9rem", color: "#9ca3af" }}>Note r�elle</p>
                     <p style={{ fontSize: "2rem", fontWeight: "bold", color: "var(--primary)" }}>{currentQ.realRating} â­</p>
                   </div>
                 )}
                 {(mode === "price" || mode === "both") && (
                   <div className="card" style={{ textAlign: "center", background: "var(--bg-card)" }}>
-                    <p style={{ fontSize: "0.9rem", color: "#9ca3af" }}>Prix réel</p>
+                    <p style={{ fontSize: "0.9rem", color: "#9ca3af" }}>Prix r�el</p>
                     <p style={{ fontSize: "2rem", fontWeight: "bold", color: "var(--primary)" }}>{currentQ.price} â‚¬</p>
                   </div>
                 )}
@@ -266,7 +266,7 @@ function RoomPageContent() {
                         <div style={{ fontWeight: "bold" }}>{p.pseudo}</div>
                         {ans ? (
                           <div style={{ fontSize: "0.85rem", color: "#9ca3af" }}>{ans.rating?.toFixed(1)}â­ | {ans.price}â‚¬</div>
-                        ) : <span style={{ fontSize: "0.8rem", color: "var(--danger)" }}>N'a pas répondu</span>}
+                        ) : <span style={{ fontSize: "0.8rem", color: "var(--danger)" }}>N'a pas r�pondu</span>}
                       </div>
                       <div><span style={{ color: "var(--primary)", fontWeight: "800" }}>+{ans?.points || 0}</span> pts</div>
                     </div>
@@ -279,7 +279,7 @@ function RoomPageContent() {
 
           {room.state === "FINISHED" && (
             <div className="card animate-fade-in" style={{ textAlign: "center", padding: "4rem 1rem" }}>
-              <h1 style={{ fontSize: "2.5rem", marginBottom: "1rem" }}>Partie terminée !</h1>
+              <h1 style={{ fontSize: "2.5rem", marginBottom: "1rem" }}>Partie termin�e !</h1>
               {isHost && <button className="btn btn-primary btn-lg" onClick={handleRestart}><RotateCcw size={20} /> Relancer une partie</button>}
               <a href="/" className="btn btn-outline" style={{ marginTop: "1rem", display: "inline-block" }}>Retour Ã  l'accueil</a>
             </div>
