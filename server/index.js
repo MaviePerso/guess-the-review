@@ -13,6 +13,29 @@ const PORT = process.env.PORT || 3001;
 const rooms = new Map();
 let DB_PATH = path.join(process.cwd(), 'server', 'db_verified.json');
 
+
+// ============================================================
+// LUXURY BLACKLIST - Items matching these keywords will NEVER
+// be shown to players, regardless of what's in the database.
+// ============================================================
+const LUXURY_BLACKLIST = [
+  'lamborghini', 'ferrari', 'porsche', 'bugatti', 'bentley', 'maserati',
+  'rolls royce', 'mclaren', 'aston martin', 'maybach', 'supercar', 'hypercar',
+  'rolex', 'patek', 'audemars', 'omega', 'breitling', 'cartier',
+  'gucci', 'vuitton', 'hermes', 'prada', 'chanel', 'dior', 'balenciaga',
+  'versace', 'givenchy', 'yves saint', 'armani', 'burberry',
+  'tiffany', 'boucheron', 'bulgari',
+  'yacht', 'yachting', 'private jet', 'jet prive',
+  'mansion', 'penthouse', 'villa', 'chateau',
+  'luxury', 'luxe', 'prestige', 'platinum edition', 'diamond edition',
+  'rare edition', 'gold edition', 'limited prestige',
+];
+
+function isLuxury(productName) {
+  const name = (productName || '').toLowerCase();
+  return LUXURY_BLACKLIST.some(kw => name.includes(kw));
+}
+
 let questionDatabase = [];
 
 try {
@@ -28,7 +51,7 @@ try {
       images: item.images || (item.image ? [item.image] : []),
       source: item.source || sources[Math.floor(Math.random() * sources.length)]
     };
-  }).filter(item => item.images && item.images.length > 0 && item.price > 0);
+  }).filter(item => item.images && item.images.length > 0 && item.price > 0 && !isLuxury(item.productName));
   
   console.log([DB] Loaded  products. Pure random mode enabled.);
 } catch (e) {
