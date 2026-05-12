@@ -28,7 +28,7 @@ function SoloPageContent() {
     // Force a small delay to ensure hydration is complete
     const load = async () => {
         try {
-            const res = await fetch("/api/questions?count=10");
+            const res = await fetch("/api/questions?count=10&t=" + Date.now());
             if (!res.ok) throw new Error("API Error");
             const data = await res.json();
             setGameQuestions(data);
@@ -101,7 +101,7 @@ function SoloPageContent() {
       <div className="card">
         {currentQ.productName && <div style={{ color:"#6b7280", fontWeight:"600", marginBottom:"1rem", textAlign:"center" }}>{currentQ.productName}</div>}
         <div style={{ paddingBottom:"1.5rem" }}>
-          <ImageCarousel images={currentQ.images || (currentQ.imageUrl ? [currentQ.imageUrl] : [])} onImageFail={async () => { const res = await fetch("/api/questions?count=1"); const data = await res.json(); if (data.length > 0) { const newQs = [...gameQuestions]; newQs[currentIndex] = data[0]; setGameQuestions(newQs); } }} />
+          <ImageCarousel images={currentQ.images || (currentQ.imageUrl ? [currentQ.imageUrl] : [])} onImageFail={async () => { const res = await fetch("/api/questions?count=1&t=" + Date.now()); const data = await res.json(); if (data.length > 0) { const newQs = [...gameQuestions]; newQs[currentIndex] = data[0]; setGameQuestions(newQs); } }} />
         </div>
         <div className="review-text">"{currentQ.reviewText}"</div>
         <div style={{ marginTop:"2rem", display:"flex", flexDirection:"column", gap:"1.5rem" }}>

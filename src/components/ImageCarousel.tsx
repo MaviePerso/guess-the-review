@@ -38,7 +38,7 @@ export function ImageCarousel({ images, onImageFail }: ImageCarouselProps) {
       setHasError(true); 
       // If the image is dead even with proxy, notify the parent to skip this question
       if (onImageFail) {
-        setTimeout(() => onImageFail(), 1000); // Small delay so the user sees "Corrupted" before it skips
+        onImageFail(); // Small delay so the user sees "Corrupted" before it skips
       }
     }
   };
