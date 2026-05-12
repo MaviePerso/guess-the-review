@@ -31,8 +31,8 @@ function HomeContent() {
     }
     
     const timeout = setTimeout(() => {
-        alert("Impossible de se connecter au serveur. Le serveur est peut-être en veille (Render). Attends 30 secondes et réessaie.");
-    }, 20000);
+        alert("Impossible de se connecter au serveur. Le serveur est peut-Ãªtre en veille (Render). Attends 30 secondes et rÃ©essaie.");
+    }, 8000);
 
     const onConnect = () => {
       clearTimeout(timeout);
@@ -67,20 +67,20 @@ function HomeContent() {
 
   return (
     <div className="container">
-      <div style={{ textAlign: 'center', marginBottom: '2rem' }}>
-        <h1 className="title">Guess The <span className="orange-text">Review</span></h1>
-        <p style={{ color: '#64748b' }}>Devine la note ou le prix des pires et meilleurs objets du net.</p>
+      <div className="header">
+        <h1 className="title">Guess The <span>Review</span></h1>
+        <p className="subtitle">Devine la note globale ou le prix des pires et meilleurs objets du net.</p>
       </div>
 
-      <div className="card">
+      <div className="card" style={{ maxWidth: "500px", margin: "0 auto", width: "100%" }}>
         {mode === "menu" && (
           <div style={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
             <button className="btn btn-primary" onClick={() => setMode("solo_setup")}>
               <User size={20} /> Jouer Solo
             </button>
-            <div style={{ height: "1px", background: "#e2e8f0", margin: "1rem 0" }}></div>
+            <div style={{ height: "1px", background: "var(--border)", margin: "1rem 0" }}></div>
             <button className="btn btn-secondary" onClick={() => setMode("create")}>
-              <Users size={20} /> Créer une room
+              <Users size={20} /> CrÃ©er une room
             </button>
             <button className="btn btn-outline" onClick={() => setMode("join")}>
               <Play size={20} /> Rejoindre une room
@@ -90,7 +90,7 @@ function HomeContent() {
 
         {mode === "solo_setup" && (
           <div style={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
-            <h2 style={{ textAlign: "center" }}>Paramètres Solo</h2>
+            <h2 style={{ textAlign: "center" }}>ParamÃ¨tres Solo</h2>
             <select className="input" value={gameMode} onChange={(e) => setGameMode(e.target.value)}>
               <option value="note">Deviner la Note uniquement</option>
               <option value="price">Deviner le Prix uniquement</option>
@@ -103,18 +103,18 @@ function HomeContent() {
 
         {mode === "create" && (
           <div style={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
-            <h2 style={{ textAlign: "center" }}>Créer une room</h2>
+            <h2 style={{ textAlign: "center" }}>CrÃ©er une room</h2>
             <input className="input" placeholder="Ton pseudo..." value={pseudo} onChange={(e) => setPseudo(e.target.value)} maxLength={15} />
             <select className="input" value={gameMode} onChange={(e) => setGameMode(e.target.value)}>
               <option value="note">Deviner la Note uniquement</option>
               <option value="price">Deviner le Prix uniquement</option>
               <option value="both">Deviner Note & Prix</option>
             </select>
-            <label style={{ display: "flex", alignItems: "center", gap: "0.5rem", cursor: "pointer", fontSize: "0.9rem", color: "#64748b" }}>
+            <label style={{ display: "flex", alignItems: "center", gap: "0.5rem", cursor: "pointer", fontSize: "0.9rem", color: "var(--text-muted)" }}>
               <input type="checkbox" checked={streamerMode} onChange={(e) => setStreamerMode(e.target.checked)} />
               <EyeOff size={16} /> Mode Streamer (cache le code)
             </label>
-            <button className="btn btn-secondary" onClick={handleCreateRoom}>Créer et inviter</button>
+            <button className="btn btn-secondary" onClick={handleCreateRoom}>CrÃ©er et inviter</button>
             <button className="btn btn-outline" onClick={() => setMode("menu")}>Retour</button>
           </div>
         )}
@@ -124,7 +124,7 @@ function HomeContent() {
             <h2 style={{ textAlign: "center" }}>Rejoindre</h2>
             <input className="input" placeholder="Code de la room..." value={roomCode} onChange={(e) => setRoomCode(e.target.value.toUpperCase())} maxLength={5} />
             <input className="input" placeholder="Ton pseudo..." value={pseudo} onChange={(e) => setPseudo(e.target.value)} maxLength={15} />
-            <label style={{ display: "flex", alignItems: "center", gap: "0.5rem", cursor: "pointer", fontSize: "0.9rem", color: "#64748b" }}>
+            <label style={{ display: "flex", alignItems: "center", gap: "0.5rem", cursor: "pointer", fontSize: "0.9rem", color: "var(--text-muted)" }}>
               <input type="checkbox" checked={streamerMode} onChange={(e) => setStreamerMode(e.target.checked)} />
               <EyeOff size={16} /> Mode Streamer (cache le code)
             </label>
@@ -133,8 +133,7 @@ function HomeContent() {
           </div>
         )}
       </div>
-      <AdBanner slot="home_bottom" format="auto" />
-      <div style={{ fontSize: '10px', color: '#ccc', textAlign: 'center', marginTop: '20px' }}>v1.3 - Final Build</div>
+      <AdBanner slot="home_bottom" />
     </div>
   );
 }
