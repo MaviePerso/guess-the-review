@@ -144,6 +144,20 @@ io.on("connection", (socket) => {
     safeCb(callback, { success: true });
   });
 
+    socket.on("REPLACE_QUESTION", ({ code } = {}, callback) => {
+    const room = rooms.get(code);
+    if (!room || room.hostId !== socket.id) return { error: "Non autorisé" };
+    const newQs = getQuestions(1);
+    if (newQs.length > 0) {
+      room.questions[room.currentQuestionIndex] = newQs[0];
+      room.answers = {}; 
+      io.to(code).emit("ROOM_UPDATED", room);
+      if (typeof callback === 'function') callback({ success: true });
+    } else {
+      if (typeof callback === 'function') callback({ error: "Plus de questions disponibles" });
+    }
+  });
+
   socket.on("disconnect", () => {
     rooms.forEach((room, code) => {
       const p = room.players.find(pl => pl.id === socket.id);
