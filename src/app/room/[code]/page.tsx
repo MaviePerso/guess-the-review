@@ -20,6 +20,7 @@ function RoomPageContent() {
   const [guessPrice, setGuessPrice] = useState<string>("");
   const [isMasked, setIsMasked] = useState(isStreamerModeInitial);
   const [timeLeft, setTimeLeft] = useState(180);
+  const [isImageReady, setIsImageReady] = useState(false);
 
   useEffect(() => {
     if (room?.state === "PLAYING") setTimeLeft(180);
@@ -203,7 +204,21 @@ function RoomPageContent() {
                 </div>
               )}
               
-              <ImageCarousel images={currentQ.images || []} onImageFail={() => { socket.emit("REPLACE_QUESTION", { code }); }} />
+              <div style={{ visibility: isImageReady ? "visible" : "hidden", height: isImageReady ? "auto" : "0", overflow: "hidden" }}>
+            <ImageCarousel 
+              images={currentQ.images || []} 
+              onImageSuccess={() => setIsImageReady(true)}
+              onImageFail={() => { 
+                setIsImageReady(false);
+                socket.emit("REPLACE_QUESTION", { code }); 
+              }} 
+            />
+          </div>
+          {!isImageReady && (
+            <div style={{ height: "300px", display: "flex", alignItems: "center", justifyContent: "center", background: "var(--bg-card)", borderRadius: "12px" }}>
+              <Loader2 size={32} className="animate-spin" style={{ color: "var(--primary)" }} />
+            </div>
+          )}
               <div style={{ textAlign: "center", marginTop: "0.5rem", fontSize: "0.8rem", color: "var(--text-muted)" }}>Source: {currentQ.source}</div>
               
               <div className="review-text" style={{ marginTop: "1.5rem", fontStyle: "italic", fontSize: "1.1rem", borderLeft: "4px solid var(--primary)", paddingLeft: "1rem" }}>

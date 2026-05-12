@@ -6,9 +6,10 @@ import { ChevronLeft, ChevronRight, ImageOff } from "lucide-react";
 interface ImageCarouselProps {
   images: string[];
   onImageFail?: () => void;
+  onImageSuccess?: () => void;
 }
 
-export function ImageCarousel({ images, onImageFail }: ImageCarouselProps) {
+export function ImageCarousel({ images, onImageFail, onImageSuccess }: ImageCarouselProps) {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [hasError, setHasError] = useState(false);
   const [useProxy, setUseProxy] = useState(false);
@@ -62,7 +63,7 @@ export function ImageCarousel({ images, onImageFail }: ImageCarouselProps) {
           alt="Produit" 
           className="carousel-img" 
           referrerPolicy="no-referrer" 
-          onError={handleImageError}
+          onLoad={(e) => { if (onImageSuccess) { if (e.currentTarget.naturalWidth < 50) onImageFail?.(); else onImageSuccess(); } }} onError={handleImageError}
         />
       )}
 
