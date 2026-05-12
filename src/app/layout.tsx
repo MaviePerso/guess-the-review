@@ -15,7 +15,7 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: "Guess The Review - Devine le prix et la note des produits !",
-  description: "Un jeu addictif où vous devez deviner le prix et la note des produits Amazon et BestBuy. Testez vos connaissances du marché !",
+  description: "Un jeu addictif oÃ¹ vous devez deviner le prix et la note des produits Amazon et BestBuy. Testez vos connaissances du marchÃ© !",
 };
 
 export default function RootLayout({
@@ -26,7 +26,6 @@ export default function RootLayout({
   return (
     <html lang="fr" className={${geistSans.variable} }>
       <head>
-        {/* AdSense Placeholder - À activer une fois le compte approuvé */}
         <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8669837001236314" crossOrigin="anonymous"></script>
       </head>
       <body>
@@ -38,4 +37,3 @@ export default function RootLayout({
     </html>
   );
 }
-

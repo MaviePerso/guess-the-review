@@ -4,16 +4,13 @@ export default function Terms() {
       <h1 className="title">Conditions d'Utilisation</h1>
       <div className="card" style={{ textAlign: 'left', lineHeight: '1.6' }}>
         <h3>1. Acceptation des conditions</h3>
-        <p>En accédant à Guess The Review, vous acceptez d'être lié par les présentes conditions d'utilisation.</p>
-        
+        <p>En accÃ©dant Ã  Guess The Review, vous acceptez d'Ãªtre liÃ© par les prÃ©sentes conditions d'utilisation.</p>
         <h3>2. Utilisation du service</h3>
-        <p>Guess The Review est un service de divertissement. L'utilisateur s'engage à ne pas tenter de perturber le bon fonctionnement du site ou des serveurs de jeu.</p>
-        
-        <h3>3. Propriété intellectuelle</h3>
-        <p>Le contenu du site, les logos et le code sont la propriété de MiraMayvi. Les images des produits appartiennent à leurs propriétaires respectifs (Amazon, BestBuy, etc.).</p>
-        
-        <h3>4. Limitation de responsabilité</h3>
-        <p>Nous ne garantissons pas que le service sera ininterrompu ou sans erreur. Les prix affichés sont à titre indicatif et proviennent de données tierces.</p>
+        <p>Guess The Review est un service de divertissement. L'utilisateur s'engage Ã  ne pas tenter de perturber le bon fonctionnement du site ou des serveurs de jeu.</p>
+        <h3>3. PropriÃ©tÃ© intellectuelle</h3>
+        <p>Le contenu du site, les logos et le code sont la propriÃ©tÃ© de MiraMayvi. Les images des produits appartiennent Ã  leurs propriÃ©taires respectifs (Amazon, BestBuy, etc.).</p>
+        <h3>4. Limitation de responsabilitÃ©</h3>
+        <p>Nous ne garantissons pas que le service sera ininterrompu ou sans erreur. Les prix affichÃ©s sont Ã  titre indicatif et proviennent de donnÃ©es tierces.</p>
       </div>
       <a href="/" className="btn btn-primary" style={{ marginTop: '2rem' }}>Retour au jeu</a>
     </div>
