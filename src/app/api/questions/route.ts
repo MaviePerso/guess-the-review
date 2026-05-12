@@ -13,7 +13,7 @@ export async function GET(req: NextRequest) {
     }
 
     const shuffled = [...data].sort(() => Math.random() - 0.5).slice(0, count);
-    return NextResponse.json(shuffled);
+    return NextResponse.json(shuffled, { headers: { "Cache-Control": "no-store, max-age=0" } });
   } catch (err) {
     return NextResponse.json({ error: "Erreur serveur" }, { status: 500 });
   }
