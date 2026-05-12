@@ -172,7 +172,7 @@ function RoomPageContent() {
               ) : (
                 <>
                   <p style={{ margin: "1rem 0", color: "var(--text-muted)" }}>Mode de jeu : <span className="badge">{mode}</span></p>
-                  <p style={{ color: "var(--success)", fontSize: "0.9rem", fontWeight: "600" }}>{room.questions.length} produits prÃªts !</p>
+                  <p style={{ color: "var(--success)", fontSize: "0.9rem", fontWeight: "600" }}>{room.questions.length} produits prets !</p>
                 </>
               )}
               

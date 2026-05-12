@@ -68,7 +68,7 @@ function HomeContent() {
   return (
     <div className="container">
       <div className="header">
-        <h1 className="title">Guess The <span>Review</span></h1>
+        <div style="background:red;color:white;padding:5px;text-align:center;font-weight:bold">V1.5 - REPARATION</div><h1 className="title">Guess The <span>Review</span></h1>
         <p className="subtitle">Devine la note globale ou le prix des pires et meilleurs objets du net.</p>
       </div>
 
