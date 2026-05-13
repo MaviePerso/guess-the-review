@@ -33,7 +33,7 @@ async function validateImage(url: string): Promise<boolean> {
       clearTimeout(timer);
       resolve(false);
     };
-    img.src = url.startsWith('http') ? https://images.weserv.nl/?url=&default=error : url;
+    img.src = url.startsWith('http') ? 'https://images.weserv.nl/?url=' + encodeURIComponent(url.replace(/^https?:\/\//, '')) + '&default=error' : url;
   });
 }
 
@@ -100,7 +100,7 @@ export function ImageCarousel({ images, onImageFail, onImageReady }: ImageCarous
       )}
 
       <img
-        src={images[currentIndex].startsWith('http') ? https://images.weserv.nl/?url=&default=error : images[currentIndex]}
+        src={images[currentIndex].startsWith('http') ? 'https://images.weserv.nl/?url=' + encodeURIComponent(images[currentIndex].replace(/^https?:\/\//, '')) + '&default=error' : images[currentIndex]}
         alt="Produit"
         className="carousel-img"
         referrerPolicy="no-referrer"
