@@ -3,18 +3,7 @@ import db from "@/data/questions-solo.json";
 
 export const dynamic = "force-dynamic";
 
-const LUXURY_BLACKLIST = [
-  'lamborghini', 'ferrari', 'porsche', 'bugatti', 'bentley', 'maserati',
-  'rolls royce', 'mclaren', 'aston martin', 'maybach', 'supercar', 'hypercar',
-  'rolex', 'patek', 'audemars', 'breitling',
-  'gucci', 'vuitton', 'hermes', 'prada', 'chanel', 'dior', 'balenciaga',
-  'versace', 'givenchy', 'yves saint', 'armani', 'burberry',
-  'tiffany', 'boucheron', 'bulgari',
-  'yacht', 'private jet', 'jet prive',
-  'mansion', 'penthouse', 'villa', 'chateau',
-  'luxury', 'luxe', 'prestige', 'platinum edition', 'diamond edition',
-  'rare edition', 'gold edition', 'limited prestige',
-];
+const LUXURY_BLACKLIST = ['lamborghini', 'ferrari', 'porsche', 'bugatti', 'bentley', 'maserati', 'rolls royce', 'mclaren', 'aston martin', 'maybach', 'supercar', 'hypercar', 'rolex', 'patek', 'audemars', 'omega', 'breitling', 'cartier', 'hublot', 'tag heuer', 'gucci', 'vuitton', 'hermes', 'hermès', 'prada', 'chanel', 'dior', 'balenciaga', 'versace', 'givenchy', 'yves saint', 'armani', 'burberry', 'tiffany', 'boucheron', 'bulgari', 'yacht', 'private jet', 'jet prive', 'mansion', 'penthouse', 'villa', 'chateau', 'luxury', 'luxe', 'prestige', 'platinum', 'diamond', 'emerald', 'ruby', 'sapphire', 'gold', 'rare edition', 'limited prestige'];
 
 function isLuxury(productName: string) {
   const name = (productName || '').toLowerCase();
