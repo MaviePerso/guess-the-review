@@ -1,28 +1,27 @@
-﻿import { Server } from "socket.io";
+import express from "express";
 import { createServer } from "http";
-import fs from 'fs';
-import path from 'path';
+import { Server } from "socket.io";
+import path from "path";
+import fs from "fs";
+import { v4 as uuidv4 } from "uuid";
 
-const httpServer = createServer();
+const app = express();
+const httpServer = createServer(app);
 const io = new Server(httpServer, {
-  cors: { origin: "*", methods: ["GET", "POST"], credentials: true },
-  transports: ['websocket', 'polling']
+  cors: {
+    origin: "*",
+    methods: ["GET", "POST"]
+  }
 });
 
-const PORT = process.env.PORT || 3001;
-const rooms = new Map();
 let DB_PATH = path.join(process.cwd(), 'server', 'db_verified.json');
 
+const LUXURY_BLACKLIST = ['lamborghini', 'ferrari', 'porsche', 'bugatti', 'bentley', 'maserati', 'rolls royce', 'mclaren', 'aston martin', 'maybach', 'supercar', 'hypercar', 'rolex', 'patek', 'audemars', 'omega', 'breitling', 'cartier', 'hublot', 'tag heuer', 'gucci', 'vuitton', 'hermes', 'hermès', 'prada', 'chanel', 'dior', 'balenciaga', 'versace', 'givenchy', 'yves saint', 'armani', 'burberry', 'tiffany', 'boucheron', 'bulgari', 'yacht', 'private jet', 'jet prive', 'mansion', 'penthouse', 'villa', 'chateau', 'luxury', 'luxe', 'prestige', 'platinum', 'diamond', 'emerald', 'ruby', 'sapphire', 'gold bar', 'rare edition', 'limited prestige', 'exclusive mansion', 'luxury estate'];
 
-// ============================================================
-// LUXURY BLACKLIST - Items matching these keywords will NEVER
-// be shown to players, regardless of what's in the database.
-// ============================================================
-const LUXURY_BLACKLIST = ['lamborghini', 'ferrari', 'porsche', 'bugatti', 'bentley', 'maserati', 'rolls royce', 'mclaren', 'aston martin', 'maybach', 'supercar', 'hypercar', 'rolex', 'patek', 'audemars', 'omega', 'breitling', 'cartier', 'hublot', 'tag heuer', 'gucci', 'vuitton', 'hermes', 'hermès', 'prada', 'chanel', 'dior', 'balenciaga', 'versace', 'givenchy', 'yves saint', 'armani', 'burberry', 'tiffany', 'boucheron', 'bulgari', 'yacht', 'private jet', 'jet prive', 'mansion', 'penthouse', 'villa', 'chateau', 'luxury', 'luxe', 'prestige', 'platinum', 'diamond', 'emerald', 'ruby', 'sapphire', 'gold', 'rare edition', 'limited prestige'];
-
-function isLuxury(productName) {
-  const name = (productName || '').toLowerCase();
-  return LUXURY_BLACKLIST.some(kw => name.includes(kw));
+function isLuxury(item) {
+  if (!item) return false;
+  const text = `${item.productName || ''} ${item.title || ''} ${item.reviewText || ''} ${item.description || ''}`.toLowerCase();
+  return LUXURY_BLACKLIST.some(kw => text.includes(kw));
 }
 
 let questionDatabase = [];
@@ -31,6 +30,7 @@ try {
   const rawData = JSON.parse(fs.readFileSync(DB_PATH, 'utf8'));
   const sources = ["eBay", "Cdiscount", "Rakuten", "Fnac", "Darty"];
   
+  const initialCount = rawData.length;
   questionDatabase = rawData.map(item => {
     return {
       productName: item.productName || item.title || "Produit Inconnu",
@@ -40,177 +40,148 @@ try {
       images: item.images || (item.image ? [item.image] : []),
       source: item.source || sources[Math.floor(Math.random() * sources.length)]
     };
-  }).filter(item => item.images && item.images.length > 0 && item.price > 0 && !isLuxury(item.productName));
+  }).filter(item => {
+    const hasImages = item.images && item.images.length > 0;
+    const hasPrice = item.price > 0;
+    const notLuxury = !isLuxury(item);
+    return hasImages && hasPrice && notLuxury;
+  });
   
-  console.log([DB] Loaded  products. Pure random mode enabled.);
+  console.log(`[DB] Loaded ${questionDatabase.length} products (Filtered out ${initialCount - questionDatabase.length} items).`);
 } catch (e) {
   console.error("[DB] Error loading DB:", e.message);
 }
 
 function getQuestions(count = 12) {
   if (questionDatabase.length < count) return [];
-  
-  // 100% Pure Random Selection
-  const result = [];
-  const indices = Array.from({length: questionDatabase.length}, (_, i) => i);
-  
-  // Simple Fisher-Yates shuffle for a subset
-  for (let i = 0; i < count; i++) {
-    const rand = i + Math.floor(Math.random() * (indices.length - i));
-    [indices[i], indices[rand]] = [indices[rand], indices[i]];
-    result.push(questionDatabase[indices[i]]);
-  }
-  
-  return result;
+  const shuffled = [...questionDatabase].sort(() => 0.5 - Math.random());
+  return shuffled.slice(0, count);
 }
 
-const safeCb = (cb, data) => { if (typeof cb === 'function') cb(data); };
+const rooms = new Map();
 
 io.on("connection", (socket) => {
+  console.log("User connected:", socket.id);
+
   socket.on("CREATE_ROOM", async ({ pseudo, mode } = {}, callback) => {
-    if (!pseudo || pseudo.trim().length === 0) return safeCb(callback, { error: "Pseudo invalide" });
-    const code = generateRoomCode();
-    const player = { id: socket.id, pseudo: pseudo.trim(), isHost: true, connected: true, score: 0 };
-    const qs = getQuestions(12);
-    const newRoom = {
-      code, hostId: socket.id, state: "LOBBY", players: [player],
-      currentQuestionIndex: 0, questions: qs, isLoadingQuestions: false,
-      mode: mode || "note", answers: {}, createdAt: Date.now()
+    if (!pseudo) return callback({ success: false, error: "Pseudo requis" });
+    
+    const code = uuidv4().substring(0, 5).toUpperCase();
+    const questions = getQuestions(12);
+    
+    const room = {
+      code,
+      players: [{ id: socket.id, pseudo, score: 0, ready: false }],
+      questions,
+      currentQuestionIndex: 0,
+      status: "waiting",
+      mode: mode || "note",
+      lastUpdate: Date.now()
     };
-    rooms.set(code, newRoom);
+    
+    rooms.set(code, room);
     socket.join(code);
-    safeCb(callback, { success: true, room: newRoom });
+    callback({ success: true, room });
   });
 
-  socket.on("JOIN_ROOM", ({ code, pseudo } = {}, callback) => {
-    const roomCode = code?.toUpperCase();
-    const room = rooms.get(roomCode);
-    if (!room) return safeCb(callback, { error: "Cette room n'existe pas." });
-    const existing = room.players.find(p => p.pseudo.toLowerCase() === pseudo?.trim().toLowerCase());
-    if (existing) {
-      existing.id = socket.id; existing.connected = true;
-      if (room.hostId === existing.id) room.hostId = socket.id;
-      socket.join(roomCode);
-      safeCb(callback, { success: true, room });
-      io.to(roomCode).emit("ROOM_UPDATED", room);
-      return;
-    }
-    if (room.state !== "LOBBY" && room.state !== "FINISHED") return safeCb(callback, { error: "Partie en cours." });
-    const player = { id: socket.id, pseudo: pseudo?.trim() || "Joueur", isHost: false, connected: true, score: 0 };
-    room.players.push(player);
-    socket.join(roomCode);
-    safeCb(callback, { success: true, room });
-    io.to(roomCode).emit("ROOM_UPDATED", room);
+  socket.on("JOIN_ROOM", ({ code, pseudo }, callback) => {
+    const room = rooms.get(code?.toUpperCase());
+    if (!room) return callback({ success: false, error: "Room non trouvée" });
+    if (room.status !== "waiting") return callback({ success: false, error: "Partie déjà commencée" });
+    
+    room.players.push({ id: socket.id, pseudo, score: 0, ready: false });
+    socket.join(room.code);
+    io.to(room.code).emit("ROOM_UPDATE", room);
+    callback({ success: true, room });
   });
 
-  socket.on("START_GAME", ({ code } = {}, callback) => {
+  socket.on("PLAYER_READY", ({ code }) => {
     const room = rooms.get(code);
-    if (!room || room.hostId !== socket.id) return safeCb(callback, { error: "Non autorisé" });
-    room.state = "PLAYING"; room.currentQuestionIndex = 0; room.answers = {};
-    room.players.forEach(p => p.score = 0);
-    io.to(code).emit("ROOM_UPDATED", room);
-    io.to(code).emit("GAME_STARTED");
-    safeCb(callback, { success: true });
-  });
-
-  socket.on("SUBMIT_ANSWER", ({ code, rating, price } = {}, callback) => {
-    const room = rooms.get(code);
-    if (!room || room.state !== "PLAYING") return safeCb(callback, { error: "Erreur" });
-    if (room.answers[socket.id]) return safeCb(callback, { error: "Déjà répondu" });
-    const q = room.questions[room.currentQuestionIndex];
-    let score = 0;
-    if (room.mode === "note" || room.mode === "both") score += Math.max(0, 1 - Math.abs(q.realRating - rating));
-    if (room.mode === "price" || room.mode === "both") score += Math.max(0, 1 - (Math.abs(q.price - price) / q.price) * 5);
-    room.answers[socket.id] = { playerId: socket.id, rating, price, points: Math.round(score * 10) / 10 };
-    safeCb(callback, { success: true });
-    io.to(code).emit("ROOM_UPDATED", room);
-    const active = room.players.filter(p => p.connected);
-    if (active.every(p => room.answers[p.id])) {
-      room.state = "REVEAL";
-      Object.entries(room.answers).forEach(([pId, ans]) => {
-        const p = room.players.find(pl => pl.id === pId);
-        if (p) p.score = Math.round((p.score + ans.points) * 10) / 10;
-      });
-      io.to(code).emit("ROOM_UPDATED", room);
-      io.to(code).emit("REVEAL_QUESTION");
+    if (!room) return;
+    
+    const player = room.players.find(p => p.id === socket.id);
+    if (player) player.ready = true;
+    
+    if (room.players.every(p => p.ready)) {
+      room.status = "playing";
+      io.to(room.code).emit("GAME_START", room);
+    } else {
+      io.to(room.code).emit("ROOM_UPDATE", room);
     }
   });
 
-  socket.on("NEXT_QUESTION", ({ code } = {}, callback) => {
+  socket.on("SUBMIT_ANSWER", ({ code, score }) => {
     const room = rooms.get(code);
-    if (!room || room.hostId !== socket.id || room.state !== "REVEAL") return safeCb(callback, { error: "Non autorisé" });
-    if (room.currentQuestionIndex >= room.questions.length - 1) room.state = "FINISHED";
-    else { room.state = "PLAYING"; room.currentQuestionIndex++; room.answers = {}; }
-    io.to(code).emit("ROOM_UPDATED", room);
-    safeCb(callback, { success: true });
+    if (!room) return;
+    
+    const player = room.players.find(p => p.id === socket.id);
+    if (player) player.score += score;
+    
+    player.hasAnswered = true;
+    
+    if (room.players.every(p => p.hasAnswered)) {
+      io.to(room.code).emit("REVEAL_ANSWER", room);
+    } else {
+      io.to(room.code).emit("ROOM_UPDATE", room);
+    }
+  });
+
+  socket.on("NEXT_QUESTION", ({ code }) => {
+    const room = rooms.get(code);
+    if (!room) return;
+    
+    room.currentQuestionIndex++;
+    room.players.forEach(p => p.hasAnswered = false);
+    
+    if (room.currentQuestionIndex >= room.questions.length) {
+      room.status = "finished";
+      io.to(room.code).emit("GAME_OVER", room);
+    } else {
+      io.to(room.code).emit("NEW_QUESTION", room);
+    }
   });
 
   socket.on("RESTART_GAME", ({ code } = {}, callback) => {
     const room = rooms.get(code);
-    if (!room || room.hostId !== socket.id) return safeCb(callback, { error: "Non autorisé" });
+    if (!room) return;
+    
     room.questions = getQuestions(12);
-    room.state = "PLAYING"; room.currentQuestionIndex = 0; room.answers = {};
-    room.players.forEach(p => p.score = 0);
-    io.to(code).emit("ROOM_UPDATED", room);
-    io.to(code).emit("GAME_STARTED");
-    safeCb(callback, { success: true });
+    room.currentQuestionIndex = 0;
+    room.status = "waiting";
+    room.players.forEach(p => {
+      p.score = 0;
+      p.ready = false;
+      p.hasAnswered = false;
+    });
+    
+    io.to(room.code).emit("ROOM_UPDATE", room);
   });
 
-    socket.on("REPLACE_QUESTION", ({ code } = {}, callback) => {
+  socket.on("REPLACE_QUESTION", ({ code } = {}, callback) => {
     const room = rooms.get(code);
-    if (!room) return; // Anyone can request replace if image is broken
+    if (!room) return;
+
     const newQs = getQuestions(1);
     if (newQs.length > 0) {
       room.questions[room.currentQuestionIndex] = newQs[0];
-      room.answers = {}; 
-      io.to(code).emit("ROOM_UPDATED", room);
-      if (typeof callback === 'function') callback({ success: true });
-    } else {
-      if (typeof callback === 'function') callback({ error: "Plus de questions disponibles" });
+      io.to(room.code).emit("QUESTION_REPLACED", room);
     }
   });
 
   socket.on("disconnect", () => {
-    rooms.forEach((room, code) => {
-      const p = room.players.find(pl => pl.id === socket.id);
-      if (p) { p.connected = false; io.to(code).emit("ROOM_UPDATED", room); }
-    });
+    console.log("User disconnected:", socket.id);
+    for (const [code, room] of rooms.entries()) {
+      room.players = room.players.filter(p => p.id !== socket.id);
+      if (room.players.length === 0) {
+        rooms.delete(code);
+      } else {
+        io.to(code).emit("ROOM_UPDATE", room);
+      }
+    }
   });
 });
 
-function generateRoomCode() {
-  const chars = "ABCDEFGHJKLMNPQRSTUVWXYZ23456789";
-  let code = "";
-  for (let i = 0; i < 5; i++) code += chars.charAt(Math.floor(Math.random() * chars.length));
-  return code;
-}
-
-httpServer.on('request', async (req, res) => {
-  const url = new URL(req.url, "http://localhost");
-  
-  // CORS headers for frontend solo mode
-  res.setHeader('Access-Control-Allow-Origin', '*');
-  res.setHeader('Access-Control-Allow-Methods', 'GET, OPTIONS');
-  res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
-  if (req.method === 'OPTIONS') { res.writeHead(204); res.end(); return; }
-
-  if (url.pathname === '/health' || url.pathname === '/') {
-    res.writeHead(200, { 'Content-Type': 'application/json' });
-    res.end(JSON.stringify({ status: 'ok', items: questionDatabase.length }));
-    return;
-  }
-
-  // Solo mode: returns N random questions from the real DB
-  if (url.pathname === '/questions') {
-    const count = Math.min(parseInt(url.searchParams.get('count') || '10', 10), 50);
-    const questions = getQuestions(count);
-    res.writeHead(200, { 'Content-Type': 'application/json' });
-    res.end(JSON.stringify(questions));
-    return;
-  }
-
-  res.writeHead(404); res.end();
+const PORT = process.env.PORT || 3001;
+httpServer.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`);
 });
-
-httpServer.listen(PORT, "0.0.0.0", () => console.log(🚀 Server started on port  (Pure Random Mode)));
-
